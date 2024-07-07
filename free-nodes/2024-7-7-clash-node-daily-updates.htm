@@ -167,6 +167,17 @@
     <script src="/assets/addons/xcblog/js/frontend/windowsnekoray/main.js"></script>
     <!-- lightbox js -->
     <script src="/assets/addons/xcblog/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script>
+    $(function() {
+        $('.js_to').click(function(){
+            var url = $(this).data('url');
+            var code = $(this).data('code');
+            url += code;
+
+            window.open(url);
+        })
+    });
+    </script>
 </body>
 
 </html>
