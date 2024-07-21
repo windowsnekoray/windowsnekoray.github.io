@@ -1841,3 +1841,4 @@ nav .navbar-brand {
 .nav-scroll .navbar-brand {color: #545454;}
 .home.list {padding:8rem 0;background: url("/assets/addons/xcblog/img/windowsnekoray/hero.jpg") no-repeat center;opacity: 0.7;}
 .home.list h2 {color: rgba(255, 255, 255, 1);}
+#about .item .heading-tertiary {color: #545454;}
