@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-20327.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>springboot base64_base64转码</title>
+        <meta name="description" content="注意事项：  标准base64是一种编码转换，不是加密方法，过程可逆； 标准base64的64个可打印字符由52个大小写英文字母和10个数字（0-9）以及 / 和 + 组成； base64为了方便把含" />
+        <link rel="icon" href="__ADDON__/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+                <a class="navbar-brand" href="/">
+            Windows NekoRay
+        </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">联系</a>
+                </li>
+                
+            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        springboot base64_base64转码                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                      				  				  				<div id="content_views" class="htmledit_views"> <p>注意事项：</p> <ul> <li>标准base64是一种编码转换，不是加密方法，过程可逆；</li> <li>标准base64的64个可打印字符由52个大小写英文字母和10个数字（0-9）以及 / 和 + 组成；</li> <li>base64为了方便把含有不可见字符串的信息用可见字符串表示出来；</li> </ul> <p>代码如下：</p> <div class="has"> <pre class="has"><code>import</code></pre> </div> <p>运行结果：</p> <div class="has"> <pre class="has"><code>编码后</code></pre> </div> <p><b>java8可以直接使用Base64，转换原理如下：</b></p> <ol> <li>将二进制数据每三个字节分为一组，每个字节占8bit，那么共有24个二进制位。</li> <li>将上面的24个二进制位每6个一组，共分为4组。</li> <li>在每组前添加2个0，每组由6个变为8个二进制位，总共32个二进制位，也就是四个字节。</li> <li>根据base64编码对照表将每个字节转化成对应的可打印字符</li> </ol> <p>转化实例如下图：</p> <div style="text-align:center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/d9b8279da23413cf47c4cd1175a3b962.jpg" alt="springboot base64_base64转码"></div> <p>标准base64的64个可打印字符由52个大小写英文字母和10个数字（0-9）以及 / 和 + 组成，编码对照表如下：</p> <div style="text-align:center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/d7789c7473990d03704077e2b2fc949e.jpg" alt="springboot base64_base64转码"></div> <p>base64是将二进制每三个字节转为4个字节，会有不足三个字节的情况，处理如下：</p> <ol> <li>两个字节：两个字节共16个二进制位，依旧按照规则进行分组。此时总共16个二进制位，每6个一组，则第三组缺少2位，用0补齐，得到三个Base64编码，第四组完全没有数据则用“=”补上。因此，如下图中“BC”转换之后为“QKM=”；</li> <li>一个字节：一个字节共8个二进制位，依旧按照规则进行分组。此时共8个二进制位，每6个一组，则第二组缺少4位，用0补齐，得到两个Base64编码，而后面两组没有对应数据，都用“=”补上。因此，如下图中“A”转换之后为“QQ==”</li> </ol> <div style="text-align:center;"><img decoding="async" src="http://img.555519.xyz/uploads3/20220609/e7e82c873bae4eef3a752a9925d550da.jpg" alt="springboot base64_base64转码"></div> <p>参考连接：base64编码 - 豁然高 - 博客园</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-20325.htm">关于tensor的shape理解</a></p>
+                                        <p>下一个：<a href="/news/article-20782.htm">动物疫苗预防控制中心电话（动物防疫站电话号码多少）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-13-free-v2ray-subscribe.htm" title="「10月13日」最高速度19.9M/S，2024年NekoRay每天更新免费节点订阅链接">「10月13日」最高速度19.9M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-21-free-node-subscribe.htm" title="「8月21日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接">「8月21日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-16-node-share-links.htm" title="「8月16日」最高速度19.8M/S，2024年NekoRay每天更新免费节点订阅链接">「8月16日」最高速度19.8M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-7-clash-node-daily-updates.htm" title="「7月7日」最高速度21.8M/S，2024年NekoRay每天更新免费节点订阅链接">「7月7日」最高速度21.8M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19410.htm" title="Objective-C 基础教程第九章,内存管理">Objective-C 基础教程第九章,内存管理</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-13-linux-nekoray.htm" title="「9月13日」最高速度22.1M/S，2024年NekoRay每天更新免费节点订阅链接">「9月13日」最高速度22.1M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-19411.htm" title="成都兽用疫苗公司 成都兽用疫苗公司有哪些">成都兽用疫苗公司 成都兽用疫苗公司有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-11-linux-nekoray-node.htm" title="「9月11日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接">「9月11日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-subscribe-node.htm" title="「11月30日」最高速度20M/S，2024年NekoRay每天更新免费节点订阅链接">「11月30日」最高速度20M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-nekoray.htm" title="「11月8日」最高速度20.4M/S，2024年NekoRay每天更新免费节点订阅链接">「11月8日」最高速度20.4M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">9</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
