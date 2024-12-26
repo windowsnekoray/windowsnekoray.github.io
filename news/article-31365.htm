@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-31365.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PHP $ _SERVER</title>
+        <meta name="description" content="介绍 $_SERVER是一个超级全局变量，其中包含有关HTTP标头，路径和脚本位置等的信息。在此关联数组中，所有与服务器和执行环境相关的信息都可用。Web服务器将填充此数组中的大多数条目。 5.4.0" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+                <a class="navbar-brand" href="/">
+            Windows NekoRay
+        </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">联系</a>
+                </li>
+                
+            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        PHP $ _SERVER                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>介绍</h2> <p><strong>$_SERVER</strong>是一个超级全局变量，其中包含有关HTTP标头，路径和脚本位置等的信息。在此关联数组中，所有与服务器和执行环境相关的信息都可用。Web服务器将填充此数组中的大多数条目。</p> <p>5.4.0之前的PHP版本包含<strong>&nbsp;$HTTP_SERVER_VARS</strong>包含相同的信息，但现已删除。以下是该阵列的一些重要成员</p> <p><strong>PHP_SELF-</strong>存储当前正在执行的脚本的文件名。例如，本地服务器文档根目录的test文件夹中的脚本返回其路径，如下所示：</p> <h2>示例</h2> <pre>&lt;?php echo&nbsp;$_SERVER['PHP_SELF']; ?&gt;</pre> <p>这将导致浏览器中带有http：//localhost/test/testscript.php URL的以下输出</p> <pre>/test/testscript.php</pre> <p><strong>SERVER_ADDR-</strong>数组的此属性返回当前脚本正在其下执行的服务器的IP地址。</p> <p><strong>SERVER_NAME-</strong>当前脚本正在其下执行的服务器主机的名称。如果在本地运行erver，则返回<strong>localhost</strong></p> <p><strong>QUERY_STRING-</strong>查询字符串是键=值对的字符串，由＆符号分隔，并附加在URL之后？符号。例如，<strong>http：// localhost / testscript？name = xyz＆age = 20</strong> URL返回尾随查询字符串</p> <p><strong>REQUEST_METHOD-</strong>用于访问URL的HTTP请求方法，例如POST，GET，POST，PUT或DELETE。在上面的查询字符串示例中，附加到查询字符串wirh？的URL。符号使用GET方法请求页面</p> <p><strong>DOCUMENT_ROOT-</strong>返回配置为文档根目录的服务器上目录的名称。在XAMPP apache服务器上，它返回htdocs作为文档根目录的名称</p> <pre>C:/xampp/htdocs</pre> <p><strong>DOCUMENT_ROOT-</strong>这是一个字符串，表示正在访问页面的用户代理（浏览器）。</p> <pre>Mozilla/5.0&nbsp;(Windows&nbsp;NT&nbsp;10.0;&nbsp;Win64;&nbsp;x64)&nbsp;AppleWebKit/537.36&nbsp;(KHTML,&nbsp;like&nbsp;Gecko)&nbsp;Chrome/83.0.4103.116&nbsp;Safari/537.36</pre> <p><strong>REMOTE_ADDR-</strong>用户正在从中查看当前页面的计算机的IP地址。</p> <p><strong>SERVER_PORT</strong> -Web服务器正在侦听传入请求的端口号。默认值为80</p> <p>从XAMPP服务器的文档根目录调用的以下脚本列出了所有服务器变量</p> <h2>示例</h2> <pre>&lt;?php foreach&nbsp;($_SERVER&nbsp;as&nbsp;$k=&gt;$v) echo&nbsp;$k&nbsp;.&nbsp;"=&gt;"&nbsp;.&nbsp;$v&nbsp;.&nbsp;"&lt;br&gt;"; ?&gt;</pre> <p>所有服务器变量列表</p> <pre>MIBDIRS=&gt;C:/xampp/php/extras/mibs MYSQL_HOME=&gt;\xampp\mysql\bin OPENSSL_CONF=&gt;C:/xampp/apache/bin/openssl.cnf PHP_PEAR_SYSCONF_DIR=&gt;\xampp\php PHPRC=&gt;\xampp\php TMP=&gt;\xampp\tmp HTTP_HOST=&gt;localhost HTTP_CONNECTION=&gt;keep-alive HTTP_CACHE_CONTROL=&gt;max-age=0 HTTP_DNT=&gt;1 HTTP_UPGRADE_INSECURE_REQUESTS=&gt;1 HTTP_USER_AGENT=&gt;Mozilla/5.0&nbsp;(Windows&nbsp;NT&nbsp;10.0;&nbsp;Win64;&nbsp;x64)&nbsp;AppleWebKit/537.36&nbsp;(KHTML,&nbsp;like&nbsp;Gecko)&nbsp;Chrome/84.0.4147.135&nbsp;Safari/537.36 HTTP_ACCEPT=&gt;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9 HTTP_SEC_FETCH_SITE=&gt;none HTTP_SEC_FETCH_MODE=&gt;navigate HTTP_SEC_FETCH_USER=&gt;?1 HTTP_SEC_FETCH_DEST=&gt;document HTTP_ACCEPT_ENCODING=&gt;gzip,&nbsp;deflate,&nbsp;br HTTP_ACCEPT_LANGUAGE=&gt;en-US,en;q=0.9,mr;q=0.8 PATH=&gt;C:\python37\Scripts\;C:\python37\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program&nbsp;Files&nbsp;(x86)\AMD\ATI.ACE\Core-Static;C:\python37\Scripts\;C:\python37\;C:\Users\User\AppData\Local\Microsoft\WindowsApps;C:\Users\User\AppData\Local\Programs\MiKTeX&nbsp;2.9\miktex\bin\x64\;C:\MicrosoftVSCode\bin SystemRoot=&gt;C:\Windows COMSPEC=&gt;C:\Windows\system32\cmd.exe PATHEXT=&gt;.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW WINDIR=&gt;C:\Windows SERVER_SIGNATURE=&gt; Apache/2.4.41&nbsp;(Win64)&nbsp;OpenSSL/1.0.2s&nbsp;PHP/7.1.32&nbsp;Server&nbsp;at&nbsp;localhost&nbsp;Port&nbsp;80  SERVER_SOFTWARE=&gt;Apache/2.4.41&nbsp;(Win64)&nbsp;OpenSSL/1.0.2s&nbsp;PHP/7.1.32 SERVER_NAME=&gt;localhost SERVER_ADDR=&gt;::1 SERVER_PORT=&gt;80 REMOTE_ADDR=&gt;::1 DOCUMENT_ROOT=&gt;C:/xampp/htdocs REQUEST_SCHEME=&gt;http CONTEXT_PREFIX=&gt; CONTEXT_DOCUMENT_ROOT=&gt;C:/xampp/htdocs SERVER_ADMIN=&gt;postmaster@localhost SCRIPT_FILENAME=&gt;C:/xampp/htdocs/testscript.php REMOTE_PORT=&gt;49475 GATEWAY_INTERFACE=&gt;CGI/1.1 SERVER_PROTOCOL=&gt;HTTP/1.1 REQUEST_METHOD=&gt;GET QUERY_STRING=&gt; REQUEST_URI=&gt;/testscript.php SCRIPT_NAME=&gt;/testscript.php PHP_SELF=&gt;/testscript.php REQUEST_TIME_FLOAT=&gt;1599118525.327 REQUEST_TIME=&gt;1599118525</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-30997.htm">宠物领养合同违约金3000合理吗怎么赔偿 宠物领养合同违约金3000合理吗怎么赔偿呢</a></p>
+                                        <p>下一个：<a href="/news/article-31366.htm">动物疫苗接种间隔多长时间打一次 动物疫苗接种间隔多长时间打一次好</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-30-free-subscribe-node.htm" title="「9月30日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接">「9月30日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-16-linux-nekoray.htm" title="「9月16日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接">「9月16日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-24-free-nekoray.htm" title="「8月24日」最高速度18.1M/S，2024年NekoRay每天更新免费节点订阅链接">「8月24日」最高速度18.1M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25391.htm" title="设计模式详解之结构型设计模式——适配器、装饰器">设计模式详解之结构型设计模式——适配器、装饰器</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-14-free-node-subscribe.htm" title="「12月14日」最高速度18.7M/S，2024年NekoRay每天更新免费节点订阅链接">「12月14日」最高速度18.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-31-free-subscribe-node.htm" title="「8月31日」最高速度18.2M/S，2024年NekoRay每天更新免费节点订阅链接">「8月31日」最高速度18.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-30-free-subscribe-node.htm" title="「11月30日」最高速度20M/S，2024年NekoRay每天更新免费节点订阅链接">「11月30日」最高速度20M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-9-free-node-subscribe.htm" title="「10月9日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接">「10月9日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-31-free-node-subscribe-links.htm" title="「10月31日」最高速度19.5M/S，2024年NekoRay每天更新免费节点订阅链接">「10月31日」最高速度19.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21242.htm" title="宠物医院连锁店十大排行榜（宠物医院十大品牌）">宠物医院连锁店十大排行榜（宠物医院十大品牌）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">78</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
