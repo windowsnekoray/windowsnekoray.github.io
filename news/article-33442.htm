@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-33442.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>简单易懂的进程与线程详解</title>
+        <meta name="description" content="本博客分以下几个部分来阐述进程与线程 1、进程的概念很抽象?那么什么是进程呢？ 2、开启一个进程，操作系统会做哪些工作？ 3、既然进程也可以使多个程序能并发执行，为什么还需要线程？ 4、进程与线程有哪" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+                <a class="navbar-brand" href="/">
+            Windows NekoRay
+        </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">联系</a>
+                </li>
+                
+            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        简单易懂的进程与线程详解                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				</h1> <p>本博客分以下几个部分来阐述进程与线程</p> <p>1、进程的概念很抽象?那么什么是进程呢？</p> <p>2、开启一个进程，操作系统会做哪些工作？</p> <p>3、既然进程也可以使多个程序能并发执行，为什么还需要线程？</p> <p>4、进程与线程有哪些联系呢？</p> <h2 id="什么是进程">什么是进程？</h2> <ul> <li>进程是计算机程序从启动到结束的过程。</li> <li>那么什么是计算机程序呢？ 我们常见的QQ、微信、英雄联盟这些软件都是一个计算机程序，（可以说我们从打开QQ到关闭QQ就是一段进程）。<br /> 不难理解，这些计算机程序是由代码，以及图片、音频、jar包等必要的资源文件组成的。</li> </ul> <h2 id="开启一个进程操作系统会做哪些工作呢">开启一个进程，操作系统会做哪些工作呢？</h2> <ul> <li>①进程的ID号。当操作系统收到我们要打开QQ进程的时候，操作系统会给QQ进程一个ID号，我们可以通过任务管理器窗口看到该进程ID</li> <li>②申请内存空间。每个进程拥有独立的地址空间。</li> </ul> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/59b83d2b3f1b69c91188c944367dc439.jpg" alt="简单易懂的进程与线程详解"></p> <h2 id="既然进程也可以使多个程序能并发执行为什么还需要线程">既然进程也可以使多个程序能并发执行，为什么还需要线程？</h2> <h4 id="从用户使用的角度来看">从用户使用的角度来看</h4> <ul> <li>进程的并发解决了哪些问题呢？ <ul> <li>多应用同时进行，在QQ音乐听歌的同时 还可以刷QQ空间。</li> <li>应用分身，这允许我们同时登录好多人的QQ号。</li> </ul> </li> <li>如果我们QQ进程中只有一个线程，会发生什么呢？ <ul> <li>单线程的进程是完全顺序结构，只能在同一时间做一件事情。比如我们在使用QQ进行文件传输的时候，就无法和好友发消息 闲聊了。</li> </ul> </li> </ul> <h4 id="从上下文状态切换的角度来看">从上下文状态切换的角度来看</h4> <ul> <li>进程的单位比较大，创建/销毁、进行上下文切换比较浪费资源</li> <li>线程的单位比较小，创建/销毁、上下文切换不太浪费资源</li> <li>所以，需要频繁创建销毁时，要考虑线程 。在需要大量计算、切换频繁时 使用线程可以提高程序的响应速度 。</li> </ul> <h4 id="线程的引入优点很多又有哪些问题呢">线程的引入优点很多，又有哪些问题呢？</h4> <ul> <li>开发更加麻烦。</li> <li>线程可以共享一个进程的资源，所以共享的数据要保证安全。</li> <li>线程的执行顺序，也需要保证，比如我们要给QQ好友发送一张图片，这篇文章传输过程中可能被分成了很多份小的<br /> 数据包来发送，这个时候QQ好友接收数据包的顺序不能乱。</li> </ul> <h2 id="进程与线程有哪些联系呢">进程与线程有哪些联系呢？</h2> <ul> <li>一个进程之中可以包含多个线程</li> <li>线程可以共享一个进程的资源</li> </ul> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-32904.htm">领养协议书怎么写简单（领养协议怎么写?）</a></p>
+                                        <p>下一个：<a href="/news/article-33443.htm">宠物领养条件要求（宠物领养的条件）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-9-6-share-windows-nekoray.htm" title="「9月6日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接">「9月6日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-nekoray.htm" title="「12月20日」最高速度20.7M/S，2024年NekoRay每天更新免费节点订阅链接">「12月20日」最高速度20.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-20-free-nekoray-node.htm" title="「10月20日」最高速度18M/S，2024年NekoRay每天更新免费节点订阅链接">「10月20日」最高速度18M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34338.htm" title="猫三联三针一共多少钱一针啊（猫三联三针有什么区别）">猫三联三针一共多少钱一针啊（猫三联三针有什么区别）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-8-linux-nekoray.htm" title="「8月8日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接">「8月8日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-8-1-node-share-links.htm" title="「8月1日」最高速度20.2M/S，2024年NekoRay每天更新免费节点订阅链接">「8月1日」最高速度20.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-33443.htm" title="宠物领养条件要求（宠物领养的条件）">宠物领养条件要求（宠物领养的条件）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-16-linux-nekoray.htm" title="「9月16日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接">「9月16日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-28-windows-nekoray.htm" title="「9月28日」最高速度19.7M/S，2024年NekoRay每天更新免费节点订阅链接">「9月28日」最高速度19.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-9-29-free-shadowrocket-node.htm" title="「9月29日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接">「9月29日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
