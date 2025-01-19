@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-42158.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>golang关于panic的解析</title>
+        <meta name="description" content="关于panic，接下来主要讲panic的执行机制和顺序，我会通过多个例子来讲解不同情况下panic逻辑的处理流程。 首先这是panic的结构体  首先，通过上一节defer的讲解我们知道，多个defe" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-42158.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="golang关于panic的解析" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/130827bc8a5bdf042dfb7d6c01792032.webp" />
+        <meta property="og:release_date" content="2025-01-17T09:32:11" />
+    <meta property="og:updated_time" content="2025-01-17T09:32:11" />
+        <meta property="og:description" content="关于panic，接下来主要讲panic的执行机制和顺序，我会通过多个例子来讲解不同情况下panic逻辑的处理流程。 首先这是panic的结构体  首先，通过上一节defer的讲解我们知道，多个defe" />
+        
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+                <a class="navbar-brand" href="/">
+            Windows NekoRay
+        </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">联系</a>
+                </li>
+                
+            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        golang关于panic的解析                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> </h1> <p>关于panic，接下来主要讲panic的执行机制和顺序，我会通过多个例子来讲解不同情况下panic逻辑的处理流程。</p> <p>首先这是panic的结构体<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/60208703b09639dbde2e109b1619b87c.jpg" alt="golang关于panic的解析"></p> </h1> <p>首先，通过上一节defer的讲解我们知道，多个defer组成列表挂在当前协程goroutine的成员变量_defer字段下的。<br /> 同理在goroutine结构体上还有个字段是用来挂接多个_panic结构体的。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/480eaa9d4db800d2dd499d3f723162a0.jpg" alt="golang关于panic的解析"></p> </h1> <h4> <a id="_12" rel="nofollow"></a>简单例子</h4> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> <span class="token punctuation">}</span> <span class="token comment">//伪代码</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"MAIN"</span><span class="token punctuation">)</span>	 <span class="token punctuation">}</span> </code></pre> <ul> <li>先向当前协程的_defer字段上挂接defer<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/62b5ae9cbd568c186f3cfe5ae32dfabc.jpg" alt="golang关于panic的解析"> </li> <li>遇到panic，此时向协程的panic字段挂接panic</li> <li>因为遇到了panic，所以程序停止，从而触发panic，而panic也会触发defer方法。<br /> 首先我们可以看下_defer结构体：</li> </ul> <pre><code class="prism language-go"><span class="token keyword">type</span> _defer <span class="token keyword">struct</span> <span class="token punctuation">{<!-- --></span> 	siz <span class="token builtin">int32</span> 	started <span class="token builtin">bool</span> <span class="token comment">//1、panic执行defer，会先将defer的started置为true</span> 	sp <span class="token builtin">uintptr</span> 	pc <span class="token builtin">uintptr</span> 	fn <span class="token operator">*</span>funcval 	_panic <span class="token operator">*</span><span class="token builtin">panic</span><span class="token comment">// 2、panic字段指向当前执行的panic</span> 	link <span class="token operator">*</span>_defer <span class="token punctuation">}</span> </code></pre> <p>且panic触发了defer方法，所以对应<br /> _deferA.started=true,<br /> _deferA._panic=panicMAIN<br /> 如图<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/bcd2d50ce80e7eb9c2b5d6f31d57c32a.jpg" alt="golang关于panic的解析"></p> <ul> <li>最终deferA执行完毕且deferA节点被移除后，协程输出panicMAIN信息。<br /><strong>要明确的是，defer执行完后，所有在panic链表上的项都会被输出，顺序于panic发生的顺序一致。</strong> </li> </ul> <h4> <a id="_52" rel="nofollow"></a>例子二</h4> <p>承接例子一，如果增加一个defer</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> <span class="token punctuation">}</span> <span class="token comment">//伪代码</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"MAIN"</span><span class="token punctuation">)</span>	 <span class="token punctuation">}</span> </code></pre> <p>那么按照defer的注册顺序，那么deferB最先执行如图<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/e4a34d24b3a4fee714d807f9a0f52250.jpg" alt="golang关于panic的解析"><br /> 当deferB执行完毕后，移除deferB的节点，继续执行deferA。<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/bcd2d50ce80e7eb9c2b5d6f31d57c32a.jpg" alt="golang关于panic的解析">直到最后deferA方法执行完被移除后，输出协程的panicMAIN信息</p> <h4> <a id="_deferpanic_71" rel="nofollow"></a>例子三 defer中出现panic</h4> <p>基于例子二，我在defer中出现panic</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> <span class="token punctuation">}</span> <span class="token comment">//伪代码</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"MAIN"</span><span class="token punctuation">)</span>	 <span class="token punctuation">}</span> </code></pre> <ul> <li>当触发panicMAIN的时候，如图<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/e4a34d24b3a4fee714d807f9a0f52250.jpg" alt="golang关于panic的解析"> </li> <li>可知当前执行的是deferB，deferB执行完后如图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/bcd2d50ce80e7eb9c2b5d6f31d57c32a.jpg" alt="golang关于panic的解析"> </li> <li>此时开始执行deferA，但是此时deferA中触发了panicA，如图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/99c0b4a7987c0fd79c842e3c3bcfd9b9.jpg" alt="golang关于panic的解析"><br /> 从上图可以看到，panicA加入到了_panic链表表头，那么按理当前最先执行的应该是panicA。（panic链表也是秉承LIFO原则）<br /> 然而去到deferA中发现当前触发deferA的是panicMAIN，也就是当前执行的是panicMAIN，显然不符合我们panic链表的LIFO原则，那么系统会强制将panicMAIN进行终止，即将panicMAIN的panic结构体的aborted字段置为true，标识当前的panic已经终止。<br /> 然后将panicA置为执行状态，触发deferA，如图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/7a4e1e0ac4bc6f51c22f09ce72d70c8b.jpg" alt="golang关于panic的解析"><br /> deferA执行完，协程先后输出当前_panic链表信息：<br /> 1、panicMAIN(aborted)信息；（panicMAIN是已终止状态，所以会附带一个aborted信息）<br /> 2、panicA的信息；</li> </ul> <h4> <a id="_recover_102" rel="nofollow"></a>例子四 增加recover</h4> <p>recover的作用很简单，就是把当前执行的panic置为已恢复，也就是把panic的recovered字段置为true；<br /> 看段代码</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token comment">//伪代码</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"MAIN"</span><span class="token punctuation">)</span>	 <span class="token punctuation">}</span> </code></pre> <ul> <li>当触发panicMAIN的时候，如图<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/e4a34d24b3a4fee714d807f9a0f52250.jpg" alt="golang关于panic的解析"><br /> 会先执行deferB，且在deferB中有recover，那么recover便会将panicMAIN的recovered置为true，<br /><font color="#DC143C"><em><strong>当deferB执行完后，panic处理流程会进行一次检查，对那些已恢复的panic进行移除。</strong></em><br /> 所以当发现panicMAIN的recovered=true，那么便会移除掉panicMAIN。</font> </li> </ul> <hr color="#000000" size="1&quot;"/> <h5> <a id="_129" rel="nofollow"></a>小贴士：</h5> <p>首先，因为deferB中的recover使得panicMAIN被恢复并被移除，接下来，协程仍然要执行接下来的defer链表的节点deferA，而不是说恢复协程的正常处理逻辑；</p> <p>什么？<br /> 没看懂问题？<br /> 就是既然当前唯一的panic ———— panicMAIN被恢复了，<br /> 按理目前暂时没有panic来触发defer流程了，<br /> 是什么机制使其能继续执行defer流程，继续执行deferA呢？</p> <p>首先在deferB被移除前 <em><strong>（前提是deferB中的_panic字段指向的panicMAIN.recovered=true，说明触发deferB的panic已经被恢复）</strong></em> ，会记录保存deferB的sp和pc,并移除deferB节点；</p> <p><strong>sp和pc是注册defer函数时保存的</strong></p> <ul> <li> <p>_defer.sp //main函数的栈指针</p> </li> <li> <p>_defer.pc //声明deferB的时候调用deferproc函数的返回地址。</p> <p>对于main函数</p> </li> </ul> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>   <span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>   <span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token comment">//伪代码</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>   <span class="token keyword">defer</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token keyword">defer</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"MAIN"</span><span class="token punctuation">)</span>	 <span class="token punctuation">}</span> </code></pre> <p>其对应的伪指令</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	r <span class="token operator">=</span> runtime<span class="token punctuation">.</span><span class="token function">deferproc</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>A<span class="token punctuation">)</span> 	<span class="token keyword">if</span> r<span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">{<!-- --></span> 		 <span class="token keyword">goto</span> ret 	<span class="token punctuation">}</span> 	 	r <span class="token operator">=</span> runtime<span class="token punctuation">.</span><span class="token function">deferproc</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span>B<span class="token punctuation">)</span> 	<span class="token keyword">if</span> r<span class="token operator">&gt;</span><span class="token number">0</span><span class="token punctuation">{<!-- --></span> 		 <span class="token keyword">goto</span> ret 	<span class="token punctuation">}</span> <span class="token comment">// users code</span>  ret<span class="token punctuation">:</span> 	runtime<span class="token punctuation">.</span><span class="token function">deferreturn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>  </code></pre> <p>接下来通过上述这两个字段来继续跳入defer执行链执行。<br /> 问题是：<strong>通过这两个字端，是如何继续跳入defer执行链呢。</strong></p> <p>首先，移除掉deferB后：</p> <ul> <li>通过保存的deferB.SP 找到main函数的栈指针；</li> <li>通过pc可以恢复到 <em><strong>声明deferB的时候调用deferproc函数的返回地址</strong></em><br /> 也就是如图所示的位置<img decoding="async" src="http://img.555519.xyz/uploads/20221230/dfb2afbf32e37b772a651e1a0bbfba38.jpg" alt="golang关于panic的解析"><br /> 接下来会执行r的判断，如果r&lt;=0,那么便会跳过判断执行users code的逻辑导致main函数被重复执行。</li> </ul> <p>首先 这个deferproc的返回值是被编译器保存在寄存器中的，所以只要将r置为1，就可以执行goto ret，跳转到deferreturn这里，继续执行defer链表。</p> <p>通过判断比较defer链表中每个defer项的的栈指针来判断当前执行的defer是否属于main函数，从而继续执行当前main函数的defer流程。（defer文章有讲，可以先去了解下defer的资料）</p> <p><font color="#DC143C"><strong>注意！！！，到此时才会触发每次defer移除时候的检查流程，发现panicMAIN的recovered=true，所以移除panicMAIN</strong></font></p> <p>然后继续执行deferA，此时deferA中有panicA，则如图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/3284ca83f37e014ef69144c4cb6bf849.jpg" alt="golang关于panic的解析"><br /> 然后就是常规的panic和defer处理了。</p> <hr color="#000000" size="1&quot;"/> <h3> <a id="_207" rel="nofollow"></a>暂停一下</h3> <p>我们可以看到，panic中的recovered和aborted会影响panic的输出；</p> <ul> <li>panic.recovered = true ,则会移除panic</li> <li>panic.aborted = true 则会将当前panic标记为停止，且在协程输出的时候，将信息附带打印出来；<strong>但是aborted=true，并不会移除掉panic节点。</strong> </li> </ul> <p>所以，问题来了，当有个panic recovered既为true、且aborted也为true的时候，此时的panic该如何处理？</p> <p>那么也就来到最后的一个例子：</p> <h4> <a id="recoveredtrue__aborted__true_217" rel="nofollow"></a>例子五，recovered=true &amp; aborted = true</h4> <p>首先，我们先给出能触发上述情况的代码：</p> <pre><code class="prism language-go"><span class="token keyword">func</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> <span class="token punctuation">}</span> <span class="token keyword">func</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token function">recover</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"B"</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token comment">//伪代码</span> <span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span> 	<span class="token keyword">defer</span> <span class="token function">deferA</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token keyword">defer</span> <span class="token function">deferB</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 	<span class="token function">panic</span><span class="token punctuation">(</span><span class="token string">"MAIN"</span><span class="token punctuation">)</span>	 <span class="token punctuation">}</span> </code></pre> <ul> <li>panicMAIN触发执行deferB，<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/e4a34d24b3a4fee714d807f9a0f52250.jpg" alt="golang关于panic的解析"><br /> 且deferB中有recover，那么，panicMAIN.recovered = true<br /> recover执行完后，紧接着出发panicB，如图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/f644461dbfa95762a39fd44eb5f01812.jpg" alt="golang关于panic的解析"><br /> 由图中可以看到，当前执行的panic改为panicB了，但是目前执行的deferB仍然是受panicMAIN触发，此时便会触发aborted(<strong>可以参考例子五的aborted处理</strong>)<br /> 那么此时panicMAIN.aborted = true,如图：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/b03692e18aa352efdfcfd91baca4b2ca.jpg" alt="golang关于panic的解析"><br /> 此时 deferB之行结束，此时deferA就是由panicB触发执行的了：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/46ee0630874cf0e936f403dabe04fd83.jpg" alt="golang关于panic的解析"><br /> ，再然后deferA之行结束，那么将会打印panic链表信息，<br /> 此时panicMAIN虽然被恢复了，但是也仍然会被打印并附带 recovered和aborted<br /><strong>由此可知，panic只有在单独 recovered = true的时候 才会被移除，只要aborted= true，那么就不能允许panic从_panic链表移除掉。</strong> </li> </ul> </h1> <ul> <li>panic和defer一样都是挂接在协程上的，以链表的形式存在；</li> <li>panic会触发defer执行；</li> <li>当当前执行的defer触发源panic与当前执行的panic不一致的时候，便会将当前执行的defer的触发源panic进行关停aborted=true，且在最后协程输出的时候附带上aborted信息；</li> <li>recovered的作用是恢复panic；</li> <li>当被恢复panic后，会先删除触发的defer，并通过defer中的sp和pc找回到defer执行链表，<strong>恢复后，才会触发每次defer节点删除的检查操作，将panic删除。</strong> 通过sp确认defer链表中属于当前函数的defer节点，并继续进行执行。</li> <li>aborted和recovered同时为true的时候，该panic节点不会被移除。最终输出panic信息的时候会将aborted和recovered信息附带上。</li> <li>最紧要的：panic的理解，需要结合defer来一起实用才会更佳哦<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/weixin_42847293/article/details/117673047?spm=1001.2014.3001.5501"  rel="nofollow">浅谈defer</a>。</li> </ul> </h1> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://www.bilibili.com/video/BV1hv411x7we?p=11"  rel="nofollow">panic和recover</a>；</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-41661.htm">免费领养宠物的平台有哪些软件可以下载（免费领养宠物的小程序）</a></p>
+                                        <p>下一个：<a href="/news/article-42161.htm">正规免费领养宠物有什么手续和条件吗（免费领养宠物狗的平台）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-25859.htm" title="长沙宠物领养救助站有哪些 长沙宠物领养救助站有哪些地方">长沙宠物领养救助站有哪些 长沙宠物领养救助站有哪些地方</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-linux-nekoray.htm" title="「12月18日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接">「12月18日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34815.htm" title="中国十大宠物粮生产企业排名（中国宠物粮品牌）">中国十大宠物粮生产企业排名（中国宠物粮品牌）</a></li>
+                        <li class="py-2"><a href="/news/article-23992.htm" title="兽用疫苗怎样保存时间长（兽用疫苗怎样保存时间长些）">兽用疫苗怎样保存时间长（兽用疫苗怎样保存时间长些）</a></li>
+                        <li class="py-2"><a href="/news/article-33860.htm" title="动物接种疫苗多少钱一次打的（动物接种疫苗多少钱一次打的好）">动物接种疫苗多少钱一次打的（动物接种疫苗多少钱一次打的好）</a></li>
+                        <li class="py-2"><a href="/news/article-39206.htm" title="动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）">动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-27-free-node-subscribe-links.htm" title="「11月27日」最高速度20.4M/S，2024年NekoRay每天更新免费节点订阅链接">「11月27日」最高速度20.4M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-38698.htm" title="动物检疫合格证明在哪里办理（太原动物检疫合格证明在哪里办理）">动物检疫合格证明在哪里办理（太原动物检疫合格证明在哪里办理）</a></li>
+                        <li class="py-2"><a href="/news/article-31365.htm" title="PHP $ _SERVER">PHP $ _SERVER</a></li>
+                        <li class="py-2"><a href="/news/article-23074.htm" title="上海宠物领养中心免费领养狗狗吗现在（上海宠物领养网免费）">上海宠物领养中心免费领养狗狗吗现在（上海宠物领养网免费）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

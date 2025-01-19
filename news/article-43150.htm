@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-43150.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PHP静态属性和方法详解</title>
+        <meta name="description" content="介绍 在PHP类中，使用static关键字声明的属性和方法无法在-&gt;运算符的帮助下被其对象访问。实际上，不需要对象来访问任何类实例。类中静态项目的默认可见性是公开的 静态特性 要从外部类访问静态" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-43150.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="PHP静态属性和方法详解" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/9cb31e2e6a7309d6e7f0a6484f5152dd.webp" />
+        <meta property="og:release_date" content="2025-01-19T07:11:07" />
+    <meta property="og:updated_time" content="2025-01-19T07:11:07" />
+        <meta property="og:description" content="介绍 在PHP类中，使用static关键字声明的属性和方法无法在-&gt;运算符的帮助下被其对象访问。实际上，不需要对象来访问任何类实例。类中静态项目的默认可见性是公开的 静态特性 要从外部类访问静态" />
+        
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+                <a class="navbar-brand" href="/">
+            Windows NekoRay
+        </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">联系</a>
+                </li>
+                
+            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        PHP静态属性和方法详解                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<h2>介绍</h2> <p>在PHP类中，使用static关键字声明的属性和方法无法在-&gt;运算符的帮助下被其对象访问。实际上，不需要对象来访问任何类实例。类中静态项目的默认可见性是公开的</p> <h2>静态特性</h2> <p>要从外部类访问静态属性，我们需要使用范围解析运算符（：:)和类名。评估类名称的字符串变量也可以提供静态属性</p> <pre>&lt;?php class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;static&nbsp;$name="test"; } echo&nbsp;testclass::$name; $var="testclass"; echo&nbsp;$var::$name; ?&gt;</pre> <p>要在同一类的任何方法中使用静态属性，请使用<strong>self</strong>关键字而不是用于访问实例属性的-&gt;运算符。</p> <pre>&lt;?php class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;static&nbsp;$name="test"; &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;test(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;self::$name; &nbsp;&nbsp;&nbsp;} } $obj=new&nbsp;testclass(); $obj-&gt;test(); ?&gt;</pre> <p>通过使用<strong>parent</strong>关键字和范围解析运算符，可以在子类方法中引用父类中声明的任何静态属性。</p> <pre>&lt;?php class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;static&nbsp;$name="test"; &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;test(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;self::$name; &nbsp;&nbsp;&nbsp;} } class&nbsp;myclass&nbsp;extends&nbsp;testclass{ &nbsp;&nbsp;&nbsp;public&nbsp;function&nbsp;mytest(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;parent::$name; &nbsp;&nbsp;&nbsp;} } $obj=new&nbsp;myclass(); $obj-&gt;mytest(); ?&gt;</pre> <h2>静态方法</h2> <p>当方法声明为静态时，伪变量<strong>$this</strong>不可使用。因此，无法在其中访问类的实例属性。静态方法由类名以及范围解析运算符调用</p> <p>在下面的示例中，该类具有一个静态属性$count，该属性在每次执行构造函数时都会增加（即针对每个对象）。在类内部，有一个静态函数可检索静态属性的值</p> <h2>示例</h2> <pre>&lt;?php class&nbsp;testclass{ &nbsp;&nbsp;&nbsp;static&nbsp;$count=0; &nbsp;&nbsp;&nbsp;function&nbsp;__construct(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self::$count++; &nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;&nbsp;static&nbsp;function&nbsp;showcount(){ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;"count&nbsp;=&nbsp;"&nbsp;.&nbsp;self::$count; &nbsp;&nbsp;&nbsp;} } $a=new&nbsp;testclass(); $b=new&nbsp;testclass(); $c=new&nbsp;testclass(); testclass::showcount(); ?&gt;</pre> <p>输出结果</p> <p>这将产生以下输出-</p> <pre>count&nbsp;=&nbsp;3</pre> <div></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-42657.htm">宠物粮食排行榜前十名品牌图片（宠物粮食排行榜前十名品牌图片大全）</a></p>
+                                        <p>下一个：<a href="/news/article-43151.htm">postman测试@pathvariable,@requestparam,@requestbody发送情况</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2024-11-1-free-shadowrocket-node.htm" title="「11月1日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接">「11月1日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-29-free-high-speed-nodes.htm" title="「10月29日」最高速度21.3M/S，2024年NekoRay每天更新免费节点订阅链接">「10月29日」最高速度21.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-32904.htm" title="领养协议书怎么写简单（领养协议怎么写?）">领养协议书怎么写简单（领养协议怎么写?）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-15-free-shadowrocket-node.htm" title="「1月15日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接">「1月15日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-19-free-nekoray-node.htm" title="「11月19日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接">「11月19日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34338.htm" title="猫三联三针一共多少钱一针啊（猫三联三针有什么区别）">猫三联三针一共多少钱一针啊（猫三联三针有什么区别）</a></li>
+                        <li class="py-2"><a href="/news/article-32425.htm" title="成都免费领养狗狗吧（成都免费领养狗狗正规网）">成都免费领养狗狗吧（成都免费领养狗狗正规网）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-share-windows-nekoray.htm" title="「1月10日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接">「1月10日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25393.htm" title="动物医院归哪里管理（动物医院属于什么性质）">动物医院归哪里管理（动物医院属于什么性质）</a></li>
+                        <li class="py-2"><a href="/news/article-26329.htm" title="成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）">成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
