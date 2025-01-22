@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-44648.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>原型模式在实际开发中的应用BeanUtils</title>
+        <meta name="description" content="&nbsp; &nbsp; &nbsp; &nbsp;我们学习设计模式的时候学了原型模式，原型模式在我们的实际开发中使用场景也是很多的，我在实际开发中主要有以下两大场景： &nbsp; &nbsp; " />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-44648.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="原型模式在实际开发中的应用BeanUtils" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/42e0d69ceeea9c4b200786535b92d027.webp" />
+        <meta property="og:release_date" content="2025-01-22T10:14:31" />
+    <meta property="og:updated_time" content="2025-01-22T10:14:31" />
+        <meta property="og:description" content="&nbsp; &nbsp; &nbsp; &nbsp;我们学习设计模式的时候学了原型模式，原型模式在我们的实际开发中使用场景也是很多的，我在实际开发中主要有以下两大场景： &nbsp; &nbsp; " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="原型模式在实际开发中的应用BeanUtils">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+                <a class="navbar-brand" href="/">
+            Windows NekoRay
+        </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">联系</a>
+                </li>
+                
+            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        原型模式在实际开发中的应用BeanUtils                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p>&nbsp; &nbsp; &nbsp; &nbsp;我们学习设计模式的时候学了原型模式，原型模式在我们的实际开发中使用场景也是很多的，我在实际开发中主要有以下两大场景：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1、在我们希望接下来这个类的操作与之前这个类的操作之间相互不影响；</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2、通常在异步操作的时候避免多线程问题，在调用方法的时候不希望被调用方法对对象的操作影响本层的剩余业务逻辑处理；</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;在需要这样的时候我可以直接new一个对象自己赋值不采用原型模式呢？</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;当然可以，只要你不嫌麻烦，前辈们为我们提供了原型模式肯定是因为原型模式对我们有大大的好处的，一般来说原型模式给我们带来了以下的好处：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1、程序运行效率：可以节省new创建对象的时间，</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2、代码开发效率：可以一个clone()方法搞定，无需复杂的赋值操作</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3、代码的稳定性：依次一个一个的进行代码赋值，会不会因为一个Cv操作失误导致一个细微难察觉的代码bug发布出来了呢？</p> <p>&nbsp;那么首先我们来看看要通过clone实现原型模式的代码吧</p> <pre class="has"><code class="language-java">//第一步：对象实现Cloneable接口 //第二步：重写clone方法； public Object clone() throws CloneNotSupportedException{     Student student=(Student)super.clone();     student.setStudentFiles((StudentFiles)studentFiles.clone());     return student; }    //当我们需要进行深克隆的时候可以通过序列化的方式实现；</code></pre> <p>但是在实际开发中就会发现当我们需要使用原型模式的时候还需要去对对象model进行clone这种方式真的不是很友好；</p> <p>&nbsp; &nbsp; &nbsp; what？ 不友好吗？</p> <p>&nbsp; &nbsp; &nbsp; 当然，首先，这不符合开闭原则，我们在使用前并不知道这个需要使用原型模式，当需要使用的时候还需要去改老代码，这不是不符合开闭原则吗？</p> <p>&nbsp; &nbsp; &nbsp; 其次，我只是需要一个克隆对象，还需要去实现一堆复杂的浅克隆，深克隆代码吗？是不是有点太耗费功夫了呢？是的，作为程序员的我就是这么懒；</p> <p>&nbsp; &nbsp; &nbsp; 那么我们不使用clone，怎么快速友好，非侵入的实现原型模式呢？</p> <p>&nbsp; &nbsp; &nbsp; 这个时候我们的猪脚就上场了，而且还是两个</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;org.springframework.beans.BeanUtils</p> <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; org.apache.commons.beanutils.BeanUtils</p> <p><strong>按照惯例，我们分析就从源码进入</strong>：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;org.springframework.beans.BeanUtils</p> <pre class="has"><code class="language-java">    //使用无参数构造函数实例化类的便利方法。         public static &lt;T&gt; T instantiate(Class&lt;T&gt; clazz) throws BeanInstantiationException { 		Assert.notNull(clazz, "Class must not be null"); 		if (clazz.isInterface()) { 			throw new BeanInstantiationException(clazz, "Specified class is an interface"); 		} 		try { 			return clazz.newInstance(); 		} 		catch (InstantiationException ex) { 			throw new BeanInstantiationException(clazz, "Is it an abstract class?", ex); 		} 		catch (IllegalAccessException ex) { 			throw new BeanInstantiationException(clazz, "Is the constructor accessible?", ex); 		} 	}          //使用无参数的构造函数实例化一个类。     public static &lt;T&gt; T instantiateClass(Class&lt;T&gt; clazz) throws BeanInstantiationException   { 		Assert.notNull(clazz, "Class must not be null"); 		if (clazz.isInterface()) { 			throw new BeanInstantiationException(clazz, "Specified class is an interface"); 		} 		try { 			return instantiateClass(clazz.getDeclaredConstructor()); 		} 		catch (NoSuchMethodException ex) { 			throw new BeanInstantiationException(clazz, "No default constructor found", ex); 		} 	}        //将给定源bean的属性值复制到目标bean中。     public static void copyProperties(Object source, Object target) throws BeansException { 		copyProperties(source, target, null, (String[]) null); 	}         //将给定源bean的属性值复制到给定目标bean中，     //只设置在给定的“可编辑”类(或接口)中定义的属性。     public static void copyProperties(Object source, Object target, Class&lt;?&gt; editable) throws BeansException { 		copyProperties(source, target, editable, (String[]) null); 	}        //将给定源bean的属性值复制到给定目标bean中，忽略给定的“ignoreProperties”。     public static void copyProperties(Object source, Object target, String... ignoreProperties) throws BeansException { 		copyProperties(source, target, null, ignoreProperties); 	}          //真正的属性拷贝处理方法：     //将给定源bean的属性值复制到给定目标bean中。     private static void copyProperties(Object source, Object target, Class&lt;?&gt; editable, String... ignoreProperties) 			throws BeansException {  		Assert.notNull(source, "Source must not be null"); 		Assert.notNull(target, "Target must not be null");  		Class&lt;?&gt; actualEditable = target.getClass(); 		if (editable != null) { 			if (!editable.isInstance(target)) { 				throw new IllegalArgumentException("Target class [" + target.getClass().getName() + 						"] not assignable to Editable class [" + editable.getName() + "]"); 			} 			actualEditable = editable; 		} 		PropertyDescriptor[] targetPds = getPropertyDescriptors(actualEditable); 		List&lt;String&gt; ignoreList = (ignoreProperties != null ? Arrays.asList(ignoreProperties) : null);  		for (PropertyDescriptor targetPd : targetPds) { 			Method writeMethod = targetPd.getWriteMethod(); 			if (writeMethod != null &amp;&amp; (ignoreList == null || !ignoreList.contains(targetPd.getName()))) { 				PropertyDescriptor sourcePd = getPropertyDescriptor(source.getClass(), targetPd.getName()); 				if (sourcePd != null) { 					Method readMethod = sourcePd.getReadMethod(); 					if (readMethod != null &amp;&amp; 							ClassUtils.isAssignable(writeMethod.getParameterTypes()[0], readMethod.getReturnType())) { 						try { 							if (!Modifier.isPublic(readMethod.getDeclaringClass().getModifiers())) { 								readMethod.setAccessible(true); 							} 							Object value = readMethod.invoke(source); 							if (!Modifier.isPublic(writeMethod.getDeclaringClass().getModifiers())) { 								writeMethod.setAccessible(true); 							} 							writeMethod.invoke(target, value); 						} 						catch (Throwable ex) { 							throw new FatalBeanException( 									"Could not copy property '" + targetPd.getName() + "' from source to target", ex); 						} 					} 				} 			} 		} 	}</code></pre> <p><strong>&nbsp; &nbsp; &nbsp; &nbsp;org.apache.commons.beanutils.BeanUtils</strong></p> <pre class="has"><code class="language-java">    //根据可用的属性getter和setter克隆一个bean，即使bean类本身没有实现Cloneable。     public static Object cloneBean(Object bean) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().cloneBean(bean);     }      //对于所有属性名相同的情况，将属性值从原始bean复制到目标bean。     public static void copyProperties(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().copyProperties(dest, orig);     }      //将指定的属性值复制到指定的目标bean，执行所需的任何类型转换。     public static void copyProperty(Object bean, String name, Object value) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().copyProperty(bean, name, value);     }      //返回指定bean提供读方法的整个属性集。     public static Map describe(Object bean) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().describe(bean);     }      //以字符串数组的形式返回指定bean的指定数组属性的值。     public static String[] getArrayProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getArrayProperty(bean, name);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getIndexedProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getIndexedProperty(bean, name);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getIndexedProperty(Object bean, String name, int index) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getIndexedProperty(bean, name, index);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getMappedProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getMappedProperty(bean, name);     }      //以字符串的形式返回指定bean的指定索引属性的值。     public static String getMappedProperty(Object bean, String name, String key) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getMappedProperty(bean, name, key);     }      //为指定bean返回指定名称(可能是嵌套的)属性的值，作为字符串。     public static String getNestedProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getNestedProperty(bean, name);     }      //以字符串的形式返回指定bean的指定属性的值，无论使用哪种属性引用格式。     public static String getProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getProperty(bean, name);     }      //返回转换为字符串的指定bean的指定简单属性的值。     public static String getSimpleProperty(Object bean, String name) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {         return BeanUtilsBean.getInstance().getSimpleProperty(bean, name);     }      //根据指定的名称/值对填充指定bean的javabean属性。     public static void populate(Object bean, Map properties) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().populate(bean, properties);     }      //设置指定的属性值，根据需要执行类型转换以符合目标属性的类型。     public static void setProperty(Object bean, String name, Object value) throws IllegalAccessException, InvocationTargetException {         BeanUtilsBean.getInstance().setProperty(bean, name, value);     }</code></pre> <p><strong>使用推荐</strong>：</p> <p>&nbsp; &nbsp; &nbsp; &nbsp;spring 与apache的BeanUtils相比，在性能上spring有极大的优势，因此在简单做属性赋值的时候推荐使用spring的，经过测试在大规模的赋值操作中spring性能可以达到apace性能的100倍；</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-44133.htm">宠物医院证件办理流程视频（宠物医院执照怎么办）</a></p>
+                                        <p>下一个：<a href="/news/article-44649.htm">深圳市宠物领养之家官网查询电话（深圳宠物领养平台）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-40173.htm" title="KestrelServer详解自定义一个迷你版的KestrelServer">KestrelServer详解自定义一个迷你版的KestrelServer</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-free-v2ray-subscribe.htm" title="「1月17日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接">「1月17日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-33859.htm" title="格式字符串漏洞之任意地址覆盖大数字">格式字符串漏洞之任意地址覆盖大数字</a></li>
+                        <li class="py-2"><a href="/news/article-43645.htm" title="丹阳宠物免费领养中心在哪里（丹阳市宠物市场在哪里）">丹阳宠物免费领养中心在哪里（丹阳市宠物市场在哪里）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-13-node-share-links.htm" title="「1月13日」最高速度19.8M/S，2025年NekoRay每天更新免费节点订阅链接">「1月13日」最高速度19.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-18732.htm" title="猫粮制作工艺流程图片（猫粮的工艺）">猫粮制作工艺流程图片（猫粮的工艺）</a></li>
+                        <li class="py-2"><a href="/news/article-30532.htm" title="动物疫苗在哪打的啊 动物疫苗在哪打的啊多少钱">动物疫苗在哪打的啊 动物疫苗在哪打的啊多少钱</a></li>
+                        <li class="py-2"><a href="/news/article-21672.htm" title="MySQL CONCAT()函数如何使用通配符">MySQL CONCAT()函数如何使用通配符</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-10-23-nekoray-node.htm" title="「10月23日」最高速度18.5M/S，2024年NekoRay每天更新免费节点订阅链接">「10月23日」最高速度18.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-21-node-share-links.htm" title="「1月21日」最高速度21.8M/S，2025年NekoRay每天更新免费节点订阅链接">「1月21日」最高速度21.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
