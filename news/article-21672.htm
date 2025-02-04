@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://windowsnekoray.github.io/news/article-21672.htm" />
@@ -11,6 +11,33 @@
     <title>MySQL CONCAT()函数如何使用通配符</title>
         <meta name="description" content="通配符是有助于搜索与复杂条件匹配的数据的字符。通配符与LIKE比较运算符或NOT LIKE比较运算符结合使用。MySQL允许我们CONCAT()借助通配符和比较运算符LIKE或NOT LIKE来匹配函" />
         <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-21672.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="MySQL CONCAT()函数如何使用通配符" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/42e0d69ceeea9c4b200786535b92d027.webp" />
+        <meta property="og:release_date" content="2024-12-05T10:04:22" />
+    <meta property="og:updated_time" content="2024-12-05T10:04:22" />
+        <meta property="og:description" content="通配符是有助于搜索与复杂条件匹配的数据的字符。通配符与LIKE比较运算符或NOT LIKE比较运算符结合使用。MySQL允许我们CONCAT()借助通配符和比较运算符LIKE或NOT LIKE来匹配函" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MySQL CONCAT()函数如何使用通配符">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
     <!-- FONT-AWESOME -->
@@ -117,16 +144,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-20782.htm" title="动物疫苗预防控制中心电话（动物防疫站电话号码多少）">动物疫苗预防控制中心电话（动物防疫站电话号码多少）</a></li>
-                        <li class="py-2"><a href="/news/article-27715.htm" title="小猫为什么不能打（小猫为什么不能打屁呢）">小猫为什么不能打（小猫为什么不能打屁呢）</a></li>
-                        <li class="py-2"><a href="/news/article-29850.htm" title="同安宠物领养中心电话地址查询（厦门同安宠物领养中心地址）">同安宠物领养中心电话地址查询（厦门同安宠物领养中心地址）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-9-free-v2ray-subscribe.htm" title="「11月9日」最高速度19.8M/S，2024年NekoRay每天更新免费节点订阅链接">「11月9日」最高速度19.8M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-22-node-share.htm" title="「8月22日」最高速度20.3M/S，2024年NekoRay每天更新免费节点订阅链接">「8月22日」最高速度20.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-18732.htm" title="猫粮制作工艺流程图片（猫粮的工艺）">猫粮制作工艺流程图片（猫粮的工艺）</a></li>
+                        <li class="py-2"><a href="/news/article-48451.htm" title="使用Android DataBinding时发现只能显示一次，不能动态更新数据">使用Android DataBinding时发现只能显示一次，不能动态更新数据</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-share-windows-nekoray.htm" title="「1月2日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接">「1月2日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22159.htm" title="在Vue项目里使用element ui在input框上使用v-model.trim导致输入空格失效">在Vue项目里使用element ui在input框上使用v-model.trim导致输入空格失效</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-28-free-shadowrocket-node.htm" title="「1月28日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接">「1月28日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-37685.htm" title="动物园宠物饲养员（动物园饲养员怎么样）">动物园宠物饲养员（动物园饲养员怎么样）</a></li>
+                        <li class="py-2"><a href="/news/article-43646.htm" title="动物医院大众点评评语怎么写啊 动物医院大众点评评语怎么写啊英语">动物医院大众点评评语怎么写啊 动物医院大众点评评语怎么写啊英语</a></li>
+                        <li class="py-2"><a href="/news/article-33860.htm" title="动物接种疫苗多少钱一次打的（动物接种疫苗多少钱一次打的好）">动物接种疫苗多少钱一次打的（动物接种疫苗多少钱一次打的好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-5-linux-nekoray-node.htm" title="「12月5日」最高速度19.1M/S，2024年NekoRay每天更新免费节点订阅链接">「12月5日」最高速度19.1M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/news/article-30996.htm" title="动物疫苗板块有哪些（利好消息频传,这些动物疫苗股值得关注）">动物疫苗板块有哪些（利好消息频传,这些动物疫苗股值得关注）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-10-linux-nekoray-node.htm" title="「9月10日」最高速度21.7M/S，2024年NekoRay每天更新免费节点订阅链接">「9月10日」最高速度21.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-6-free-node-subscribe-links.htm" title="「10月6日」最高速度22.5M/S，2024年NekoRay每天更新免费节点订阅链接">「10月6日」最高速度22.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="「11月13日」最高速度19.2M/S，2024年NekoRay每天更新免费节点订阅链接">「11月13日」最高速度19.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-42158.htm" title="golang关于panic的解析">golang关于panic的解析</a></li>
                     </ul>
     </div>
 </div>
@@ -138,25 +165,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

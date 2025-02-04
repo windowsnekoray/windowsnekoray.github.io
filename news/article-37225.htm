@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://windowsnekoray.github.io/news/article-37225.htm" />
@@ -11,6 +11,33 @@
     <title>vue @blur 和 .trim()</title>
         <meta name="description" content="要满足输入框在输入完成、移到其他地方时进行验证时，需要用到该事件，用此事件进行绑定验证方法即可。 如果使用mintui中的mt-field标签时，对应的blur（失焦）事件要执行时，要用@blur.n" />
         <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-37225.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="vue @blur 和 .trim()" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/73c01fc849dbc7d2d8ba814f2f7652eb.webp" />
+        <meta property="og:release_date" content="2025-01-07T10:06:56" />
+    <meta property="og:updated_time" content="2025-01-07T10:06:56" />
+        <meta property="og:description" content="要满足输入框在输入完成、移到其他地方时进行验证时，需要用到该事件，用此事件进行绑定验证方法即可。 如果使用mintui中的mt-field标签时，对应的blur（失焦）事件要执行时，要用@blur.n" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue @blur 和 .trim()">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
     <!-- FONT-AWESOME -->
@@ -117,16 +144,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-1-free-shadowrocket-node.htm" title="「11月1日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接">「11月1日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-23529.htm" title="动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）">动物疫苗防疫站几点上班（动物疫苗防疫站几点上班的）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-2-share-windows-nekoray.htm" title="「1月2日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接">「1月2日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-27-free-high-speed-nodes.htm" title="「12月27日」最高速度22.9M/S，2024年NekoRay每天更新免费节点订阅链接">「12月27日」最高速度22.9M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-26-free-nekoray.htm" title="「10月26日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接">「10月26日」最高速度19M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-nekoray-node.htm" title="「10月21日」最高速度20.5M/S，2024年NekoRay每天更新免费节点订阅链接">「10月21日」最高速度20.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-9-linux-nekoray.htm" title="「1月9日」最高速度22.1M/S，2025年NekoRay每天更新免费节点订阅链接">「1月9日」最高速度22.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-node-subscribe.htm" title="「10月18日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接">「10月18日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-9-free-high-speed-nodes.htm" title="「12月9日」最高速度18.6M/S，2024年NekoRay每天更新免费节点订阅链接">「12月9日」最高速度18.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-20327.htm" title="springboot base64_base64转码">springboot base64_base64转码</a></li>
+                        <li class="py-2"><a href="/news/article-21242.htm" title="宠物医院连锁店十大排行榜（宠物医院十大品牌）">宠物医院连锁店十大排行榜（宠物医院十大品牌）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-11-share-windows-nekoray.htm" title="「12月11日」最高速度21.4M/S，2024年NekoRay每天更新免费节点订阅链接">「12月11日」最高速度21.4M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-8-node-share.htm" title="「1月8日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接">「1月8日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-25-free-v2ray-subscribe.htm" title="「11月25日」最高速度23M/S，2024年NekoRay每天更新免费节点订阅链接">「11月25日」最高速度23M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-shadowrocket-node.htm" title="「11月21日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接">「11月21日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26329.htm" title="成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）">成都领养宠物中心在哪儿啊（成都领养宠物中心在哪儿啊电话）</a></li>
+                        <li class="py-2"><a href="/news/article-33860.htm" title="动物接种疫苗多少钱一次打的（动物接种疫苗多少钱一次打的好）">动物接种疫苗多少钱一次打的（动物接种疫苗多少钱一次打的好）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-26-windows-nekoray.htm" title="「11月26日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接">「11月26日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-21241.htm" title="FP-growth算法以及代码实现">FP-growth算法以及代码实现</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-5-linux-nekoray-node.htm" title="「11月5日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接">「11月5日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -138,16 +165,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

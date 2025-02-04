@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://windowsnekoray.github.io/news/article-33442.htm" />
@@ -11,6 +11,33 @@
     <title>简单易懂的进程与线程详解</title>
         <meta name="description" content="本博客分以下几个部分来阐述进程与线程 1、进程的概念很抽象?那么什么是进程呢？ 2、开启一个进程，操作系统会做哪些工作？ 3、既然进程也可以使多个程序能并发执行，为什么还需要线程？ 4、进程与线程有哪" />
         <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-33442.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="简单易懂的进程与线程详解" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/73c01fc849dbc7d2d8ba814f2f7652eb.webp" />
+        <meta property="og:release_date" content="2024-12-30T09:02:54" />
+    <meta property="og:updated_time" content="2024-12-30T09:02:54" />
+        <meta property="og:description" content="本博客分以下几个部分来阐述进程与线程 1、进程的概念很抽象?那么什么是进程呢？ 2、开启一个进程，操作系统会做哪些工作？ 3、既然进程也可以使多个程序能并发执行，为什么还需要线程？ 4、进程与线程有哪" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="简单易懂的进程与线程详解">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
     <!-- FONT-AWESOME -->
@@ -117,16 +144,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-11-29-free-shadowrocket-node.htm" title="「11月29日」最高速度18.2M/S，2024年NekoRay每天更新免费节点订阅链接">「11月29日」最高速度18.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-30-windows-nekoray.htm" title="「10月30日」最高速度22.7M/S，2024年NekoRay每天更新免费节点订阅链接">「10月30日」最高速度22.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-15-free-v2ray-subscribe.htm" title="「7月15日」最高速度22.4M/S，2024年NekoRay每天更新免费节点订阅链接">「7月15日」最高速度22.4M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39206.htm" title="动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）">动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-29106.htm" title="Androidstudio之菜单栏设置">Androidstudio之菜单栏设置</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-2-share-windows-nekoray.htm" title="「1月2日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接">「1月2日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-22618.htm" title="想开一家宠物医院需要什么（开个宠物医院大概需要多少钱）">想开一家宠物医院需要什么（开个宠物医院大概需要多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-39682.htm" title="生物燃料颗粒加工可行性报告（生物燃料颗粒生产流程）">生物燃料颗粒加工可行性报告（生物燃料颗粒生产流程）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-15-nekoray-node.htm" title="「11月15日」最高速度21.3M/S，2024年NekoRay每天更新免费节点订阅链接">「11月15日」最高速度21.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/news/article-34341.htm" title="宠物疫苗是去宠物医院还是宠物店（疫苗去宠物医院打还是防疫站）">宠物疫苗是去宠物医院还是宠物店（疫苗去宠物医院打还是防疫站）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-27-free-subscribe-node.htm" title="「7月27日」最高速度18.1M/S，2024年NekoRay每天更新免费节点订阅链接">「7月27日」最高速度18.1M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-18-free-node-subscribe.htm" title="「10月18日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接">「10月18日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-23-linux-nekoray-node.htm" title="「7月23日」最高速度18.6M/S，2024年NekoRay每天更新免费节点订阅链接">「7月23日」最高速度18.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-shadowrocket-node.htm" title="「11月21日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接">「11月21日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-18-free-node-subscribe.htm" title="「8月18日」最高速度18.6M/S，2024年NekoRay每天更新免费节点订阅链接">「8月18日」最高速度18.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-20-free-nekoray.htm" title="「12月20日」最高速度20.7M/S，2024年NekoRay每天更新免费节点订阅链接">「12月20日」最高速度20.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-2-free-shadowrocket-node.htm" title="「2月2日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接">「2月2日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-31-share-windows-nekoray.htm" title="「12月31日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接">「12月31日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-24-free-nekoray-node.htm" title="「1月24日」最高速度18.5M/S，2025年NekoRay每天更新免费节点订阅链接">「1月24日」最高速度18.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -138,25 +165,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

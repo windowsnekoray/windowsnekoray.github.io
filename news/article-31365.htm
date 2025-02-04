@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://windowsnekoray.github.io/news/article-31365.htm" />
@@ -11,6 +11,33 @@
     <title>PHP $ _SERVER</title>
         <meta name="description" content="介绍 $_SERVER是一个超级全局变量，其中包含有关HTTP标头，路径和脚本位置等的信息。在此关联数组中，所有与服务器和执行环境相关的信息都可用。Web服务器将填充此数组中的大多数条目。 5.4.0" />
         <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-31365.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="PHP $ _SERVER" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/fdf6c333f076cdb56796e98f3a4f1532.webp" />
+        <meta property="og:release_date" content="2024-12-26T00:15:48" />
+    <meta property="og:updated_time" content="2024-12-26T00:15:48" />
+        <meta property="og:description" content="介绍 $_SERVER是一个超级全局变量，其中包含有关HTTP标头，路径和脚本位置等的信息。在此关联数组中，所有与服务器和执行环境相关的信息都可用。Web服务器将填充此数组中的大多数条目。 5.4.0" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="PHP $ _SERVER">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
     <!-- FONT-AWESOME -->
@@ -117,16 +144,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-7-17-free-subscribe-node.htm" title="「7月17日」最高速度20.3M/S，2024年NekoRay每天更新免费节点订阅链接">「7月17日」最高速度20.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-16-free-node-subscribe.htm" title="「11月16日」最高速度22.5M/S，2024年NekoRay每天更新免费节点订阅链接">「11月16日」最高速度22.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-11-node-share.htm" title="「10月11日」最高速度21.9M/S，2024年NekoRay每天更新免费节点订阅链接">「10月11日」最高速度21.9M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-7-18-free-v2ray-subscribe.htm" title="「7月18日」最高速度20.9M/S，2024年NekoRay每天更新免费节点订阅链接">「7月18日」最高速度20.9M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-11-5-linux-nekoray-node.htm" title="「11月5日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接">「11月5日」最高速度19.3M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-31945.htm" title="猫科医生在线咨询（猫科的医生）">猫科医生在线咨询（猫科的医生）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-18-free-nekoray.htm" title="「9月18日」最高速度18M/S，2024年NekoRay每天更新免费节点订阅链接">「9月18日」最高速度18M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-26792.htm" title="广州宠物领养网免费地址查询电话（广州宠物领养中心具体地址）">广州宠物领养网免费地址查询电话（广州宠物领养中心具体地址）</a></li>
-                        <li class="py-2"><a href="/news/article-33442.htm" title="简单易懂的进程与线程详解">简单易懂的进程与线程详解</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-31-free-subscribe-node.htm" title="「8月31日」最高速度18.2M/S，2024年NekoRay每天更新免费节点订阅链接">「8月31日」最高速度18.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35969.htm" title="【Python】自带的venv管理虚拟环境">【Python】自带的venv管理虚拟环境</a></li>
+                        <li class="py-2"><a href="/news/article-23532.htm" title="养猫容易得什么毛病（养猫容易得几种病）">养猫容易得什么毛病（养猫容易得几种病）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-13-node-share-links.htm" title="「11月13日」最高速度19.2M/S，2024年NekoRay每天更新免费节点订阅链接">「11月13日」最高速度19.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-29107.htm" title="Mac电脑配置maven，idea配置maven">Mac电脑配置maven，idea配置maven</a></li>
+                        <li class="py-2"><a href="/news/article-39681.htm" title="我们如何获得排序的MySQL输出？">我们如何获得排序的MySQL输出？</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-1-node-share-links.htm" title="「1月1日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接">「1月1日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-6-node-share-links.htm" title="「12月6日」最高速度21.2M/S，2024年NekoRay每天更新免费节点订阅链接">「12月6日」最高速度21.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-13-windows-nekoray.htm" title="「12月13日」最高速度20.6M/S，2024年NekoRay每天更新免费节点订阅链接">「12月13日」最高速度20.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-26794.htm" title="十大冷门暴利生意（十大暴利生意）">十大冷门暴利生意（十大暴利生意）</a></li>
+                        <li class="py-2"><a href="/news/article-27256.htm" title="动物防疫站可以办理防疫证吗要多少钱一个（动物防疫站可以办健康证吗?）">动物防疫站可以办理防疫证吗要多少钱一个（动物防疫站可以办健康证吗?）</a></li>
                     </ul>
     </div>
 </div>
@@ -138,25 +165,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>

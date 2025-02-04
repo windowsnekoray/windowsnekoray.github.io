@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html xml:lang="zh-CN" lang="zh-CN">
 
 <head>
         <link rel="canonical" href="https://windowsnekoray.github.io/news/article-22161.htm" />
@@ -11,6 +11,33 @@
     <title>Spring boot+LogBack+MDC实现链路追踪</title>
         <meta name="description" content="MDC(Mapped Diagnostic Context，映射调试上下文)是 log4j 、logback及log4j2 提供的一种方便在多线程条件下记录日志的功能。MDC&nbsp;可以看成是一个" />
         <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-22161.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="Spring boot+LogBack+MDC实现链路追踪" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/7687b696c066e336577b0eb73a6fea0d.webp" />
+        <meta property="og:release_date" content="2024-12-06T09:14:31" />
+    <meta property="og:updated_time" content="2024-12-06T09:14:31" />
+        <meta property="og:description" content="MDC(Mapped Diagnostic Context，映射调试上下文)是 log4j 、logback及log4j2 提供的一种方便在多线程条件下记录日志的功能。MDC&nbsp;可以看成是一个" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Spring boot+LogBack+MDC实现链路追踪">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
     <!-- BOOTSTRAP CSS -->
     <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
     <!-- FONT-AWESOME -->
@@ -117,16 +144,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2024-10-6-free-node-subscribe-links.htm" title="「10月6日」最高速度22.5M/S，2024年NekoRay每天更新免费节点订阅链接">「10月6日」最高速度22.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-13-linux-nekoray.htm" title="「9月13日」最高速度22.1M/S，2024年NekoRay每天更新免费节点订阅链接">「9月13日」最高速度22.1M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-28-free-v2ray-subscribe.htm" title="「10月28日」最高速度20.6M/S，2024年NekoRay每天更新免费节点订阅链接">「10月28日」最高速度20.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-28650.htm" title="宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）">宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-6-share-windows-nekoray.htm" title="「9月6日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接">「9月6日」最高速度22M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-10-21-free-nekoray-node.htm" title="「10月21日」最高速度20.5M/S，2024年NekoRay每天更新免费节点订阅链接">「10月21日」最高速度20.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-8-free-subscribe-node.htm" title="「12月8日」最高速度19.2M/S，2024年NekoRay每天更新免费节点订阅链接">「12月8日」最高速度19.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-8-15-share-windows-nekoray.htm" title="「8月15日」最高速度22.7M/S，2024年NekoRay每天更新免费节点订阅链接">「8月15日」最高速度22.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-9-17-nekoray-node.htm" title="「9月17日」最高速度21.7M/S，2024年NekoRay每天更新免费节点订阅链接">「9月17日」最高速度21.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-21673.htm" title="动物疫苗企业名单查询最新版（国内动物疫苗龙头企业）">动物疫苗企业名单查询最新版（国内动物疫苗龙头企业）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-10-share-windows-nekoray.htm" title="「1月10日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接">「1月10日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-47606.htm" title="被宠物猫抓伤出了一点点血怎么办（被宠物猫抓伤出了一点点血怎么办图片）">被宠物猫抓伤出了一点点血怎么办（被宠物猫抓伤出了一点点血怎么办图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-19-free-shadowrocket-node.htm" title="「1月19日」最高速度21.2M/S，2025年NekoRay每天更新免费节点订阅链接">「1月19日」最高速度21.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-nekoray-node.htm" title="「12月7日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接">「12月7日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-23532.htm" title="养猫容易得什么毛病（养猫容易得几种病）">养猫容易得什么毛病（养猫容易得几种病）</a></li>
+                        <li class="py-2"><a href="/news/article-35611.htm" title="领养宠物活动的意义在哪（领养宠物收费吗）">领养宠物活动的意义在哪（领养宠物收费吗）</a></li>
+                        <li class="py-2"><a href="/news/article-20782.htm" title="动物疫苗预防控制中心电话（动物防疫站电话号码多少）">动物疫苗预防控制中心电话（动物防疫站电话号码多少）</a></li>
+                        <li class="py-2"><a href="/news/article-33859.htm" title="格式字符串漏洞之任意地址覆盖大数字">格式字符串漏洞之任意地址覆盖大数字</a></li>
+                        <li class="py-2"><a href="/news/article-28172.htm" title="SpringBoot启动报错Injection of autowired dependencies failed； Could not resolve placeholder: 问题">SpringBoot启动报错Injection of autowired dependencies failed； Could not resolve placeholder: 问题</a></li>
+                        <li class="py-2"><a href="/news/article-29107.htm" title="Mac电脑配置maven，idea配置maven">Mac电脑配置maven，idea配置maven</a></li>
                     </ul>
     </div>
 </div>
@@ -138,25 +165,16 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">3</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">34</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-10/" title="2024-10 归档">2024-10</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-09/" title="2024-09 归档">2024-09</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">31</span> <a href="/date/2024-08/" title="2024-08 归档">2024-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">25</span> <a href="/date/2024-07/" title="2024-07 归档">2024-07</a></h4>
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
             </li>
                     </ul>
     </div>
