@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-55488.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>四个实例超详细讲解Java 贪心和枚举的特点与使用_java</title>
+        <meta name="description" content="目录  贪心： 枚举：  1.朴素枚举 2.状压枚举     算法题1：  示例  算法题2：  示例  算法题3：   示例1 示例2  算法题4：   示例    笔试技巧：学会根据数据范围猜知识" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-55488.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="四个实例超详细讲解Java 贪心和枚举的特点与使用_java" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/73c01fc849dbc7d2d8ba814f2f7652eb.webp" />
+        <meta property="og:release_date" content="2025-02-12T09:09:21" />
+    <meta property="og:updated_time" content="2025-02-12T09:09:21" />
+        <meta property="og:description" content="目录  贪心： 枚举：  1.朴素枚举 2.状压枚举     算法题1：  示例  算法题2：  示例  算法题3：   示例1 示例2  算法题4：   示例    笔试技巧：学会根据数据范围猜知识" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="四个实例超详细讲解Java 贪心和枚举的特点与使用_java">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        四个实例超详细讲解Java 贪心和枚举的特点与使用_java                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">贪心：</a></li> <li><a href="#_label1" rel="nofollow">枚举：</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">1.朴素枚举</a></li> <li><a href="#_lab2_1_1" rel="nofollow">2.状压枚举   </a></li> </ul> <li><a href="#_label2" rel="nofollow">算法题1：</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_2_2" rel="nofollow">示例</a></li> </ul> <li><a href="#_label3" rel="nofollow">算法题2：</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_3_3" rel="nofollow">示例</a></li> </ul> <li><a href="#_label4" rel="nofollow">算法题3： </a></li> <ul class="second_class_ul"> <li><a href="#_lab2_4_4" rel="nofollow">示例1</a></li> <li><a href="#_lab2_4_5" rel="nofollow">示例2</a></li> </ul> <li><a href="#_label5" rel="nofollow">算法题4： </a></li> <ul class="second_class_ul"> <li><a href="#_lab2_5_6" rel="nofollow">示例</a></li> </ul> </ul> </div> <p>笔试技巧：学会根据数据范围猜知识点         </p> <p>一般1s 时间限制的题目，时间复杂度能跑到 1e8 左右（ python 和 java 会少一些，所以建议大家使用c/c++ 做笔试题）。</p> <div class="table-box"> <table> <tbody> <tr> <td> <div style="text-align:center">n 范围 20 以内：</div> </td> <td> <div style="text-align:center">O(n*2^n)</div> </td> <td> <div style="text-align:center">状压搜索 /dfs 暴搜</div> </td> </tr> <tr> <td> <div style="text-align:center">n 范围 200 以内：</div> </td> <td> <div style="text-align:center">O(n^3)</div> </td> <td> <div style="text-align:center">三维 dp</div> </td> </tr> <tr> <td> <div style="text-align:center">n 范围 3000 以内：</div> </td> <td> <div style="text-align:center">O(n^2)</div> </td> <td> <div style="text-align:center">二维 dp 背包 枚举 二维前缀和等</div> </td> </tr> <tr> <td> <div style="text-align:center">n 范围 1e5 以内：</div> </td> <td> <div style="text-align:center">O(n√n)</div> </td> <td> <div style="text-align:center">暴力求因子等</div> </td> </tr> <tr> <td> <div style="text-align:center">n 范围 1e6 以内：</div> </td> <td> <div style="text-align:center">O(nlogn)</div> </td> <td> <div style="text-align:center">二分答案 使用各种 stl 并查集 欧拉筛等</div> </td> </tr> <tr> <td> <div style="text-align:center">n 范围 1e7 以内：</div> </td> <td> <div style="text-align:center">O(n)</div> </td> <td> <div style="text-align:center">双指针 线性 dp 差 分 / 前缀和</div> </td> </tr> <tr> <td> <div style="text-align:center">n 范围 1e14 以内：</div> </td> <td> <div style="text-align:center">O(√n)</div> </td> <td> <div style="text-align:center">求约数和 约数个数</div> </td> </tr> </tbody> </table> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>贪心：</h2> <p>贪心指每一步都做出当前最优的选择。一般解决的问题有如下特点：局部最优能导致全局最优。</p> <p>请注意，贪心并不是万能的！</p> <p>有n个物品。每个物品有价值v[i]，以及重量w[i]。</p> <p>现在取总重量不超过m的物品，问取的物品价值最大是多少？（背包问题）</p> <ul> <li>策略1：按照价值降序排列，每次取价值最高的。</li> <li>策略2 ：按照重量升序排列，每次取重量最轻的。</li> <li>策略3 ：按照价值/重量（即单位价值）降序排列，每次取单位价值最高的。</li> </ul> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>枚举：</h2> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>1.朴素枚举</h3> <p>顾名思义，用for循环枚举所有情况。</p> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>2.状压枚举   </h3> <p>借助n进制的性质进行枚举。</p> <p>适合场景：共有n个物品，每个物品有m种状态，枚举所有物品的所有状态，复杂度为O(m^n)。</p> <p>二进制状压枚举的写法：</p> <p>典型场景： 总共有n个数：a1、a2……an，每个数可以取也可以不取，枚举所有方案。      </p> <div class="ay1code"> <pre class="brush:java;">  for(int i=0;i&lt;1&lt;&lt;n;i++){  //i为1到2^n的状态压缩值   2^n  	int p=i;          //先将i取出  	int sum=0;        //用一个变量维护取出的数之和  	for(j=0;j&lt;n;j++){   //转为二进制进行操作  		sum+=p%2*a[j];    //这句话是求取出来的数之和。p%2为对应二进制位                    		 //这里也可以进行其他操作，不一一举例。  		p/=2;            //求下一个二进制位       	}       //这里可以添加想要的操作。     }</pre> </div> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>算法题1：</h2> <p>chika和蜜柑（PriorityQueue+Comparator的使用）</p> <p>难度 ⭐⭐</p> <p>chika很喜欢吃蜜柑。每个蜜柑有一定的酸度和甜度，chika喜欢吃甜的，但不喜欢吃酸的。</p> <p>一共有n个蜜柑，chika吃k个蜜柑，将获得所吃的甜度之和与酸度之和。chika想获得尽可能大的甜度总和。如果有多种方案，她希望总酸度尽可能小。</p> <p>她想知道，最终的总酸度和总甜度是多少？</p> <p>题目信息：先按甜度降序排序，后按酸度升序排序（保持之前的甜度降序排序优先，酸度升序排序次之） </p> <p>输入描述:</p> <p>第一行有两个正整数n和k，分别代表蜜柑总数和chika吃的蜜柑数量。(1≤k≤n≤200000)</p> <p>第二行有n个正整数ai，分别代表每个蜜柑的酸度。（1≤ai≤1e9）</p> <p>第二行有n个正整数bi，分别代表每个蜜柑的甜度。（1≤bi≤1e9）</p> <p>输出描述:</p> <p>两个正整数，用空格隔开。分别表示总酸度和总甜度。</p> <p class="maodian"><a name="_lab2_2_2" rel="nofollow"></a></p> <p class="maodian"><a name="_lab2_3_3" rel="nofollow"></a></p> <p class="maodian"><a name="_lab2_5_6" rel="nofollow"></a></p> <h3>示例</h3> <p>输入</p> <blockquote> <p>3 2</p> <p>1 3 4</p> <p>2 2 5</p> </blockquote> <p>输出</p> <blockquote> <p>5 7</p> </blockquote> <p>说明</p> <p>选择1号和3号蜜柑，总酸度为5，总甜度为7，为最优解。</p> <div class="ay1code"> <pre class="brush:java;">  import java.io.*;  import java.util.*;  public class Main{      public static class Orange{              int acid;              int sweet;              public Orange(int acid, int sweet){                  this.acid = acid;                  this.sweet = sweet;              }              public Orange(){}          }      public static void main(String[] args) throws IOException{          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));          String[] tmp = br.readLine().split(" ");          int n = Integer.parseInt(tmp[0]);          int k = Integer.parseInt((tmp[1]));          String[] ai = br.readLine().split(" ");          String[] bi = br.readLine().split(" ");          //定义一个优先队列，并根据指定的比较器对其元素进行排序。          PriorityQueue&lt;Orange&gt; queue = new PriorityQueue&lt;&gt;((Orange o1, Orange o2)-&gt;{              //匿名内部类以lambda的形式定义排序规则              if(o1.sweet == o2.sweet){                  return o1.acid - o2.acid;              }else{                  return o2.sweet - o1.sweet;              }          });          for(int i = 0; i &lt; n; i++){              Orange orange = new Orange();              orange.acid = Integer.parseInt(ai[i]);              orange.sweet = Integer.parseInt(bi[i]);              queue.add(orange);          }          long totalAcid = 0;          long totalSweet = 0;          for(int i = 0; i &lt; k; i++){              Orange o = queue.poll();              totalAcid += o.acid;              totalSweet += o.sweet;          }          System.out.println(totalAcid + " " + totalSweet);      }  }</pre> </div> <p>目的：</p> <p>了解什么是贪心，当设计到优先级时可以考虑使用PriorityQueue+Comparator。</p> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2>算法题2：</h2> <p>you和帆船 </p> <p>难度 ⭐⭐</p> <p>you的父亲是一名船长。因此you从小就很喜欢大海。这天，她乘着一艘帆船出发了。</p> <p>大海上有很多宝藏，每个宝藏的坐标是已知的。you的初始坐标是（0,0）。她想探索两个宝藏，然后回到初始点。</p> <p>you希望航线尽可能短。她想知道，最短航线的长度是多少？</p> <p>题目信息：两个for循环枚举一下，再保存最短路径即可。</p> <p>输入描述:</p> <p>第一行一个正整数n，代表宝藏的数量。（2≤n≤2000）</p> <p>接下来的n行，每行2个正整数xi，yi，代表第i个宝藏的坐标（-3000≤xi,yi≤3000）</p> <p>不保证不存在两个宝藏位置相同。意思是，you可以在同一个位置探索这两个宝藏。</p> <p>输出描述:</p> <p>最短路线的长度。小数点后保留6位。</p> <h3>示例</h3> <p>输入</p> <blockquote> <p>2</p> <p>1 0</p> <p>0 1</p> </blockquote> <p>输出</p> <blockquote> <p>3.414214</p> </blockquote> <p>说明</p> <p style="text-align:center"><img decoding="async" alt="" height="45" src="http://img.555519.xyz/uploads3/20220420/71e51e0e82226efe2d10a222d1663903.jpg"></p> <div class="ay1code"> <pre class="brush:java;">  import java.io.*;  import java.util.*;     class Point{      double x;      double y;  }     public class Main{      public static void main(String[] args) throws IOException{          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));          int n = Integer.parseInt(br.readLine());          Point[] points = new Point[n];          for(int i=0;i&lt;n;i++){              String[] strings = br.readLine().split(" ");              Point point = new Point();              point.x = Integer.parseInt(strings[0]);              point.y = Integer.parseInt(strings[1]);              points[i] = point;          }          double min = Double.MAX_VALUE;//定义最大值，寻找较小值          //双层遍历枚举          for (int i=0;i&lt;n-1;i++) {              for (int j=i+1;j&lt;n;j++) {                  double temp = Math.sqrt(points[i].x*points[i].x + points[i].y*points[i].y)                           + Math.sqrt(points[j].x*points[j].x + points[j].y*points[j].y)                           + Math.sqrt((points[i].x-points[j].x)*(points[i].x-points[j].x) + (points[i].y-points[j].y)*(points[i].y-points[j].y));                  min = Math.min(min, temp);              }          }          System.out.println(String.format("%.6f", min));      }  }</pre> </div> <p>目的：</p> <p>了解什么是枚举，虽然是一个一个列举，但是结合实际还是有优化的方式。</p> <p>比如此题两层循环只枚举了一半的情况：因为所求的是距离，跟两个端点无关。</p> <p>思考：</p> <p>假如不止有两个宝箱需要被获取，那么应该怎么办？？？下一题可以参考一下。</p> <p class="maodian"><a name="_label4" rel="nofollow"></a></p> <h2>算法题3： </h2> <p>数位染色   </p> <p>难度 ⭐⭐⭐</p> <p>小红拿到了一个正整数 X 。她可以将其中一些数位染成红色。然后她想让所有染红的数位数字之和等于没染色的数位数字之和。</p> <p>她不知道能不能达成目标。你能告诉她吗？</p> <p>输入描述:</p> <p>一个正整数X ，1&lt;= X &lt;=10^18</p> <p>输出描述:</p> <p>如果小红能按要求完成染色，输出"Yes"。否则输出"No"。</p> <p class="maodian"><a name="_lab2_4_4" rel="nofollow"></a></p> <h3>示例1</h3> <p>输入</p> <blockquote> <p>1234567</p> </blockquote> <p>输出</p> <blockquote> <p>Yes</p> </blockquote> <p>说明</p> <p>将3、4、7染成红色即可，这样3+4+7=1+2+5+6</p> <p class="maodian"><a name="_lab2_4_5" rel="nofollow"></a></p> <h3>示例2</h3> <p>输入</p> <blockquote> <p>23</p> </blockquote> <p>输出</p> <blockquote> <p>No</p> </blockquote> <p>说明</p> <p>显然无论如何都不能完成染色。</p> <div class="ay1code"> <pre class="brush:java;">  import java.util.*;  import java.io.*;  public class Main{      public static void main(String[] args)throws IOException{          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));          Long x= Long.parseLong(br.readLine());          //循环0到2^18来展现所有的可能性          for(int i=0;i&lt;1&lt;&lt;19;i++){              long p=i,s1=0,s2=0,temp=x;                 //将p拟化为2进制，通过j来寻尾。寻一次p就对应的二进制数就少一位。              for(int j=0;j&lt;19;j++){                  if(p%2==1)s1+=temp%10;                  else s2+=temp%10;                  p/=2;                  temp/=10;              }              if(s1==s2){                  System.out.println("Yes");                  System.exit(0);              }          }          System.out.println("No");      }  }</pre> </div> <p>这题使用的是状压枚举</p> <p>只有两种状态就拟成2进制，假如有3种状态就拟成3进制（上面的代码会有些许改变，n种状态也一样）</p> <div class="ay1code"> <pre class="brush:java;">   for(int i=0;i&lt;1&lt;&lt;19;i++)    //修改成   for(int i=0;i&lt;19;i++) p1[i]=p1[i-1]*3;   for(int i=0;i&lt;p1[i];i++){}</pre> </div> <p>当然这题也可以使用背包或dfs来解答。</p> <p class="maodian"><a name="_label5" rel="nofollow"></a></p> <h2>算法题4： </h2> <p>ranko的手表  </p> <p>难度 ⭐⭐⭐⭐</p> <p>ranko 的手表坏了，正常应该显示 xx:xx 的形式（4 个数字），比如下午 1 点半应该显示 13:30 ，但现在经常会有一些数字有概率无法显示。</p> <p>ranko 在 t1 时刻看了下时间，过了一段时间在 t2 时刻看了下时间。她想知道， t1  和t2这两个时刻之间相距的时间的最大值和最小值是多少？</p> <p>保证t1在t2之前（且t1和t2不等）。 t1和t2在同一天的 00:00 到 23:59 之间。 </p> <p>输入描述:</p> <p>两行输入两个时间，为 xx:xx 的形式。其中 x 为数字或者字符 '?' ，问号代表这个数字没有显示。保证输入是合法的。</p> <p>输出描述:</p> <p>一行输出两个整数，分别代表 t1 和 t2 相距时间的最小值和最大值（单位分钟）。</p> <h3>示例</h3> <p>输入</p> <blockquote> <p>18:0?</p> <p>2?:1?</p> </blockquote> <p>输出</p> <blockquote> <p>121 319</p> </blockquote> <p>说明</p> <p>相距最小的时间为 18:09 到 20:10 ，相距121分钟。</p> <p>相距最大的时间为 18:00 到 23:19 ，相距319分钟。</p> <div class="ay1code"> <pre class="brush:java;">  import java.util.*;  import java.io.*;  public class Main{      public static void main(String[] args) throws IOException{          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));          String s1 = br.readLine();          String s2 = br.readLine();          ArrayList&lt;Integer&gt; a1 = new ArrayList&lt;&gt;();          ArrayList&lt;Integer&gt; a2 = new ArrayList&lt;&gt;();          for(int i = 0; i &lt; 60*24; i++){              int hour = i/60, minute = i%60;              if((hour/10 == s1.charAt(0)-'0' || s1.charAt(0) == '?') &amp;&amp;                 (hour%10 == s1.charAt(1)-'0' || s1.charAt(1) == '?') &amp;&amp;                 (minute/10 == s1.charAt(3)-'0' || s1.charAt(3) == '?') &amp;&amp;                 (minute%10 == s1.charAt(4)-'0' || s1.charAt(4) == '?')) a1.add(i);              if((hour/10 == s2.charAt(0)-'0' || s2.charAt(0) == '?') &amp;&amp;                 (hour%10 == s2.charAt(1)-'0' || s2.charAt(1) == '?') &amp;&amp;                 (minute/10 == s2.charAt(3)-'0' || s2.charAt(3) == '?') &amp;&amp;                 (minute%10 == s2.charAt(4)-'0' || s2.charAt(4) == '?'))a2.add(i);          }          int min= Integer.MAX_VALUE, max = Integer.MIN_VALUE;          for(int i = 0; i&lt;a1.size();i++){              for(int j = 0; j&lt;a2.size();j++){                  if(a1.get(i)&lt;a2.get(j)){                      min = Math.min(min,a2.get(j)-a1.get(i));                      max = Math.max(max,a2.get(j)-a1.get(i));                  }              }          }          System.out.print(min + " " + max);      }  }</pre> </div> <p>假如此题不使用枚举，则会限定很多条件。还不如直接都列举出来</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-55487.htm">我的树莓派 Raspberry Pi Zero 2W 折腾笔记，记录一些遇到的问题和解决办法</a></p>
+                                        <p>下一个：<a href="/news/article-56040.htm">为什么我们不应该在MySQL SELECT查询中不使用没有GROUP BY子句的非组字段的组函数？</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-40175.htm" title="2022公务员国考人数多少（今年公务员国考人数）">2022公务员国考人数多少（今年公务员国考人数）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-1-node-share.htm" title="「2月1日」最高速度18M/S，2025年NekoRay每天更新免费节点订阅链接">「2月1日」最高速度18M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-48095.htm" title="宠物领养小程序有哪些内容呢（领养宠物的小程序）">宠物领养小程序有哪些内容呢（领养宠物的小程序）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-23-nekoray-node.htm" title="「11月23日」最高速度20.1M/S，2024年NekoRay每天更新免费节点订阅链接">「11月23日」最高速度20.1M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-43646.htm" title="动物医院大众点评评语怎么写啊 动物医院大众点评评语怎么写啊英语">动物医院大众点评评语怎么写啊 动物医院大众点评评语怎么写啊英语</a></li>
+                        <li class="py-2"><a href="/news/article-28650.htm" title="宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）">宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）</a></li>
+                        <li class="py-2"><a href="/news/article-42158.htm" title="golang关于panic的解析">golang关于panic的解析</a></li>
+                        <li class="py-2"><a href="/news/article-34983.htm" title="原生js实现楼层滚动（界面滑动）效果">原生js实现楼层滚动（界面滑动）效果</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-7-nekoray-node.htm" title="「12月7日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接">「12月7日」最高速度21.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39681.htm" title="我们如何获得排序的MySQL输出？">我们如何获得排序的MySQL输出？</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
