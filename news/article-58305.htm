@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-58305.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Azure DevOps (八) 通过流水线编译Docker镜像</title>
+        <meta name="description" content="上一篇文章我们完成了最简单的传统部署：上传应用到服务器上使用守护进程进行应用的部署。 本篇文章我们开始研究容器化和流水线的协作。 在开始操作之前，我们首先需要准备一下我们的dockerfile,这里我" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-58305.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="Azure DevOps (八) 通过流水线编译Docker镜像" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/19bda579bfcf912b4a063a3a446781e6.webp" />
+        <meta property="og:release_date" content="2025-02-17T09:58:53" />
+    <meta property="og:updated_time" content="2025-02-17T09:58:53" />
+        <meta property="og:description" content="上一篇文章我们完成了最简单的传统部署：上传应用到服务器上使用守护进程进行应用的部署。 本篇文章我们开始研究容器化和流水线的协作。 在开始操作之前，我们首先需要准备一下我们的dockerfile,这里我" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Azure DevOps (八) 通过流水线编译Docker镜像">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        Azure DevOps (八) 通过流水线编译Docker镜像                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>上一篇文章我们完成了最简单的传统部署：上传应用到服务器上使用守护进程进行应用的部署。</p> <p>本篇文章我们开始研究容器化和流水线的协作。</p> <p>在开始操作之前，我们首先需要准备一下我们的dockerfile,这里我们依然还是使用前几篇文章使用的项目,贴一下文件内容。</p> <p>既然我们是使用的微软的azure，所以我也就直接用了azure维护的jdk：zulu,我自己电脑上的jdk也是用的这个，因为我是M1芯片的mac，最一开始的时候官方并没有ARM架构的JDK</p> <p>但是微软第一时间发行了zulu的ARM版本，我就一直用到了现在。</p> <div class="cnblogs_code"> <pre>FROM  azul/zulu-openjdk-debian:<span style="color: rgba(128, 0, 128, 1)">8</span><span style="color: rgba(0, 0, 0, 1)"> COPY demo</span>-app.jar /demo-<span style="color: rgba(0, 0, 0, 1)">app.jar ENV JAVA_TOOL_OPTIONS</span>-Dfile.encoding=UTF8 -Duser.language=zh -Duser.region=zh_CN -Duser.country=<span style="color: rgba(0, 0, 0, 1)">zh_CN ENTRYPOINT exec java</span>-jar demo-app.jar</pre> </div> <p>接下来我们来创建一条新的release 流水线，这里有个深坑，就是我们在选择agent的时候一定要选对了，选linux的发行版，我最一开始没注意这个问题</p> <p>导致后执行docker build 的时候一直提示我平台不对，结果我一看执行的是docker.exe o(╥﹏╥)o</p> <p>首选创建agent，上面选择azure pipelines,下面选择ubantu</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9843323c06bf71e0ced606dbad1b0a8f.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p>接下来创建两个Task,第一个task用来整理一下文件目录，第二个task用来执行容器的编译。</p> <p>首先创建第一个task，我们需要把dockerfile和我们的应用放在同一目录下。</p> <p>我们在agent下创建一个bash任务，选择在线脚本。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/a9f9b68254825292e001a43bd3a23ea9.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/bc7cb8ae211fee1558e88ff0e8d8e935.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p>这里我贴一下脚本的内容，主要就是从流水线编译好的制品中，提取出Dockerfile和我们的应用程序放在统一目录下。</p> <div class="cnblogs_code"> <pre>cd _my-<span style="color: rgba(0, 0, 0, 1)">devops mkdir finaldir pwd ls cd webhook ls mv demo</span>-app.jar  ../<span style="color: rgba(0, 0, 0, 1)">finaldir mv classes</span>/Dockerfile ../<span style="color: rgba(0, 0, 0, 1)">finaldir cd ..</span>/<span style="color: rgba(0, 0, 0, 1)">finaldir ls pwd</span></pre> </div> <p>接下来我们创建第二个task，用来执行docker build</p> <p>我们在agent下添加一个docker执行步骤，在右侧搜索docker，进行添加</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/9bee12c2d23c8137e4ddd2fd838f7801.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p>添加完成之后，这里有两部分需要我们填，Container Repository我们暂时先留空，因为我手头没有合适的仓库，我们本篇文章的重点放在镜像的编译工作上，</p> <p>我们在commands配置项里输入dockerfile的路径，和命令的执行路径，这里我把路径填写为了上面我整理好的finaldir中去，如果你有需要指定的编译参数可以</p> <p>写到Arguments中去，这里还有一个tag，用来指定我们镜像的版本，$(Build.BuildId)环境变量会获取我们本次流水线的编译号，例如我这用的是test-$(Build.BuildId)</p> <p>那么到时候就会生成类似：test-3的一个tag打在镜像上，让我们区分镜像结果。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/10b0945058f69a8f727fb555f3bded78.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p>按照要求填完之后，我们启动一下这个流水线看一下执行的效果。</p> <p>从bash的执行结果中，我们可以看到，我们已经成功的整理好了文件目录，把应用程序和dockerfile放在了同一个文件夹下。</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/079caa33c15a0afed1848e87c6919e95.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p>&nbsp;我们再来看一下dockerbuild的结果，azure成功的编译出了我们的镜像</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/55b37cbda4fffe178a08ccbd955e1612.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/ef15f7297f3c66422f9aa655fd3b12fb.jpg" alt="Azure DevOps (八) 通过流水线编译Docker镜像"></p> <p>&nbsp;到这里我们就成功的使用azure的流水线编译出了第一个docker的镜像，说实话踩了很多坑，尤其是一开始没有选择对agent的类型，卡了半天没意识到这个问题，我一直以为是我dockerfile中FROM的基础镜像有问题，还去翻了半天源码，看着源码里那个debain发行版本怀疑了半天人生，最后才意识到可能是agent的问题o(╥﹏╥)o</p> <p>下一篇我们会研究如何通过azure打通一个公网的docker仓库，把我们编译好的镜像推送到仓库去。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-57734.htm">宠物食品店名 宠物食品店名称大全</a></p>
+                                        <p>下一个：<a href="/news/article-58306.htm">动物疫苗注射的作用有哪些方面呢（动物疫苗包括哪些）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-2-15-windows-nekoray.htm" title="「2月15日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接">「2月15日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34816.htm" title="动物诊疗许可证办理多少钱（动物诊疗许可证需要多少钱）">动物诊疗许可证办理多少钱（动物诊疗许可证需要多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-32903.htm" title="Java连接MySQL数据库实例_java">Java连接MySQL数据库实例_java</a></li>
+                        <li class="py-2"><a href="/news/article-49605.htm" title="三国杀武将限定技特效 三国杀限定技能特效">三国杀武将限定技特效 三国杀限定技能特效</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-8-free-nekoray.htm" title="「11月8日」最高速度20.4M/S，2024年NekoRay每天更新免费节点订阅链接">「11月8日」最高速度20.4M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-17-free-node-subscribe.htm" title="「11月17日」最高速度19.8M/S，2024年NekoRay每天更新免费节点订阅链接">「11月17日」最高速度19.8M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-53288.htm" title="取消动物防疫收费通知范文（取消动物防疫收费通知范文怎么写）">取消动物防疫收费通知范文（取消动物防疫收费通知范文怎么写）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-9-free-subscribe-node.htm" title="「2月9日」最高速度21.1M/S，2025年NekoRay每天更新免费节点订阅链接">「2月9日」最高速度21.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-39206.htm" title="动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）">动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）</a></li>
+                        <li class="py-2"><a href="/news/article-19865.htm" title="dell最新bios设置硬盘启动（dellbios设置硬盘启动项）">dell最新bios设置硬盘启动（dellbios设置硬盘启动项）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">57</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
