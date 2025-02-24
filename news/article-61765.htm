@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-61765.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</title>
+        <meta name="description" content="各个部分的安装查看顺序 参考：https://zhuanlan.zhihu.com/p/143881055?ivk_sa=1024320u  先查看电脑的gpu是否有加速计算功能。根据型号找到自己gp" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-61765.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/45c853c3f89a91aaf174901e733fa6b0.webp" />
+        <meta property="og:release_date" content="2025-02-23T09:48:00" />
+    <meta property="og:updated_time" content="2025-02-23T09:48:00" />
+        <meta property="og:description" content="各个部分的安装查看顺序 参考：https://zhuanlan.zhihu.com/p/143881055?ivk_sa=1024320u  先查看电脑的gpu是否有加速计算功能。根据型号找到自己gp" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>各个部分的安装查看顺序</h2> <p>参考：https://zhuanlan.zhihu.com/p/143881055?ivk_sa=1024320u</p> <ol> <li>先查看电脑的gpu是否有加速计算功能。根据型号找到自己gpu是否能加速。https://developer.nvidia.com/cuda-gpus</li> <li>查看pytoch支持的cuda版本<img decoding="async" src="http://img.555519.xyz/uploads/20221225/6ea3ad834908fb9d7da600636b05f2d2.jpg" alt="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本"> </li> <li>查看自己电脑<strong>显卡控制面板</strong>→<strong>帮助</strong>→<strong>系统信息→组件</strong>，安装nvidia的cuda版本<strong>低于查看到的版本</strong>就行。<img decoding="async" src="http://img.555519.xyz/uploads/20221225/5765dde79d4ca4e0f621e6b871978c7f.jpg" alt="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本"> </li> <li> <strong>现在开始下载安装的cudda</strong>，找到pytorch支持的cuda版本，然后下载安装对应的cudnn，（cuda）https://developer.nvidia.com/cuda-downloads，（cudnn）https://developer.nvidia.com/rdp/cudnn-download</li> </ol> <h2> <a id="cuda_6" rel="nofollow"></a>cuda版本的确定</h2> <p>参考：https://blog.csdn.net/weixin_33742618/article/details/94754437，http://blog.sina.com.cn/s/blog_154a715de0102zscw.html<br /> nvidia-smi是安装的gpu<strong>驱动版本的cuda</strong>，从nvidia下载的驱动里包含的，nvcc -V是运行cuda的版本，从nvidia下载的cudaToolkits的版本，但<strong>驱动版本需要&gt;=运行版本</strong>。下面图片是两种区别：<br /><img decoding="async" src="http://img.555519.xyz/uploads/20221225/d5a1baca8c3270bb6d7c9256dfab35d4.jpg" alt="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本"><br /> 安装cuda后在cmd窗口使用nvcc -V命令看到的是自己安装的cuda版本，这个安装后不会修改自己nvidia显卡控制台上的版本，但这个版本要<strong>低于nvidia显卡控制台上显示的版本</strong><br /><img decoding="async" src="http://img.555519.xyz/uploads/20221225/74be55801b3550cb396923f0c3ce1a7a.jpg" alt="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本"></p> <p>在安装pytorch的过程中有一个cudatoolkit的一个版本，<strong>这个cuda版本并不一定是 Pytorch 在实际系统上运行时使用的 cuda 版本，而是编译该 Pytorch release 版本时使用的 cuda 版本</strong>（引用参考），torch.utils.cpp_extension.CUDA_HOME可查看实际使用的cuda</p> <pre><code class="prism language-python">torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment"># 查看cuda是否可用</span> torch<span class="token punctuation">.</span>version<span class="token punctuation">.</span>cuda <span class="token comment"># 查看安装pytorch时安装的cuda版本，但并不一定是实际使用的版本，</span> <span class="token comment">#下面的三个import需要一个一个输入，否则会报错</span> <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> torch <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> torch<span class="token punctuation">.</span>utils <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> <span class="token keyword">import</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>cpp_extension <span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span> torch<span class="token punctuation">.</span>utils<span class="token punctuation">.</span>cpp_extension<span class="token punctuation">.</span>CUDA_HOME   <span class="token comment"># 查看实际使用的cuda版本</span> <span class="token operator">&gt;</span>若不是为了看cuda的路径也可以使用nvcc <span class="token operator">-</span>V 命令快速查看 </code></pre> <h2> <a id="pycharmcuda_24" rel="nofollow"></a>使用pycharm中，cuda需要注意的地方</h2> <pre><code class="prism language-python"><span class="token operator">&gt;&gt;</span><span class="token operator">&gt;</span>pycharm 一旦启动就会确定一个cuda不改变，若修改过cuda需要重启pycharm <span class="token operator">&gt;</span>pycham的终端和电脑的cmd的不同也可以从这里看出 <span class="token operator">&gt;</span>若修改了cuda，pycharm未重启，使用nvcc <span class="token operator">-</span>V查看的还是旧的cuda，就算重启pycharm的终端也不行，但电脑的终端重启后就可以看修改过的cuda </code></pre> <h2> <a id="cuda_31" rel="nofollow"></a>查看cuda版本信息</h2> <p>参考：https://blog.csdn.net/qq_37285386/article/details/106160053</p> <pre><code class="prism language-python"><span class="token comment">#需要先设置安装的cuda系统变量，在cmd环境下输入</span> nvcc <span class="token operator">-</span>V  <span class="token comment"># 注意V是大写</span> </code></pre> <p><img decoding="async" src="http://img.555519.xyz/uploads/20221225/da592cf48fb40c87dfb6d25e52ab2ecb.jpg" alt="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本"><br /> 图片使用了参考链接中的图片</p> <h2> <a id="cuda_40" rel="nofollow"></a>更换不同版本的cuda需要修改环境变量中的路径顺序</h2> <p>nvcc命令<strong>显示那个版本</strong>的cuda取决于它们在<strong>环境变量</strong>中设置的<strong>先后顺序</strong>。但是修改顺序后<strong>需要重新开启cmd</strong></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-61186.htm">【错误】Error response from daemon: Get “https://registry-1.docker.io/v2/“: dial tcp: lookup registry-1.</a></p>
+                                        <p>下一个：<a href="/news/article-61766.htm">动物防疫疫苗种类有哪些名称（动物防疫疫苗种类有哪些名称和作用）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-34341.htm" title="宠物疫苗是去宠物医院还是宠物店（疫苗去宠物医院打还是防疫站）">宠物疫苗是去宠物医院还是宠物店（疫苗去宠物医院打还是防疫站）</a></li>
+                        <li class="py-2"><a href="/news/article-45636.htm" title="宠物粮食品牌上市公司有哪些公司（宠物粮行业）">宠物粮食品牌上市公司有哪些公司（宠物粮行业）</a></li>
+                        <li class="py-2"><a href="/news/article-35611.htm" title="领养宠物活动的意义在哪（领养宠物收费吗）">领养宠物活动的意义在哪（领养宠物收费吗）</a></li>
+                        <li class="py-2"><a href="/news/article-28650.htm" title="宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）">宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-27-free-node-subscribe.htm" title="「1月27日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接">「1月27日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34984.htm" title="南京宠物领养中心官网电话地址（南京宠物收容中心电话）">南京宠物领养中心官网电话地址（南京宠物收容中心电话）</a></li>
+                        <li class="py-2"><a href="/news/article-51137.htm" title="原生js实现楼层滚动（界面滑动）效果">原生js实现楼层滚动（界面滑动）效果</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-25-windows-nekoray.htm" title="「12月25日」最高速度19.9M/S，2024年NekoRay每天更新免费节点订阅链接">「12月25日」最高速度19.9M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20325.htm" title="关于tensor的shape理解">关于tensor的shape理解</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-12-free-node-subscribe.htm" title="「12月12日」最高速度19.7M/S，2024年NekoRay每天更新免费节点订阅链接">「12月12日」最高速度19.7M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

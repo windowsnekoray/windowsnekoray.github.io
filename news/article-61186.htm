@@ -130,6 +130,7 @@
                   				  				  				<div id="content_views" class="htmledit_views"> <p>今天准备搭建一下ELK集群，结果第一步下载镜像时就出了问题，这也是用Docker以来第一次遇到问题，总结一下。</p> <p>报错如下：</p> <p><img fetchpriority="high" decoding="async" alt="" height="64" src="http://img.555519.xyz/uploads3/20220603/9f90bb3a84ebdddff07a671986b6db7f.jpg"></p> <p><span style="color:#fe2c24;">Error response from daemon: Get "https://registry-1.docker.io/v2/": dial tcp: lookup registry-1.docker.io on 8.8.8.8:53: read udp 192.168.241.128:34634-&gt;8.8.8.8:53: i/o timeout</span></p> <p>起初把报错信息贴到百度去搜索几乎都是说将<span style="background-color:#a2e043;">8.8.8.8设置为DNS服务器</span>，但是事实是我的已经配过的，如下：</p> <p><img decoding="async" alt="" height="530" src="http://img.555519.xyz/uploads3/20220603/2e3dda8680d4c0b780b14f569a9fd641.jpg"></p> <p>既然很多帖子都是帖的这个，那证明还是有一部分人是这个原因造成的，可以尝试下。</p> <p><span style="background-color:#ff9900;">可视化的方式</span>&nbsp; &nbsp;：就是找个网络配置，修改即可，步骤如下</p> <p><img decoding="async" alt="" height="280" src="http://img.555519.xyz/uploads3/20220603/7aa739052be1d0977ffb44ee276cd74d.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="401" src="http://img.555519.xyz/uploads3/20220603/bde28a9135d29ec96cfb8771de39c25f.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="556" src="http://img.555519.xyz/uploads3/20220603/cdea36a1e5de309fdd5eec1508a21aff.jpg"></p> <p><img loading="lazy" decoding="async" alt="" height="551" src="http://img.555519.xyz/uploads3/20220603/3f4e0b37199d4a8dcd3cefc84144d2e6.jpg"></p> <p><span style="background-color:#ff9900;">命令方式</span>&nbsp; ：</p> <p><span style="color:#a2e043;">vi /etc/resolv.conf</span></p> <p>#添加这两行<br /> nameserver 8.8.8.8<br /> nameserver 8.8.4.4</p> <p>尽管本人不是这个原因，但是既然说到网络了，就决定测试一下网络联通性，毕竟拉取镜像也需要保证网络正常通信, 于是便Ping了一波百度，也是ok的。</p> <p><img loading="lazy" decoding="async" alt="" height="138" src="http://img.555519.xyz/uploads3/20220603/e4a1b0bd956a29be484570cfb0ba8e57.jpg"></p> <p>之后在国外的网站StackOverFlow也看到一些类似的解释，但是其中一个说是docker服务的问题，于是就决定重启一下docker服务。</p> <p>输入<span style="color:#a2e043;">systemctl restart docker</span></p> <p>但是好像并没有什么作用，突然有个奇怪的想法，觉得会不会是restart没起作用啊，觉得关停一下docker服务试试，<span style="color:#a2e043;">systemctl stop docker</span> ，结果提示了这句话：</p> <p id="articleContentId"><span style="color:#fe2c24;">Warning: Stopping docker.service, but it can still be activated by: docker.socket</span></p> <p>百度一波，原来这是因为除了docker.service单元文件，还有一个docker.socket单元文件…docker.socket这是用于套接字激活。该警告意味着：如果你试图连接到docker socket，而docker服务没有运行，系统将自动启动docker。</p> <p>解决方案一<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;你可以删除 /lib/systemd/system/docker.socket<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从docker中 docker.service 文件 删除 fd://，即remove -H fd://</p> <p>解决方案二<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不想被访问时自动启动服务<br /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;输入命令：sudo systemctl stop docker.socket</p> <p>当然，也可以不用管。总之这个警告不是太需要关注的点，我们继续重启操作。</p> <p>重启如果报错：<span style="color:#fe2c24;">Failed to restart docker.service: Unit docker.service not found.</span></p> <p>可能需要重装，但是如果docker是通过<span style="color:#a2e043;">snap install docker</span>命令安装的，出现这个问题并不需要，重启命令换位<span style="color:#a2e043;">sudo systemctl restart docker</span>即可。</p> <p>正常重启完成之后发现就可以正常拉取镜像了。</p> <p><img loading="lazy" decoding="async" alt="" height="255" src="http://img.555519.xyz/uploads3/20220603/1b22e2e5d70e33d524756cc11f427204.jpg"></p> <p>重启后还是会有类似的错误提示，解决方案：<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/weixin_47255175/article/details/124597535"  title="Docker pull 命令报错整理_To Do.的博客-CSDN博客" rel="nofollow">Docker pull 命令报错整理_To Do.的博客-CSDN博客</a></p> </div> 			                <div class="clearfix"></div>
                 <div class="col-md-12 mt-5">
                                         <p>上一个：<a href="/news/article-61185.htm">win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</a></p>
+                                        <p>下一个：<a href="/news/article-61765.htm">win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</a></p>
                                     </div>
                                 </div>
                 <div class="col-md-3">
@@ -139,16 +140,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-20783.htm" title="广州哪里有宠物领养机构啊（广州宠物领养中心在哪）">广州哪里有宠物领养机构啊（广州宠物领养中心在哪）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2024-12-26-windows-nekoray.htm" title="「12月26日」最高速度22.2M/S，2024年NekoRay每天更新免费节点订阅链接">「12月26日」最高速度22.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-17-free-subscribe-node.htm" title="「2月17日」最高速度20M/S，2025年NekoRay每天更新免费节点订阅链接">「2月17日」最高速度20M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-30-free-nekoray.htm" title="「1月30日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接">「1月30日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-27714.htm" title="宠物粮的种类大全（宠物粮go）">宠物粮的种类大全（宠物粮go）</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-1-12-free-node-subscribe.htm" title="「1月12日」最高速度19.9M/S，2025年NekoRay每天更新免费节点订阅链接">「1月12日」最高速度19.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-2-5-windows-nekoray.htm" title="「2月5日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接">「2月5日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/news/article-46140.htm" title="Springboot中@Aspect无法引入">Springboot中@Aspect无法引入</a></li>
-                        <li class="py-2"><a href="/news/article-29559.htm" title="宠物领养机构名称（宠物领养机构在哪里）">宠物领养机构名称（宠物领养机构在哪里）</a></li>
-                        <li class="py-2"><a href="/news/article-37225.htm" title="vue @blur 和 .trim()">vue @blur 和 .trim()</a></li>
+                        <li class="py-2"><a href="/news/article-51687.htm" title="pytorch cuda上tensor的定义  以及 减少cpu操作的方法">pytorch cuda上tensor的定义  以及 减少cpu操作的方法</a></li>
+                        <li class="py-2"><a href="/news/article-28650.htm" title="宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）">宠物粮食加工厂设备生产厂家电话（宠物粮生产基地）</a></li>
+                        <li class="py-2"><a href="/news/article-58510.htm" title="分布式事务提交协议2PC/3PC详解">分布式事务提交协议2PC/3PC详解</a></li>
+                        <li class="py-2"><a href="/news/article-53836.htm" title="重庆宠物领养网免费平台官网电话（重庆宠物领养重庆宠物赠送）">重庆宠物领养网免费平台官网电话（重庆宠物领养重庆宠物赠送）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-14-node-share-links.htm" title="「11月14日」最高速度21.2M/S，2024年NekoRay每天更新免费节点订阅链接">「11月14日」最高速度21.2M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-20782.htm" title="动物疫苗预防控制中心电话（动物防疫站电话号码多少）">动物疫苗预防控制中心电话（动物防疫站电话号码多少）</a></li>
+                        <li class="py-2"><a href="/news/article-49604.htm" title="Springboot中整合knife4j接口文档">Springboot中整合knife4j接口文档</a></li>
+                        <li class="py-2"><a href="/news/article-44133.htm" title="宠物医院证件办理流程视频（宠物医院执照怎么办）">宠物医院证件办理流程视频（宠物医院执照怎么办）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-12-18-linux-nekoray.htm" title="「12月18日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接">「12月18日」最高速度21.5M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-34815.htm" title="中国十大宠物粮生产企业排名（中国宠物粮品牌）">中国十大宠物粮生产企业排名（中国宠物粮品牌）</a></li>
                     </ul>
     </div>
 </div>
@@ -160,7 +161,7 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+                <h4><span class="badge" style="float: right;">72</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
