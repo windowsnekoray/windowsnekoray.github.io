@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-66007.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>权威分析@RequestParam和@RequestPart 的区别（官方文档）</title>
+        <meta name="description" content="一、今天写了两个文件上传的接口用到了@RequestParam和@RequestPart@RequestPart /**      * 单文件上传      * @param file      * " />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-66007.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="权威分析@RequestParam和@RequestPart 的区别（官方文档）" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/13e332565d5b9c7ac09a41500b110ff9.webp" />
+        <meta property="og:release_date" content="2025-03-02T09:38:52" />
+    <meta property="og:updated_time" content="2025-03-02T09:38:52" />
+        <meta property="og:description" content="一、今天写了两个文件上传的接口用到了@RequestParam和@RequestPart@RequestPart /**      * 单文件上传      * @param file      * " />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="权威分析@RequestParam和@RequestPart 的区别（官方文档）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        权威分析@RequestParam和@RequestPart 的区别（官方文档）                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-dracula"> <p>一、今天写了两个文件上传的接口用到了@RequestParam和@RequestPart<br /><strong>@RequestPart</strong></p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-javadoc">/**      * 单文件上传      *<span class="hljs-javadoctag"> @param</span> file      *<span class="hljs-javadoctag"> @param</span> bucket      *<span class="hljs-javadoctag"> @return</span>      */</span><span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">"uploadFile"</span>)<span class="hljs-keyword">public</span> JsonResult<span class="hljs-title">uploadFile</span>(@<span class="hljs-title">RequestPart</span>("file") MultipartFile file, @RequestParam String bucket){          String fileUrl = aliossService.uploadFile(file, bucket);         Map&lt;String,String&gt; result =<span class="hljs-keyword">new</span> HashMap&lt;&gt;();         result.put(<span class="hljs-string">"fileUrl"</span>,fileUrl);<span class="hljs-keyword">return</span> success(result);     }</code></pre> <p><strong>@RequestParam</strong></p> <pre class="prettyprint"><code class="hljs java"><span class="hljs-javadoc">/**      * 上传字符串      *<span class="hljs-javadoctag"> @param</span> stringFile      *<span class="hljs-javadoctag"> @param</span> bucket      *<span class="hljs-javadoctag"> @return</span>      */</span><span class="hljs-annotation">@RequestMapping</span>(<span class="hljs-string">"uploadStringFile"</span>)<span class="hljs-keyword">public</span> JsonResult<span class="hljs-title">uploadStringFile</span>(@<span class="hljs-title">RequestParam</span>("stringFile") String stringFile, @<span class="hljs-title">RequestParam</span>("bucket") String bucket){          String fileUrl = aliossService.uploadStringFile(stringFile, bucket);         Map&lt;String,String&gt; result =<span class="hljs-keyword">new</span> HashMap&lt;&gt;();         result.put(<span class="hljs-string">"fileUrl"</span>,fileUrl);<span class="hljs-keyword">return</span> success(result);     }</code></pre> <p>二、比较一下他们的区别吧<br /> @RequestPart<br /><img decoding="async" src="http://img.555519.xyz/uploads3/20220721/c85208679f3adaf13d7244344b4ba3f7.jpg" alt="权威分析@RequestParam和@RequestPart 的区别（官方文档）"></p> <p>译文：<br /> 1.@RequestPart这个注解用在multipart/form-data表单提交请求的方法上。<br /> 2.支持的请求方法的方式MultipartFile，属于Spring的MultipartResolver类。这个请求是通过http协议传输的。<br /> 3.@RequestParam也同样支持multipart/form-data请求。<br /> 4.他们最大的不同是，当请求方法的请求参数类型不再是String类型的时候。<br /> 5.@RequestParam适用于name-valueString类型的请求域，@RequestPart适用于复杂的请求域（像JSON，XML）。</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-65412.htm">宠物店一个月能卖多少狗粮和狗粮 宠物店一个月能卖多少狗粮和狗粮呢</a></p>
+                                        <p>下一个：<a href="/news/article-66008.htm">Spring 源码（9）Spring Bean的创建过程的前期准备_在线工具</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-28172.htm" title="SpringBoot启动报错Injection of autowired dependencies failed； Could not resolve placeholder: 问题">SpringBoot启动报错Injection of autowired dependencies failed； Could not resolve placeholder: 问题</a></li>
+                        <li class="py-2"><a href="/news/article-29849.htm" title="被猫爪子勾了一下破皮没出血用碘伏消毒了（被猫爪子勾了一下破皮没出血用碘伏消毒了怎么办）">被猫爪子勾了一下破皮没出血用碘伏消毒了（被猫爪子勾了一下破皮没出血用碘伏消毒了怎么办）</a></li>
+                        <li class="py-2"><a href="/news/article-39681.htm" title="我们如何获得排序的MySQL输出？">我们如何获得排序的MySQL输出？</a></li>
+                        <li class="py-2"><a href="/news/article-30532.htm" title="动物疫苗在哪打的啊 动物疫苗在哪打的啊多少钱">动物疫苗在哪打的啊 动物疫苗在哪打的啊多少钱</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-22-free-shadowrocket-node.htm" title="「11月22日」最高速度18.1M/S，2024年NekoRay每天更新免费节点订阅链接">「11月22日」最高速度18.1M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-25859.htm" title="长沙宠物领养救助站有哪些 长沙宠物领养救助站有哪些地方">长沙宠物领养救助站有哪些 长沙宠物领养救助站有哪些地方</a></li>
+                        <li class="py-2"><a href="/news/article-66008.htm" title="Spring 源码（9）Spring Bean的创建过程的前期准备_在线工具">Spring 源码（9）Spring Bean的创建过程的前期准备_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-32903.htm" title="Java连接MySQL数据库实例_java">Java连接MySQL数据库实例_java</a></li>
+                        <li class="py-2"><a href="/free-nodes/2024-11-21-free-shadowrocket-node.htm" title="「11月21日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接">「11月21日」最高速度19.6M/S，2024年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-35970.htm" title="宠物粮食代理需要多少钱一个月工资（怎么做宠物粮代理）">宠物粮食代理需要多少钱一个月工资（怎么做宠物粮代理）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">6</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">93</span> <a href="/date/2024-12/" title="2024-12 归档">2024-12</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2024-11/" title="2024-11 归档">2024-11</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
