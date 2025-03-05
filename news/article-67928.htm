@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-67928.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>实时流处理与分布式存储过程中对文件的操作</title>
+        <meta name="description" content="这两天都是在跟文件打交道，很有趣，每一步都不会顺心如意，但每一步的解决都有所获益，首先是对文件变化的监测，能找到很多办法，例如通过ELK家族的Filebeat工具来探测，但是外部工具不好融合进Stor" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-67928.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="实时流处理与分布式存储过程中对文件的操作" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/db90d92b0022fb015e39c15ea2f7f41c.webp" />
+        <meta property="og:release_date" content="2025-03-05T11:12:29" />
+    <meta property="og:updated_time" content="2025-03-05T11:12:29" />
+        <meta property="og:description" content="这两天都是在跟文件打交道，很有趣，每一步都不会顺心如意，但每一步的解决都有所获益，首先是对文件变化的监测，能找到很多办法，例如通过ELK家族的Filebeat工具来探测，但是外部工具不好融合进Stor" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="实时流处理与分布式存储过程中对文件的操作">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        实时流处理与分布式存储过程中对文件的操作                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p data-track="1" data-pm-slice="0 0 []"><span style="font-size: 16px">这两天都是在跟文件打交道，很有趣，每一步都不会顺心如意，但每一步的解决都有所获益，首先是对文件变化的监测，能找到很多办法，例如通过ELK家族的Filebeat工具来探测，但是外部工具不好融合进Storm，最好是自己写Java程序来监测。</span></p> </h1> <p data-track="3"><span style="font-size: 16px">其实jdk7以上版本就有一个比较不错的选择，那就是nio包里的WatchService监控器，我觉得它有两方面的优点，其一就是由操作系统的信号通知机制，当文件目录中出现变化就发信号给应用层监控器，那么这种由操作系统主动通知的效率就远好于应用程序对文件的反复轮巡，而且不占用过多系统资源；其二编程模型并不采用观察者模式注册监听器的方案，而是将多线程问题隐藏起来，客户端对api采取循环阻塞的直观调用，这就非常有利于嵌入到各种运行容器当中去执行文件采集监控。</span></p> <p data-track="4"><span style="font-size: 16px">另外监测文件变化后按行采集变化记录我采用了RadmonAccessFile对象，这个文件操作对象常用于断点续传此类的需求，很方便，关键要设计一个可持久化的位移记录文件，保证采集器重启后总能从未读取的最新变化数据点位置开始采集数据。如下图所示：</span></p> <div class="pgc-img"><img decoding="async" src="https://p9.toutiaoimg.com/img/tos-cn-i-qvj2lq49k0/e13d12ea432b45efa450fa499c2f53d7~tplv-obj.jpg" alt="实时流处理与分布式存储过程中对文件的操作" data-ic="false" data-width="803" data-height="283" data-ic-uri=""/></div> <p data-track="5"><span style="font-size: 16px">文件监控与采集功能嵌入Storm集群之后又出现了一个新问题，那就是Storm spout实例不会如你所愿地运行在指定的机器上，而是完全由Storm集群随机地在节点上指定运行，但被监测的文件位置是固定的，反正总有笨办法：当Storm集群启动后，确定spout运行的机器节点，再由该机器执行cdc文件输出程序，但是这样耦合性太强，必须跟随Storm对spout实例的安排而变化采集位置，维护管理就会很麻烦，而且很容易出错。</span></p> </h1> <p data-track="7"><span style="font-size: 16px">因此我就引出了一个新的假设：通过分布式文件系统(dfs)来解决此问题，但是dfs的选型很重要，Hadoop hdfs肯定不行，它脱离了普通文件系统的操作方式，最终我挑选了两款dfs，一是ClusterFS，二是MooseFS，它们都具有fuse结合功能，通过Mount dfs到本地目录的方式，让访问dfs如同访问本地目录文件一样无缝结合，dfs的任一客户端节点对文件的修改，都会在所有dfs客户端节点上被通知，因此我让Storm的所有节点都成为dfs的客户端，这样无论spout随机运行在任何节点上，都可以在本节点的相同目录中去访问dfs中的被监测的文件，同时被监测文件还具有了多副本的高可靠性。</span></p> <div class="pgc-img"><img fetchpriority="high" decoding="async" src="https://p3.toutiaoimg.com/origin/tos-cn-i-qvj2lq49k0/e4a367be46d74c0dba007a9a3f7bab14" width="839" height="513" data-ic="false" data-width="1164" data-height="712" data-ic-uri=""/></div> <p data-track="8"><span style="font-size: 16px">这种解决分布式计算过程中与分布式存储结合的方案，也就是Storm计算节点由于是集群动态分配位置，无法固定住Storm spout的文件采集位置，因此我选择了分布式文件系统的思路，主要是利用了GlusterFS连接Linux fuse(用户空间文件系统)的办法，使得每一个spout节点都是dfs客户端，那么无论spout被分配在哪个节点，都可以通过监测并读取本节点的GlusterFS客户端挂载(mount)的目录来实现对PostgreSQL cdc输出文件副本的数据采集。</span></p> <p data-track="9"><span style="font-size: 16px">但是测试中发现一个大bug，让我虎躯一震，bug原因分析：</span></p> </h1> <p data-track="11"><span style="font-size: 16px">内置在spout中的Java文件监控器(WatchService)监控目录变化是通过操作系统传递来的信号驱动的，这样spout就可以等待式文件变化实现监控，可是我想当然的以为就算PostgreSQL cdc输出节点与spout文件采集监控节点不是一台机器也可以，只要通过分布式文件系统同步副本，spout节点就一定能感知到当前目录副本的变化，事实上我错了，spout中的watchservice根本就感知不到目录副本的变化，因此想要得到操作系统的文件变化信号通知，必须对文件目录的读写是在一台机器上，才会有文件变化信号发送给上层应用，我之前的测试正确仅仅是因为PostgreSQL输出和spout监控是同一台服务器。</span></p> <p data-track="12"><span style="font-size: 16px">那么问题就来了，我的假设就是spout不用考虑采集点的目录位置，否则逆向根据storm集群分配好spout节点地址后才能进行pg监控，显然这是颠倒流程了，又试过MooseFS和NFS，结果一样，NFS还不如分布式文件系统高效。</span></p> <p data-track="13"><span style="font-size: 16px">当无路可走的时候，认为自己的假设即将失败的时候，一个新的思路开启了我的灵感，为什么非要spout只设置1个并行度呢？按照参与Storm集群拓扑的工作数是3个，那就设置spout并行度为3，这样每一个机器就都会有一个spout监控本地GlusterFS挂载目录，那么无论我的PostgreSQL cdc输出程序是在哪个节点启动，同时只会有一个spout感应到副本变化开始推送数据，其他都是wait，这样就解决了问题，同样也保证了即便是换一个节点进行PostgreSQL cdc文件输出，前一个spout实例自然wait，新的spout就工作了，依然完美地保证了PostgreSQL cdc程序与spout的可靠性冗余。</span></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-67296.htm">宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）</a></p>
+                                        <p>下一个：<a href="/news/article-67929.htm">动物医院价格表图片大全集高清视频（动物医院照片）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-48095.htm" title="宠物领养小程序有哪些内容呢（领养宠物的小程序）">宠物领养小程序有哪些内容呢（领养宠物的小程序）</a></li>
+                        <li class="py-2"><a href="/news/article-50124.htm" title="生产宠物粮的工厂有哪些岗位工作（生产宠物粮前景如何）">生产宠物粮的工厂有哪些岗位工作（生产宠物粮前景如何）</a></li>
+                        <li class="py-2"><a href="/news/article-65412.htm" title="宠物店一个月能卖多少狗粮和狗粮 宠物店一个月能卖多少狗粮和狗粮呢">宠物店一个月能卖多少狗粮和狗粮 宠物店一个月能卖多少狗粮和狗粮呢</a></li>
+                        <li class="py-2"><a href="/news/article-48094.htm" title="动物疫苗在哪打的啊多少钱啊（动物接种疫苗多少钱）">动物疫苗在哪打的啊多少钱啊（动物接种疫苗多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-61766.htm" title="动物防疫疫苗种类有哪些名称（动物防疫疫苗种类有哪些名称和作用）">动物防疫疫苗种类有哪些名称（动物防疫疫苗种类有哪些名称和作用）</a></li>
+                        <li class="py-2"><a href="/news/article-38701.htm" title="动物医院注册商标名称（动物医院招牌图片）">动物医院注册商标名称（动物医院招牌图片）</a></li>
+                        <li class="py-2"><a href="/news/article-62970.htm" title="成立宠物食品公司需要什么资质（成立宠物食品公司需要什么资质要求）">成立宠物食品公司需要什么资质（成立宠物食品公司需要什么资质要求）</a></li>
+                        <li class="py-2"><a href="/news/article-66007.htm" title="权威分析@RequestParam和@RequestPart 的区别（官方文档）">权威分析@RequestParam和@RequestPart 的区别（官方文档）</a></li>
+                        <li class="py-2"><a href="/news/article-62373.htm" title="猫咪三针疫苗需要多久时间（猫咪三针疫苗需要多久时间打完）">猫咪三针疫苗需要多久时间（猫咪三针疫苗需要多久时间打完）</a></li>
+                        <li class="py-2"><a href="/news/article-35970.htm" title="宠物粮食代理需要多少钱一个月工资（怎么做宠物粮代理）">宠物粮食代理需要多少钱一个月工资（怎么做宠物粮代理）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
