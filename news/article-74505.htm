@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-74505.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Springboot过滤器和拦截器实现</title>
+        <meta name="description" content="1.过滤器 首先先写一个过滤器Filter,不使用注解 package com.liuhaiyang.springboot.filter2;   import javax.servlet.*; imp" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-74505.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="Springboot过滤器和拦截器实现" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/cb3ad95433e3bb1aa38ed4167a2adb89.webp" />
+        <meta property="og:release_date" content="2025-03-15T07:21:16" />
+    <meta property="og:updated_time" content="2025-03-15T07:21:16" />
+        <meta property="og:description" content="1.过滤器 首先先写一个过滤器Filter,不使用注解 package com.liuhaiyang.springboot.filter2;   import javax.servlet.*; imp" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Springboot过滤器和拦截器实现">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        Springboot过滤器和拦截器实现                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h2><a id="1_0" rel="nofollow"></a>1.过滤器</h2> <p>首先先写一个过滤器Filter,不使用注解</p> <pre><code>package com.liuhaiyang.springboot.filter2;   import javax.servlet.*; import javax.servlet.annotation.WebFilter; import java.io.IOException;   //过滤器 public class MyFilter implements Filter {     @Override     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {         System.out.println("---------您已进入过滤器222----------");         filterChain.doFilter(servletRequest,servletResponse);     } }</code></pre> <p>再写一个配置类</p> <pre><code>package com.liuhaiyang.springboot.config;   import com.liuhaiyang.springboot.filter2.MyFilter; import org.springframework.boot.web.servlet.FilterRegistrationBean; import org.springframework.context.annotation.Bean; import org.springframework.context.annotation.Configuration;   @Configuration  //定义此类为配置类 public class FilterConfig {     @Bean     public FilterRegistrationBean myFilterRegistrationBean(){         FilterRegistrationBean filterRegistrationBean=new FilterRegistrationBean(new MyFilter());           //添加过滤路径         filterRegistrationBean.addUrlPatterns("/user/*");         return filterRegistrationBean;     }   }</code></pre> <p>最后写一个controller类</p> <pre><code>package com.liuhaiyang.springboot.controller;   import org.springframework.stereotype.Controller; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.ResponseBody;   @Controller public class MyController {     @RequestMapping("/user/detail")     public @ResponseBody String userDetail(){         return "/user/detail";     }       @RequestMapping("/center")     public @ResponseBody String center(){         return "/center";     } }</code></pre> <h2><a id="2_61" rel="nofollow"></a>2.拦截器</h2> <p>创建拦截器类,实现HandlerInterceptor接口,重写preHandle方法,在该方法中编写业务拦截的规则</p> <pre><code>public class UserInterceptor implements HandlerInterceptor {     @Override     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {         //从session中获取user的信息         User user =(User)request.getSession().getAttribute("user");         //判断用户是否登录         if (null==user){             response.sendRedirect(request.getContextPath()+"/user/error");             return false;         }         return true;     } }</code></pre> <p>使用@Configuration注解将这个类定义为配置类,实现WebMvcConfigurer接口并且重写addInterceptors方法</p> <pre><code>@Configuration//定义此类为配置类 public class InterceptorConfig implements WebMvcConfigurer {     @Override     public void addInterceptors(InterceptorRegistry registry) {     	//addPathPatterns拦截的路径         String[] addPathPatterns = {                 "/user/**"         };         //excludePathPatterns排除的路径         String[] excludePathPatterns = {                 "/user/login","/user/noLg","/user/error"         };         //创建用户拦截器对象并指定其拦截的路径和排除的路径         registry.addInterceptor(new UserInterceptor()).addPathPatterns(addPathPatterns).excludePathPatterns(excludePathPatterns);     } }</code></pre> <p>编写Controller类</p> <pre><code>@RestController @RequestMapping("/user") public class MyController {     //用户登录     @RequestMapping("login")     public Object login(HttpServletRequest request){         //将已经登录的用户信息添加到session中         request.getSession().setAttribute("user",new User(1,"张三",20));         return "Login Success";     }     //不需要登录也能访问的请求     @RequestMapping("/noLg")     public Object noLg(){         return "Everyone Can See";     }     //必须要登录才能访问的请求     @RequestMapping("/mustLg")     public Object mustLg(){         return "Only User Can See";     }     //如果用户未登录访问了需要登录才能访问的请求会跳转到这个错误提示页面     @RequestMapping("/error")     public Object error(){         return "You Must Login";     } }</code></pre> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-74504.htm">concat()，replace()和trim()Java中的字符串。</a></p>
+                                        <p>下一个：<a href="/news/article-75158.htm">中国兽药公司前50名（中国兽药公司前50名排名）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-37683.htm" title="宠物粮食多少钱一袋（宠物粮食多少钱一袋合适）">宠物粮食多少钱一袋（宠物粮食多少钱一袋合适）</a></li>
+                        <li class="py-2"><a href="/news/article-52754.htm" title="养狗人容易带什么病菌（养狗的人容易得什么妇科病吗）">养狗人容易带什么病菌（养狗的人容易得什么妇科病吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-17-free-nekoray.htm" title="「3月17日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接">「3月17日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-70509.htm" title="宠物领养平台免费有哪些呢知乎（宠物领养网免费领养宠物的网站宠物领养中心）">宠物领养平台免费有哪些呢知乎（宠物领养网免费领养宠物的网站宠物领养中心）</a></li>
+                        <li class="py-2"><a href="/news/article-66008.htm" title="Spring 源码（9）Spring Bean的创建过程的前期准备_在线工具">Spring 源码（9）Spring Bean的创建过程的前期准备_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-51137.htm" title="原生js实现楼层滚动（界面滑动）效果">原生js实现楼层滚动（界面滑动）效果</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-6-free-node-subscribe-links.htm" title="「2月6日」最高速度22.9M/S，2025年NekoRay每天更新免费节点订阅链接">「2月6日」最高速度22.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-43151.htm" title="postman测试@pathvariable,@requestparam,@requestbody发送情况">postman测试@pathvariable,@requestparam,@requestbody发送情况</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-6-free-high-speed-nodes.htm" title="「1月6日」最高速度21.3M/S，2025年NekoRay每天更新免费节点订阅链接">「1月6日」最高速度21.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-61765.htm" title="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本">win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">51</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
