@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-79937.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>详细讲解springboot如何实现异步任务_java</title>
+        <meta name="description" content="目录  Spring Boot介绍 Spring Boot特点 异步任务    Spring Boot介绍 Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 S" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-79937.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="详细讲解springboot如何实现异步任务_java" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/13e332565d5b9c7ac09a41500b110ff9.webp" />
+        <meta property="og:release_date" content="2025-03-23T08:25:11" />
+    <meta property="og:updated_time" content="2025-03-23T08:25:11" />
+        <meta property="og:description" content="目录  Spring Boot介绍 Spring Boot特点 异步任务    Spring Boot介绍 Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 S" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="详细讲解springboot如何实现异步任务_java">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        详细讲解springboot如何实现异步任务_java                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">Spring Boot介绍</a></li> <li><a href="#_label1" rel="nofollow">Spring Boot特点</a></li> <li><a href="#_label2" rel="nofollow">异步任务</a></li> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>Spring Boot介绍</h2> <p>Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。用我的话来理解，就是 Spring Boot 其实不是什么新的框架，它默认配置了很多框架的使用方式，就像 Maven 整合了所有的 Jar 包，Spring Boot 整合了所有的框架。</p> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>Spring Boot特点</h2> <p>1）创建独立的Spring应用程序；</p> <p>2）直接嵌入Tomcat，Jetty或Undertow，无需部署WAR文件；</p> <p>3）提供推荐的基础POM文件（starter）来简化Apache Maven配置；</p> <p>4）尽可能的根据项目依赖来自动配置Spring框架；</p> <p>5）提供可以直接在生产环境中使用的功能，如性能指标，应用信息和应用健康检查；</p> <p>6）开箱即用，没有代码生成，不需要配置过多的xml。同时也可以修改默认值来满足特定的需求。</p> <p>7）其他大量的项目都是基于Spring Boot之上的，如Spring Cloud。</p> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>异步任务</h2> <p>实例：</p> <p>在service中写一个hello方法，让它延迟三秒</p> <div class="ay1code"> <pre class="brush:java;">@Service  public class AsyncService {      public void hello(){          try {              Thread.sleep(3000);          } catch (InterruptedException e) {              e.printStackTrace();          }          System.out.println("数据正在处理！");      }  }  </pre> </div> <p>让Controller去调用这个业务</p> <div class="ay1code"> <pre class="brush:java;">@RestController  public class AsyncController {      @Autowired      AsyncService asyncService;      @GetMapping("/hello")      public String hello(){          asyncService.hello();          return "ok";      }  }  </pre> </div> <p>启动SpringBoot项目，我们会发现三秒后才会响应ok。</p> <p>所以我们要用异步任务去解决这个问题，很简单就是加一个注解。</p> <p>在hello方法上@Async注解</p> <div class="ay1code"> <pre class="brush:java;">@Service  public class AsyncService {      //异步任务      @Async      public void hello(){          try {              Thread.sleep(3000);          } catch (InterruptedException e) {              e.printStackTrace();          }          System.out.println("数据正在处理！");      }  }  </pre> </div> <p>在SpringBoot启动类上开启异步注解的功能</p> <div class="ay1code"> <pre class="brush:java;">@SpringBootApplication  //开启了异步注解的功能  @EnableAsync  public class Sprintboot09TestApplication {        public static void main(String[] args) {          SpringApplication.run(Sprintboot09TestApplication.class, args);      }    }  </pre> </div> <p>问题解决，服务端瞬间就会响应给前端数据！</p> <p>树越是向往高处的光亮，它的根就越要向下，向泥土向黑暗的深处。</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-79264.htm">猫咪宠物疫苗一针多少钱打的好（宠物猫疫苗要多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-79939.htm">宠物粮加工厂大全 宠物粮加工厂原料</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-41161.htm" title="宠物粮食原料是什么（宠物粮原材料是什么）">宠物粮食原料是什么（宠物粮原材料是什么）</a></li>
+                        <li class="py-2"><a href="/news/article-75159.htm" title="附近哪里可以领养宠物 附近哪里可以领养宠物狗">附近哪里可以领养宠物 附近哪里可以领养宠物狗</a></li>
+                        <li class="py-2"><a href="/news/article-39206.htm" title="动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）">动物防疫站打狂犬疫苗要钱吗多少钱一次（给动物打狂犬疫苗多少钱一针）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-5-windows-nekoray.htm" title="「2月5日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接">「2月5日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-44648.htm" title="原型模式在实际开发中的应用BeanUtils">原型模式在实际开发中的应用BeanUtils</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-free-nekoray.htm" title="「3月16日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接">「3月16日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-71161.htm" title="宠物医院好评语句 宠物医院好评语句有哪些">宠物医院好评语句 宠物医院好评语句有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-45150.htm" title="宠物食品店名 宠物食品店名称大全">宠物食品店名 宠物食品店名称大全</a></li>
+                        <li class="py-2"><a href="/news/article-64153.htm" title="宠物猫疫苗费用多少（宠物猫疫苗费用多少钱）">宠物猫疫苗费用多少（宠物猫疫苗费用多少钱）</a></li>
+                        <li class="py-2"><a href="/news/article-70511.htm" title="动物疫苗怎么卖（动物疫苗在哪里购买）">动物疫苗怎么卖（动物疫苗在哪里购买）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">69</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
