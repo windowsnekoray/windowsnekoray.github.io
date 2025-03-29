@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-83464.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Springmvc记录操作日志到数据库</title>
+        <meta name="description" content="数据库字段   建表语句 CREATE TABLE log_table (log_id int(11) NOT NULL auto_increment COMMENT ‘主键’,log_ipAddre" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-83464.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="Springmvc记录操作日志到数据库" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/1f802224ca6707d76e7a012193913c2a.webp" />
+        <meta property="og:release_date" content="2025-03-28T09:56:32" />
+    <meta property="og:updated_time" content="2025-03-28T09:56:32" />
+        <meta property="og:description" content="数据库字段   建表语句 CREATE TABLE log_table (log_id int(11) NOT NULL auto_increment COMMENT ‘主键’,log_ipAddre" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Springmvc记录操作日志到数据库">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        Springmvc记录操作日志到数据库                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="_0" rel="nofollow"></a>数据库字段</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/bdad15460a26675218d945498efcb3a8.jpg" alt="Springmvc记录操作日志到数据库"></p> <h2> <a id="_4" rel="nofollow"></a>建表语句</h2> <p>CREATE TABLE <code>log_table</code> (<br /><code>log_id</code> int(11) NOT NULL auto_increment COMMENT ‘主键’,<br /><code>log_ipAddress</code> varchar(64) default NULL COMMENT ‘请求的IP地址’,<br /><code>log_createtime</code> varchar(64) default NULL COMMENT ‘时间’,<br /><code>log_moduleName</code> varchar(128) default NULL COMMENT ‘模块名称’,<br /><code>log_desc</code> varchar(128) default NULL COMMENT ‘功能’,<br /><code>log_type</code> varchar(32) default NULL COMMENT ‘操作类型’,<br /><code>log_methodName</code> varchar(128) default NULL COMMENT ‘请求的方法名’,<br /><code>log_params</code> varchar(1000) default NULL COMMENT ‘请求的参数’,<br /><code>log_paramter</code> varchar(2000) default NULL COMMENT ‘请求的参数’,<br /> PRIMARY KEY (<code>log_id</code>)<br /> ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT=‘操作日志表’;</p> <h2> <a id="applicationaopxml_19" rel="nofollow"></a>配置application-aop.xml</h2> <pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;beans xmlns="http://www.springframework.org/schema/beans" 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 	xmlns:context="http://www.springframework.org/schema/context" 	xmlns:aop="http://www.springframework.org/schema/aop" 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd"&gt; 	 	&lt;!-- 配置包扫描器，扫描@Service主键的类[此处只扫描后台的包] --&gt; 	&lt;context:component-scan base-package="com.kindergarten.log"&gt;&lt;/context:component-scan&gt;    	&lt;!-- 定义操作日志切面 --&gt; 	&lt;bean id="logAspect" class="com.kindergarten.log.LogAopAspect"&gt;&lt;/bean&gt; 	&lt;!-- 通知Spring使用cglib而不是jdk的来生成代理方法  AOP可以拦截到Controller --&gt; 	&lt;aop:aspectj-autoproxy proxy-target-class="true"&gt; 		&lt;aop:include name="logAspect"/&gt; 	&lt;/aop:aspectj-autoproxy&gt;  </code></pre> <h2> <a id="_43" rel="nofollow"></a>实体类</h2> <pre><code>package com.kindergarten.log;  public class Logentity { 	/** 	 * 主键 	 **/     private String logId = ""; 	/** 	 * 请求的IP地址 	 **/     private String logIpAddress = ""; 	/** 	 * 时间 	 **/     private String logCreatetime = ""; 	/** 	 * 模块名称 	 **/     private String logModulename = ""; 	/** 	 * 功能 	 **/     private String logDesc = "";     /** 	 * 操作类型  	 **/     private String logType = ""; 	/** 	 * 请求的方法名 	 **/     private String logMethodname = ""; 	/** 	 * 请求的参数 	 **/     private String logParams = "";    	/**    	 * 请求的参数    	 **/     private String logParamter = "";                     	public String getLogId() { 		return logId; 	} 	public void setLogId(String logId) { 		this.logId = logId; 	} 	public String getLogIpAddress() { 		return logIpAddress; 	} 	public void setLogIpAddress(String logIpAddress) { 		this.logIpAddress = logIpAddress; 	} 	public String getLogCreatetime() { 		return logCreatetime; 	} 	public void setLogCreatetime(String logCreatetime) { 		this.logCreatetime = logCreatetime; 	} 	public String getLogModulename() { 		return logModulename; 	} 	public void setLogModulename(String logModulename) { 		this.logModulename = logModulename; 	} 	public String getLogDesc() { 		return logDesc; 	} 	public void setLogDesc(String logDesc) { 		this.logDesc = logDesc; 	} 	public String getLogType() { 		return logType; 	} 	public void setLogType(String logType) { 		this.logType = logType; 	} 	public String getLogMethodname() { 		return logMethodname; 	} 	public void setLogMethodname(String logMethodname) { 		this.logMethodname = logMethodname; 	} 	public String getLogParams() { 		return logParams; 	} 	public void setLogParams(String logParams) { 		this.logParams = logParams; 	} 	public String getLogParamter() { 		return logParamter; 	} 	public void setLogParamter(String logParamter) { 		this.logParamter = logParamter; 	} 	      }  </code></pre> <h2> <a id="Service_151" rel="nofollow"></a>Service接口</h2> <pre><code>package com.kindergarten.log;  import org.springframework.beans.factory.annotation.Autowired; import org.springframework.stereotype.Service;  import com.kindergarten.mapper.LogMapper;  @Service public class LogServiceImpl implements LogService{ 	@Autowired 	private LogMapper logMapper; 	/** 	 *add log  	*/ 	@Override 	public void insertlog(Logentity logentity){ 		logMapper.insertlog(logentity); 	} }  </code></pre> <h2> <a id="Service_176" rel="nofollow"></a>Service</h2> <pre><code>package com.kindergarten.log;  public interface LogService { 	/** 	 *add log  	*/ 	public void insertlog(Logentity logentity); }  </code></pre> <h2> <a id="_190" rel="nofollow"></a>日志切面</h2> <pre><code>package com.kindergarten.log;  import java.lang.reflect.Method; import java.util.Date; import java.util.Map;  import javax.servlet.http.HttpServletRequest;  import org.aspectj.lang.JoinPoint; import org.aspectj.lang.annotation.AfterReturning; import org.aspectj.lang.annotation.Aspect; import org.aspectj.lang.annotation.Pointcut; import org.aspectj.lang.reflect.MethodSignature; import org.slf4j.Logger; import org.slf4j.LoggerFactory; import org.springframework.beans.factory.annotation.Autowired; import org.springframework.core.LocalVariableTableParameterNameDiscoverer; import org.springframework.stereotype.Component; import org.springframework.web.context.request.RequestContextHolder; import org.springframework.web.context.request.ServletRequestAttributes;  import com.alibaba.fastjson.JSON; import com.kindergarten.util.DateUtil; import com.kindergarten.util.IpAddress;  import java.util.HashMap;  @Aspect @Component public class LogAopAspect { 	private static final Logger LOGGER = LoggerFactory.getLogger(LogAopAspect.class); 	@Autowired 	private LogService logService; 	 	/** 	 * Controller层切点  	 */ 	@Pointcut("@annotation(com.kindergarten.log.LogAopPointcut)") 	public void aopPoint() { 		 	} 	 	 	/** 	 * 切面 配置通知  	 */     @AfterReturning("aopPoint()")     public void saveSysLog(JoinPoint joinPoint) {         //保存日志         Logentity log = new Logentity();                  //从切面织入点处通过反射机制获取织入点处的方法         MethodSignature signature = (MethodSignature) joinPoint.getSignature();         //获取切入点所在的方法         Method method = signature.getMethod();          //获取操作         LogAopPointcut logAopPointcut = method.getAnnotation(LogAopPointcut.class);         //--------------------         if (logAopPointcut != null) {         	//模块名称             log.setLogModulename(logAopPointcut.logModulename());             //功能             log.setLogDesc(logAopPointcut.logDesc());             //操作类型             String index = logAopPointcut.logType().getIndex();             String name = logAopPointcut.logType().getLogname();             log.setLogType(name);         }                  //时间         log.setLogCreatetime(DateUtil.getDate_YMDHMS_S());         //--------------------         //获取请求的方法名         String methodName = method.getName();         log.setLogMethodname(methodName);         //--------------------         //请求的参数         Object[] args = joinPoint.getArgs();         //将参数所在的数组转换成json         String params = JSON.toJSONString(args);         log.setLogParams(params);         //--------------------         //--------------------         //创建参数名称实例         LocalVariableTableParameterNameDiscoverer discoverer = new LocalVariableTableParameterNameDiscoverer();         String[] paramterNames = discoverer.getParameterNames(method);         //传递给方法的参数数据         Map&lt;String, Object&gt; paramsMap = new HashMap&lt;String, Object&gt;();         for (int i = 0; i &lt; paramterNames.length; i++) { 			Object o = args[i]; 			if(o instanceof String || o instanceof String[]) { 				paramsMap.put(paramterNames[i], o); 			}else { 				continue; 			} 		}         String paramter = JSON.toJSONString(paramsMap);         log.setLogParamter(paramter);         //--------------------         //获取用户ip地址         HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();         log.setLogIpAddress(IpAddress.getIpAddress(request));         //-------------------- //        //获取用户名 //        sysLog.setUsername(ShiroUtils.getUserEntity().getUsername());             //调用service保存log实体类到数据库         logService.insertlog(log);     }  }  </code></pre> <h2> <a id="_309" rel="nofollow"></a>定义操作日志类别</h2> <pre><code>package com.kindergarten.log;  import java.lang.annotation.Documented; import java.lang.annotation.ElementType; import java.lang.annotation.Retention; import java.lang.annotation.RetentionPolicy; import java.lang.annotation.Target;  /**  * 1.CONSTRUCTOR:用于描述构造器  * 2.FIELD:用于描述域  * 3.LOCAL_VARIABLE:用于描述局部变量  * 4.METHOD:用于描述方法  * 5.PACKAGE:用于描述包  * 6.PARAMETER:用于描述参数  * 7.TYPE:用于描述类、接口(包括注解类型) 或enum声明  * */ @Target({ElementType.METHOD})//方法上 /**  * 1、RetentionPolicy.SOURCE：注解只保留在源文件，当Java文件编译成class文件的时候，注解被遗弃；  * 2、RetentionPolicy.CLASS：注解被保留到class文件，但jvm加载class文件时候被遗弃，这是默认的生命周期；  * 3、RetentionPolicy.RUNTIME：注解不仅被保存到class文件中，jvm加载class文件之后，仍然存在  * */ @Retention(RetentionPolicy.RUNTIME) /**  * Documented注解表明这个注释是由 javadoc记录的，在默认情况下也有类似的记录工具。  *  如果一个类型声明被注释了文档化，它的注释成为公共API的一部分  * */ @Documented public @interface LogAopPointcut  { 	public abstract String logModulename(); 	public abstract String logDesc(); 	public abstract log_Type logType(); 	 	public static enum log_Type 	{ 		SELECT,ADD,UPDATE,DELETE,EXPORT,IMPORT; 		 		private String logname; 		private String index; 		 		public String getLogname() { 			return this.name(); 		} 		public String getIndex() { 			return String.valueOf(this.ordinal()+1); 		} 				 	} }  </code></pre> <h2> <a id="LogAopPointcut_366" rel="nofollow"></a>在需要记录的方法上使用自定义的@LogAopPointcut</h2> <h3> <a id="_367" rel="nofollow"></a>例：</h3> <h3> <a id="LogAopPointcutlogModulename__logDesc__logType__log_TypeSELECT_368" rel="nofollow"></a>例：@LogAopPointcut(logModulename = “学员模块”,logDesc = “条件查询”,logType = log_Type.SELECT)</h3> <h3> <a id="LogAopPointcutlogModulename__logDesc__logType__log_TypeSELECT_369" rel="nofollow"></a>@LogAopPointcut(logModulename = “学员模块”,logDesc = “条件删除”,logType = log_Type.SELECT)</h3> <pre><code>/** 条件查询 */ 	@RequestMapping(value = "/findStudent", produces = "application/json;charset=UTF-8") 	@ResponseBody 	@LogAopPointcut(logModulename = "学员模块",logDesc = "条件查询",logType = log_Type.SELECT) 	public String findStudent(String starttime, String endtime, String id, String name, String age) { 		List&lt;StudentEntity&gt; list = studentService.findStudent(starttime, endtime, id, name, age); 		String json = JSONArray.toJSONStringWithDateFormat(list, "yyyy-MM-dd HH:mm:ss"); 		return json; 	} </code></pre> <h2> <a id="_383" rel="nofollow"></a>数据库记录操作信息</h2> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230119/4cad115407fd7cd58853e9007dad1b28.jpg" alt="Springmvc记录操作日志到数据库"></p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82754.htm">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></p>
+                                        <p>下一个：<a href="/news/article-83467.htm">动物医院的经营范围有哪些（动物医院运营）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-67296.htm" title="宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）">宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）</a></li>
+                        <li class="py-2"><a href="/news/article-40678.htm" title="动物疫苗知识点总结大全（动物疫苗的种类有哪些）">动物疫苗知识点总结大全（动物疫苗的种类有哪些）</a></li>
+                        <li class="py-2"><a href="/news/article-47606.htm" title="被宠物猫抓伤出了一点点血怎么办（被宠物猫抓伤出了一点点血怎么办图片）">被宠物猫抓伤出了一点点血怎么办（被宠物猫抓伤出了一点点血怎么办图片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-18-share-windows-nekoray.htm" title="「1月18日」最高速度21.6M/S，2025年NekoRay每天更新免费节点订阅链接">「1月18日」最高速度21.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-42657.htm" title="宠物粮食排行榜前十名品牌图片（宠物粮食排行榜前十名品牌图片大全）">宠物粮食排行榜前十名品牌图片（宠物粮食排行榜前十名品牌图片大全）</a></li>
+                        <li class="py-2"><a href="/news/article-54930.htm" title="编译python(cpython)的源码及其用途">编译python(cpython)的源码及其用途</a></li>
+                        <li class="py-2"><a href="/news/article-61185.htm" title="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本">win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-22-share-windows-nekoray.htm" title="「3月22日」最高速度21.8M/S，2025年NekoRay每天更新免费节点订阅链接">「3月22日」最高速度21.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-17-free-v2ray-subscribe.htm" title="「1月17日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接">「1月17日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-57734.htm" title="宠物食品店名 宠物食品店名称大全">宠物食品店名 宠物食品店名称大全</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

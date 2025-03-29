@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-82754.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Java中线程状态+线程安全问题+synchronized的用法详解_java_</title>
+        <meta name="description" content="目录  java中的线程状态???? 线程安全问题案例分析????  多线程对同一变量进行写操作???? 内存可见性问题???? 指令重排序问题????  synchronized的用法????  s" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-82754.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="Java中线程状态+线程安全问题+synchronized的用法详解_java_" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/7687b696c066e336577b0eb73a6fea0d.webp" />
+        <meta property="og:release_date" content="2025-03-27T08:16:11" />
+    <meta property="og:updated_time" content="2025-03-27T08:16:11" />
+        <meta property="og:description" content="目录  java中的线程状态???? 线程安全问题案例分析????  多线程对同一变量进行写操作???? 内存可见性问题???? 指令重排序问题????  synchronized的用法????  s" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Java中线程状态+线程安全问题+synchronized的用法详解_java_">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        Java中线程状态+线程安全问题+synchronized的用法详解_java_                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="navCategory"> <h5 class="catalogue">目录</h5> <ul class="first_class_ul"> <li><a href="#_label0" rel="nofollow">java中的线程状态????</a></li> <li><a href="#_label1" rel="nofollow">线程安全问题案例分析????</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_1_0" rel="nofollow">多线程对同一变量进行写操作????</a></li> <li><a href="#_lab2_1_1" rel="nofollow">内存可见性问题????</a></li> <li><a href="#_lab2_1_2" rel="nofollow">指令重排序问题????</a></li> </ul> <li><a href="#_label2" rel="nofollow">synchronized的用法????</a></li> <ul class="second_class_ul"> <li><a href="#_lab2_2_3" rel="nofollow">synchronized起作用的本质????</a></li> <li><a href="#_lab2_2_4" rel="nofollow">修饰普通方法????</a></li> <li><a href="#_lab2_2_5" rel="nofollow">修饰静态方法⚡️</a></li> <li><a href="#_lab2_2_6" rel="nofollow">修饰代码块????</a></li> </ul> <li><a href="#_label3" rel="nofollow">Conclusion????</a></li> <ul class="second_class_ul"></ul> </ul> </div> <p class="maodian"><a name="_label0" rel="nofollow"></a></p> <h2>java中的线程状态????</h2> <p>在操作系统层面,一个线程就两个状态:就绪和阻塞状态.</p> <p>但是java中为了在线程阻塞时能够更快速的知晓一个线程阻塞的原因,又将阻塞的状态进行了细化.</p> <p><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220413/7d0ca2d0f3a0e9d40804f08908fcc71b.jpg"></p> <ul> <li>NEW:线程对象已经创建好了,但是系统层面的线程还没创建好,或者说线程对象还没调用start()</li> <li>TERMINATED:系统中的线程已经销毁,但是代码中的线程对象还在,也就是run()跑完了,Thread对象还在</li> <li>RUNNABLE:线程位于就绪队列,随时都有可能被cpu调度执行</li> <li>TIMED_WAITING:线程执行过程中,线程对象调用了sleep(),进入阻塞,休眠时间到了,就会回到就绪队列</li> <li>BLOCKED:有一个线程将一个对象上锁(synchronized)之后,另一个线程也想给这个对象上锁,就会陷入BLOCKED状态,只有第一个线程将锁对象解锁了,后一个线程才有可能给这个对象进行上锁.</li> <li>WAITING:搭配synchronized进行使用wait(),一旦一个线程调用了wait(),会先将所对象解锁,等到另一个线程进行notify(),之后wait中的线程才会被唤醒,当然也可以在wait()中设置一个最长等待时间,防止出现死等.</li> </ul> <p class="maodian"><a name="_label1" rel="nofollow"></a></p> <h2>线程安全问题案例分析????</h2> <p class="maodian"><a name="_lab2_1_0" rel="nofollow"></a></p> <h3>多线程对同一变量进行写操作????</h3> <ol> <li>概念:一串代码什么时候叫作有线程安全问题呢?首先线程安全问题的罪恶之源是,多线程并发执行的时候,会有抢占式执行的现象,这里的抢占式执行,执行的是机器指令!那一串代码什么时候叫作有线程安全问题呢?多线程并发时,不管若干个线程怎么去抢占式执行他们的代码,都不会影响最终结果,就叫作线程安全,但是由于抢占式执行,出现了和预期不一样的结果,就叫作有线程安全问题,出bug了!</li> <li>典型案例:使用两个线程对同一个数进行自增操作10w次:</li> </ol> <div class="ay1code"> <pre class="brush:java;">public class Demo1 {      private static int count=0;      public static void main(String[] args) {          Thread t1=new Thread(()-&gt;{              for(int i=0;i&lt;50000;i++){                  count++;              }          });          t1.start();          Thread t2=new Thread(()-&gt;{          t2.start();          try {              t1.join();              t2.join();          } catch (InterruptedException e) {              e.printStackTrace();          }          System.out.println(count);      }  }  //打印结果:68994  </pre> </div> <p>显然预期结果是10w,但算出来就是6w多,这就是出现了线程安全问题.</p> <p><strong>分析原因</strong>:</p> <p>仅针对每个线程的堆count进行自增的操作:首先要明白,进行一次自增的机器指令有三步:从主内存中把count值拿到cpu寄存器中-&gt;把寄存器中的count值进行自增1-&gt;把寄存器中的count值刷新到主内存中,我们姑且把这三步叫作:load-&gt;add-&gt;save</p> <p>我们假设就是在一个cpu上(画两个cpu好表示)并发执行两组指令(就不会出现同时load这样的情况了):</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220413/1b4fdd1cb1ca4449d39dd906e60a5f28.jpg"></p> <p>如出现上图的情况:</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220413/c81b09db1a1f4407382abf839a45bf14.jpg"></p> <p>观察发现:两个线程都是执行了一次count++,但是两次++的结果却不如意,相当于只进行了一次自增,上述就是出现了线程安全问题了.</p> <p>并且我们可以预测出上述代码的结果范围:5w-10w之间!,为什么呢?</p> <p>上面两张图表示的是出现线程安全问题的情况,表现的结果就是两次加加当一次去用了,如果两个线程一直处于这样的状态(也是最坏的状态了),可不就是计算结果就是5w咯,那如果两个线程一直是一个线程完整的执行完load-add-save之后,另一个线程再去执行这样的操作,那就串行式执行了,可不就是10w咯.</p> <p>3.针对上述案例如何去解决呢?</p> <p>案例最后也提到了,只要能够实现串行式执行,就能保证结果的正确性,那java确实有这样的功能供我们使用,即synchronized关键字的使用.</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220413/8fab40bfa14a2932f2cd60dd102435e5.jpg"></p> <p>也就是说:cpu1执行load之前先给锁对象进行加锁,save之后再进行解锁,cpu2此时才能去给那个对象进行上锁,并进行一系列的操作.此时也就是保证了load-add-save的原子性,使得这三个步骤要么就别执行,执行就一口气执行完.</p> <p><strong>那你可能会提问,那这样和只用一个main线程去计算自增10w次有什么区别,创建多线程还有什么意义呢?</strong></p> <p>意义很大,因为我们创建的线程很多时候不仅仅只是一个操作,光针对自增我们可以通过加锁防止出现线程安全问题,但是各线程的其他操作要是不涉及线程安全问题那就可以并发了呀,那此时不就大大提升了执行效率咯.</p> <p>4.具体如何加锁呢?</p> <p>此处先只说一种加锁方式,先把上述案例的问题给解决了再说.</p> <p>使用关键字synchronized,此处使用的是给普通方法加synchronized修饰的方法(除此之外,synchronized还可以修饰代码块和静态方法)</p> <div class="ay1code"> <pre class="brush:java;">class Counter{      private int count;      synchronized public void increase(){          this.count++;      }      public int getCount(){          return this.count;      }  }  public class Demo2 {      private static int num=50000;      public static void main(String[] args) {          Counter counter=new Counter();//此时对象中的count值默认就是0          Thread t1=new Thread(()-&gt;{              for (int i = 0; i &lt; num; i++) {                  counter.increase();              }          });          t1.start();            Thread t2=new Thread(()-&gt;{              for (int i = 0; i &lt; num; i++) {                  counter.increase();              }          });          t2.start();            try {              t1.join();              t2.join();          } catch (InterruptedException e) {              e.printStackTrace();          }            System.out.println(counter.getCount());      }  }//打印10W  </pre> </div> <p class="maodian"><a name="_lab2_1_1" rel="nofollow"></a></p> <h3>内存可见性问题????</h3> <p>首先说明:这是有编译器优化导致的,其次要知道cpu读取变量时:先从主内存将变量的值存至缓存或者寄存器中,cpu计算时再在寄存器中读取这个值.</p> <p>当某线程频繁的从内存中读取一个不变的变量时,编译器将会把从内存获取变量的值直接优化成从寄存器直接获取.之所以这样优化,是因为,cpu从主内存中读取一个变量比在缓存或者寄存器中读取一个变量的值慢成千上万倍,如果每每在内存中读到的都是同一个值,既然缓存里头已经有这个值了,干嘛还大费周折再去主内存中进行获取呢,直接从缓存中直接读取就可以了,可提升效率.</p> <p><strong>但是</strong>:一旦一个线程被优化成上述的情况,那如果有另一个线程把内存中的值修改了,我被优化的线程还傻乎乎的手里拿着修改之前的值呢,或者内存中的变量值被修改了,被优化的线程此时已经感应不到了.</p> <p>具体而言:</p> <div class="ay1code"> <pre class="brush:java;">public class Demo3 {      private static boolean flag=false;      public static void main(String[] args) {          Thread t1=new Thread(()-&gt;{              while(!flag){                  System.out.println("我是优化完之后直接读取寄存器中的变量值才打印的哦!");              }          });          t1.start();            flag=true;          System.out.println("我已经在主线程中修改了标志位");      }  }  </pre> </div> <p>运行上述代码之后,程序并不会终止,而是一直在那打印t1线程中的打印语句.</p> <p>如何解决上述问题:</p> <p>引入关键字volatile:防止内存可见性问题,修饰一个变量,那某线程想获取该变量的值的时候,只能去主内存中获取,其次它还可以防止指令重排序,指令重排问题会在线程安全的单例模式(懒汉)进行介绍.具体:</p> <div class="ay1code"> <pre class="brush:java;">public class Demo3 {      private static volatile boolean flag=false;      public static void main(String[] args) {          Thread t1=new Thread(()-&gt;{              while(!flag){                  System.out.println("我是优化完之后直接读取寄存器中的变量值才打印的哦!");              }          });          t1.start();            try {              Thread.sleep(1);//主线程给t1留有充足的时间先跑起来          } catch (InterruptedException e) {              e.printStackTrace();          }          flag=true;          System.out.println("我已经在主线程中修改了标志位");      }  }  //打印若干t1中的打印语句之后,主线程main中修改标志位之后,可以终止t1  </pre> </div> <p><strong>注意</strong>:上述优化现象只会出现在频繁读的情况,如果不是频繁读,就不会出现那样的优化.</p> <p class="maodian"><a name="_lab2_1_2" rel="nofollow"></a></p> <h3>指令重排序问题????</h3> <p>生活案例:买菜</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220413/ddee621ffa2062dd46165190d0167699.jpg"></p> <p>如果是傻乎乎的按照菜单从上到下的去买菜,从路线图可以看出,不必要的路是真的没少走.</p> <p>如果执行代码时,编译器认为某些个代码调整一下顺序并不会影响结果,那代码的执行顺序就会被调整,就比如可以把上面买菜的顺序调整成:黄瓜-&gt;萝卜-&gt;青菜-&gt;茄子</p> <p>单线程这样的指令重排一般不会出现问题,但是多线程并发时,还这样优化,就容易出现问题</p> <p>针对这样的问题,如果是针对一个变量,我们可以使用volatile修饰,如果是针对代码块,我们可以使用synchronized.</p> <p class="maodian"><a name="_label2" rel="nofollow"></a></p> <h2>synchronized的用法????</h2> <ul> <li>synchronized起作用的本质</li> <li>修饰普通方法</li> <li>修饰静态方法</li> <li>修饰代码块</li> </ul> <p class="maodian"><a name="_lab2_2_3" rel="nofollow"></a></p> <h3>synchronized起作用的本质????</h3> <p>因为我们知道java中所有类都继承了Object,所以所有类都包含了Object的部分,我们可以称这继承的部分是"对象头",使用synchronized进行对象头中的标志位的修改,就可以做到一个对象的锁一个时刻只能被一个线程所持有,其他线程此时不可抢占.这样的设置,就好像把一个对象给锁住了一样.</p> <p class="maodian"><a name="_lab2_2_4" rel="nofollow"></a></p> <h3>修饰普通方法????</h3> <p>如前述两个线程给同一个count进行自增的案例.不再赘述.此时的所对象就是Counter对象</p> <p class="maodian"><a name="_lab2_2_5" rel="nofollow"></a></p> <h3>修饰静态方法⚡️</h3> <p>与普通方法类似.只不过这个方法可以类名直接调用.</p> <p class="maodian"><a name="_lab2_2_6" rel="nofollow"></a></p> <h3>修饰代码块????</h3> <p>首先修饰代码块需要执行锁对象是谁,所以这里可以分为三类,一个是修饰普通方法的方法体这个代码块的写法,其次是修饰静态方法方法体的写法,最后可以单独写一个Object的对象,来对这个Object对象进行上锁.</p> <div class="ay1code"> <pre class="brush:java;">class Counter{      private int count;      public void increase(){          synchronized(this){              count++;          }      }      public int getCount(){          return this.count;      }  }  </pre> </div> <div class="ay1code"> <pre class="brush:java;">class Counter{      private static int count;      public static void increase(){          synchronized(Counter.class){//注意这里锁的是类对象哦              count++;          }      }      public int getCount(){          return this.count;      }  }  </pre> </div> <div class="ay1code"> <pre class="brush:java;">class Counter{      private static int count;      private static Object locker=new Object();      public static void increase(){          synchronized(locker){              count++;          }      }      public int getCount(){          return this.count;      }  }  </pre> </div> <p>注意:java中这种随手拿一个对象就能上锁的用法,是java中一种很有特色的用法,在别的语言中,都是有专门的锁对象的.</p> <p class="maodian"><a name="_label3" rel="nofollow"></a></p> <h2> <strong>Conclusion</strong>????</h2> <p>java中的线程状态,以及如何区分线程安全问题 罪恶之源是抢占式执行多线程对同一个变量进行修改,多线程只读一个变量是没有线程安全问题的修改操作是非原子性的内存可见性引起的线程安全问题指令重排序引起的线程安全问题 synchronized的本质和用法</p> <p>1.java中的线程状态,以及如何区分<br />2.线程安全问题</p> <ul> <li>罪恶之源是抢占式执行</li> <li>多线程对同一个变量进行修改,多线程只读一个变量是没有线程安全问题的</li> <li>修改操作是非原子性的</li> <li>内存可见性引起的线程安全问题</li> <li>指令重排序引起的线程安全问题</li> </ul> <p>3.synchronized的本质和用法</p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-82751.htm">SpringBoot 实现前后端分离的跨域访问（CORS）</a></p>
+                                        <p>下一个：<a href="/news/article-83464.htm">Springmvc记录操作日志到数据库</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-62373.htm" title="猫咪三针疫苗需要多久时间（猫咪三针疫苗需要多久时间打完）">猫咪三针疫苗需要多久时间（猫咪三针疫苗需要多久时间打完）</a></li>
+                        <li class="py-2"><a href="/news/article-56602.htm" title="一片片枫叶落下来就像什么（一片片枫叶随风飘落就像什么）">一片片枫叶落下来就像什么（一片片枫叶随风飘落就像什么）</a></li>
+                        <li class="py-2"><a href="/news/article-78577.htm" title="SpringBoot 使用 Feign进行远程调用、文件上传等操作">SpringBoot 使用 Feign进行远程调用、文件上传等操作</a></li>
+                        <li class="py-2"><a href="/news/article-35610.htm" title="宠物粮食加工厂设备有哪些品牌好的厂家（宠物粮食加工设备贵吗）">宠物粮食加工厂设备有哪些品牌好的厂家（宠物粮食加工设备贵吗）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-2-11-free-nekoray.htm" title="「2月11日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接">「2月11日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-1-7-node-share.htm" title="「1月7日」最高速度18.8M/S，2025年NekoRay每天更新免费节点订阅链接">「1月7日」最高速度18.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-49092.htm" title="猫粮加工机器 猫粮加工机器设备厂家">猫粮加工机器 猫粮加工机器设备厂家</a></li>
+                        <li class="py-2"><a href="/news/article-35970.htm" title="宠物粮食代理需要多少钱一个月工资（怎么做宠物粮代理）">宠物粮食代理需要多少钱一个月工资（怎么做宠物粮代理）</a></li>
+                        <li class="py-2"><a href="/news/article-67291.htm" title="沈阳芭比娃娃专柜（沈阳哪里卖芭比娃娃的专卖店）">沈阳芭比娃娃专柜（沈阳哪里卖芭比娃娃的专卖店）</a></li>
+                        <li class="py-2"><a href="/news/article-61765.htm" title="win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本">win10下查看pyttorch实际使用的cuda版本，安装多个cuda(cuda9.0和10.0)，并切换cuda版本</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">87</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-02/" title="2025-02 归档">2025-02</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">84</span> <a href="/date/2025-01/" title="2025-01 归档">2025-01</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                            <p>
+                                <a href="/">首页</a> | 
+                                <a href="/free-node/">免费节点</a> | 
+                                <a href="/news/">新闻资讯</a> |
+                                <a href="/about-us.htm">关于我们</a> |
+                                <a href="/disclaimer.htm">免责申明</a> |
+                                <a href="/privacy.htm">隐私申明</a> |
+                                <a href="/sitemap.xml">网站地图</a>
+                            </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
