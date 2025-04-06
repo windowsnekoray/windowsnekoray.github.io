@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-87773.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>spring boot actuator监控详细介绍一(超级详细)</title>
+        <meta name="description" content="spring boot actuator介绍   Spring Boot包含许多其他功能，可帮助您在将应用程序推送到生产环境时监视和管理应用程序。   您可以选择使用HTTP端点或JMX来管理和监视应" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-87773.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="spring boot actuator监控详细介绍一(超级详细)" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/73c01fc849dbc7d2d8ba814f2f7652eb.webp" />
+        <meta property="og:release_date" content="2025-04-03T08:34:17" />
+    <meta property="og:updated_time" content="2025-04-03T08:34:17" />
+        <meta property="og:description" content="spring boot actuator介绍   Spring Boot包含许多其他功能，可帮助您在将应用程序推送到生产环境时监视和管理应用程序。   您可以选择使用HTTP端点或JMX来管理和监视应" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="spring boot actuator监控详细介绍一(超级详细)">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        spring boot actuator监控详细介绍一(超级详细)                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h2> <a id="spring_boot_actuator_0" rel="nofollow"></a>spring boot actuator介绍</h2> <ul> <li> <p>Spring Boot包含许多其他功能，可帮助您在将应用程序推送到生产环境时监视和管理应用程序。</p> </li> <li> <p>您可以选择使用HTTP端点或JMX来管理和监视应用程序。</p> </li> <li> <p>审核，运行状况和指标收集也可以自动应用于您的应用程序。</p> </li> </ul> <h6> <a id="Spring_Boot_Actuator_8" rel="nofollow"></a>总之Spring Boot Actuator就是一款可以帮助你监控系统数据的框架,其可以监控很多很多的系统数据,它有对应用系统的自省和监控的集成功能，可以查看应用配置的详细信息,如:</h6> <ul> <li> <p>显示应用程序员的Health健康信息</p> </li> <li> <p>显示Info应用信息</p> </li> <li> <p>显示HTTP Request跟踪信息</p> </li> <li> <p>显示当前应用程序的“Metrics”信息</p> </li> <li> <p>显示所有的@RequestMapping的路径信息</p> </li> <li> <p>显示应用程序的各种配置信息</p> </li> <li> <p>显示你的程序请求的次数 时间 等各种信息</p> </li> </ul> <p><strong>等等等等…总之很成熟,很强大.</strong></p> <h2> <a id="_24" rel="nofollow"></a>使用介绍:</h2> <p><strong>1. 先在pom.xml中添加依赖:</strong></p> <pre><code>&lt;dependency&gt;      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;      &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt;  &lt;/dependency&gt; </code></pre> <p>对于Gradle，请使用以下声明：</p> <pre><code>dependencies {           compile("org.springframework.boot:spring-boot-starter-actuator")  } </code></pre> <p><strong>2. 所有的监控端点endpoints介绍:</strong></p> <table> <thead> <tr> <th>ID</th> <th>描述</th> </tr> </thead> <tbody> <tr> <td>auditevents</td> <td>公开当前应用程序的审核事件信息。</td> </tr> <tr> <td>beans</td> <td>显示应用程序中所有Spring bean的完整列表。</td> </tr> <tr> <td>caches</td> <td>暴露可用的缓存。</td> </tr> <tr> <td>conditions</td> <td>显示在配置和自动配置类上评估的条件以及它们匹配或不匹配的原因。</td> </tr> <tr> <td>configprops</td> <td>显示所有的整理列表@ConfigurationProperties,查看配置属性，包括默认配置</td> </tr> <tr> <td>env</td> <td>露出Spring的属性的各种环境变量,后面可跟/{name}查看具体的值</td> </tr> <tr> <td>flyway</td> <td>显示已应用的任何Flyway数据库迁移。</td> </tr> <tr> <td>health</td> <td>显示应用健康信息,在spring boot2.0以后需要在配置里show-details打开所有健康信息</td> </tr> <tr> <td>httptrace</td> <td>显示HTTP跟踪信息（默认情况下，最后100个HTTP请求 - 响应交换）,2.0以后需要手动打开</td> </tr> <tr> <td>info</td> <td>显示任意应用信息,是在配置文件里自己定义的</td> </tr> <tr> <td>integrationgraph</td> <td>显示Spring Integration图。</td> </tr> <tr> <td>loggers</td> <td>显示和修改应用程序中记录器的配置。</td> </tr> <tr> <td>liquibase</td> <td>显示已应用的任何Liquibase数据库迁移。</td> </tr> <tr> <td>metrics</td> <td>显示当前应用程序的“指标”信息,比如内存用量和HTTP请求计数,后可跟/{name}查看具体值</td> </tr> <tr> <td>mappings</td> <td>显示所有@RequestMapping路径的整理列表。</td> </tr> <tr> <td>scheduledtasks</td> <td>显示应用程序中的计划任务。</td> </tr> <tr> <td>sessions</td> <td>允许从Spring Session支持的会话存储中检索和删除用户会话。使用Spring Session对响应式Web应用程序的支持时不可用</td> </tr> <tr> <td>shutdown</td> <td>允许应用程序正常关闭。</td> </tr> <tr> <td>threaddump</td> <td>执行线程转储。</td> </tr> </tbody> </table> <p>如果您的应用程序是Web应用程序（Spring MVC，Spring WebFlux或Jersey），则可以使用以下附加端点：</p> <table> <thead> <tr> <th>ID</th> <th>描述</th> </tr> </thead> <tbody> <tr> <td>heapdump</td> <td>返回hprof堆转储文件。</td> </tr> <tr> <td>jolokia</td> <td>通过HTTP公开JMX bean（当Jolokia在类路径上时，不适用于WebFlux）。</td> </tr> <tr> <td>logfile</td> <td>返回日志文件的内容（如果已设置logging.file或logging.path属性）。支持使用HTTP Range标头检索部分日志文件的内容。</td> </tr> <tr> <td>prometheus</td> <td>以可以由Prometheus服务器抓取的格式公开指标。</td> </tr> </tbody> </table> <p><strong>注意事项:</strong></p> <ol> <li>在spring boot 2.0以后,actuator默认只开启了info和health两个端点,要想使用其他的端点,需要在application.yml中打开:</li> </ol> <pre><code>management:     endpoints:       web:          exposure:             include:"*" </code></pre> <p>注意:</p> <p>在这里include: “*” ,这个"“双引号是必须要,在application.properties是不需要”"双引号的,application.properties中是这样的:<code>management.endpoints.web.exposure.include=*</code></p> <ol start="3"> <li> <p>而且所有的端点都以默认的路径http://localhost:8080/actuator 开始;</p> <p>如我们查看info端点的信息就是访问:<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8080/actuator/info"  rel="nofollow">http://localhost:8080/actuator/info</a></p> </li> <li> <p>Timestamps时间戳: 端点消耗的所有时间戳（作为查询参数或在请求正文中）必须格式化为ISO 8601中指定的偏移日期和时间 。 默认的时间戳是跟我们中国的时区不符合的.</p> </li> <li> <p>actuator的大部分监控请求都是以get请求的.只有少数是post请求.</p> </li> <li> <p>如果想更改默认的actuator启动路径,可以在application.yml中更改,如我们改成 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8080/"  rel="nofollow">http://localhost:8080/</a></p> </li> </ol> <pre><code>#调整端点的前缀路径为/    management:        endpoints:           web:              base-path: / </code></pre> <p>并且health端点的信息默认也是显示的不具体的,请看默认的health是显示的什么:<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230202/99a3cd2ae090b155598476d14fc8acce.jpg" alt="spring boot actuator监控详细介绍一(超级详细)"><br /> "UP"就是安全健康的,"DOWN"就是有问题了.</p> <ol start="7"> <li>在application.yml中开启所有的Heanth监控数据:</li> </ol> <pre><code>management:      endpoint:           health:              show-details:always  #显示健康具体信息  默认不会显示详细信息 </code></pre> <p>我的application.yml是这样的:<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230202/9264661bb12508e69769f0b6ca3b7979.jpg" alt="spring boot actuator监控详细介绍一(超级详细)"><br /> 现在你可以开启服务,试试这些端点的监控数据,因为我已经把监控的路径改成了 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8088"  rel="nofollow">http://localhost:8088</a> 了.所以可以直接在后面跟端点的名称,如果你没有更改路径,默认的启动路径是 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8088/actuator/"  rel="nofollow">http://localhost:8088/actuator/</a> ,然后后面才跟你要监控的端点名称:</p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8088/metrics"  rel="nofollow">http://localhost:8088/metrics</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8088/mappings"  rel="nofollow">http://localhost:8088/mappings</a></p> <p>端点Metrics监控的数据结果如下<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230202/59d843a71fa4885987af367928be59b6.jpg" alt="spring boot actuator监控详细介绍一(超级详细)"><br /> 这些数据都是可以监控到的,“磁盘使用率”,这个是我自定义的metrics端点信息,在下面的文章中我会教大家怎么自定义你想要的端点,如果你想看更具体的请在路径后面加上你要看的数据,/{name},如:<br /><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8088/metrics/jvm.memory.used"  rel="nofollow">http://localhost:8088/metrics/jvm.memory.used</a><br /><img decoding="async" src="http://img.555519.xyz/uploads/20230202/1a82085e8041db3abb030fef3c020205.jpg" alt="spring boot actuator监控详细介绍一(超级详细)"><br /><strong>自定义info信息:</strong></p> <p>在pom.xml中添加依赖,可以访问到pom.xml的信息,如果不加这个,你在application.yml中定义的info信息是不会获取到的:</p> <pre><code>&lt;plugin&gt;      &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;      &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;      &lt;version&gt;2.6&lt;/version&gt;      &lt;configuration&gt;          &lt;delimiters&gt;              &lt;delimiter&gt;@&lt;/delimiter&gt;          &lt;/delimiters&gt;          &lt;useDefaultDelimiters&gt;false&lt;/useDefaultDelimiters&gt;      &lt;/configuration&gt;  &lt;/plugin&gt; </code></pre> <p>在application.yml中这样配置:</p> <pre><code>#自定义info端点查看应用相关的信息   info:     encoding:       @project.build.sourceEncoding@     traget:       @java.version@     name:       @project.name@     description:      @project.description@ </code></pre> <p>访问 <a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=http://localhost:8088/info"  rel="nofollow">http://localhost:8088/info</a> ,运行结果为:<br /><img decoding="async" src="http://img.555519.xyz/uploads/20230202/682ecc5dea718ed64a82094f2ada247e.jpg" alt="spring boot actuator监控详细介绍一(超级详细)"><br /><strong>但是如果你只想打开某个端点,我们是这样的配置的,同样式在application.yml中:</strong></p> <pre><code>management:      endpoint:            端点名称:                enabled: true </code></pre> <p><strong>使用Spring Security来保证Actuator Endpoints安全:</strong></p> <p>在pom.xml中添加依赖:</p> <pre><code>&lt;dependency&gt;      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;      &lt;artifactId&gt;spring-boot-starter-security&lt;/artifactId&gt;  &lt;/dependency&gt; </code></pre> <p>在application.yml中这样配置:<strong>这里是在spring boot2.0以后的版本中,在2.0之前不是这样的,稍微有差别</strong>:</p> <pre><code> # http安全机制     security:       user:         name: li         password: 123         roles: ADMIN </code></pre> <p>然后启动你的服务,你会发现有个登录页面,需要你输入我们配置的账号密码:</p> <p><img decoding="async" src="http://img.555519.xyz/uploads/20230202/3be6682678c99af3e0ed12989f361021.jpg" alt="spring boot actuator监控详细介绍一(超级详细)"><br /> 需要注意,spring boot2.0以后和之前的Security配置有所不同,我有一篇文章提到了!!!</p> <p>自定义端点:</p> <p>首先自定义健康监测的端点Health:</p> <p>自定义健康监测的端点有两种方式:</p> <ol> <li>继承AbstractHealthIndicator类 2. 实现HealthIndicator接口。</li> </ol> <p>自定义端点的文章 请看第二章节 谢谢支持</p> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-87034.htm">开一个宠物寄养多少钱（开一个宠物寄养店需要多少钱）</a></p>
+                                        <p>下一个：<a href="/news/article-87774.htm">动物疫苗的重要性和必要性（动物疫苗的重要性和必要性论文）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-67296.htm" title="宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）">宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）</a></li>
+                        <li class="py-2"><a href="/news/article-82016.htm" title="动物医院有公立的吗还是私立医院好 动物医院有公立的吗还是私立医院好呢">动物医院有公立的吗还是私立医院好 动物医院有公立的吗还是私立医院好呢</a></li>
+                        <li class="py-2"><a href="/news/article-69859.htm" title="动物疫苗间隔多久打一次好 动物疫苗间隔多久打一次好呢">动物疫苗间隔多久打一次好 动物疫苗间隔多久打一次好呢</a></li>
+                        <li class="py-2"><a href="/news/article-89193.htm" title="动物疫苗上市公司排名榜前十名 动物疫苗上市公司排名榜前十名有哪些">动物疫苗上市公司排名榜前十名 动物疫苗上市公司排名榜前十名有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-76530.htm" title="动物疫苗企业排名前十名 动物疫苗企业排名前十名有哪些">动物疫苗企业排名前十名 动物疫苗企业排名前十名有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-share-windows-nekoray.htm" title="「3月21日」最高速度22M/S，2025年NekoRay每天更新免费节点订阅链接">「3月21日」最高速度22M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-3-free-v2ray-subscribe.htm" title="「4月3日」最高速度22.6M/S，2025年NekoRay每天更新免费节点订阅链接">「4月3日」最高速度22.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-25-free-nekoray.htm" title="「3月25日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接">「3月25日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-85611.htm" title="宠物领养app的设计与实现论文题目（宠物领养系统国内外现状）">宠物领养app的设计与实现论文题目（宠物领养系统国内外现状）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-5-free-subscribe-node.htm" title="「4月5日」最高速度21.9M/S，2025年NekoRay每天更新免费节点订阅链接">「4月5日」最高速度21.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

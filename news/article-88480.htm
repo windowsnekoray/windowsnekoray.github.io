@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-88480.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vue中的可拖拽宽度div的实现示例_vue.js</title>
+        <meta name="description" content="主要思路  在需要拖拽宽度的区域设置一个div，高度设为 100%，宽度尽量窄一些(也不要太窄，3～6px左右) 在此div上绑定当“鼠标按下”时，触发document绑定“鼠标移动”方法和"鼠标抬起" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-88480.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="vue中的可拖拽宽度div的实现示例_vue.js" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/e3c8b71417f70d0e0a78de74c29d383a.webp" />
+        <meta property="og:release_date" content="2025-04-04T09:11:31" />
+    <meta property="og:updated_time" content="2025-04-04T09:11:31" />
+        <meta property="og:description" content="主要思路  在需要拖拽宽度的区域设置一个div，高度设为 100%，宽度尽量窄一些(也不要太窄，3～6px左右) 在此div上绑定当“鼠标按下”时，触发document绑定“鼠标移动”方法和"鼠标抬起" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="vue中的可拖拽宽度div的实现示例_vue.js">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        vue中的可拖拽宽度div的实现示例_vue.js                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p>主要思路</p> <ul> <li>在需要拖拽宽度的区域设置一个div，高度设为 100%，宽度尽量窄一些(也不要太窄，3～6px左右)</li> <li>在此div上绑定当“鼠标按下”时，触发document绑定“鼠标移动”方法和"鼠标抬起"方法</li> <li>通过鼠标移动方法不断获取当前鼠标位置，设置需要变化大小div的宽高。</li> <li>鼠标抬起时取消鼠标移动方法和鼠标抬起方法的绑定。</li> </ul> <div class="ay1code"> <pre class="brush:js;">&lt;template&gt;    &lt;div class="container" id="content_box"&gt;      &lt;div class="tab"&gt;左侧Tab&lt;/div&gt;      &lt;div class="menu" ref="menu"&gt;        左侧菜单        &lt;div class="menu-resize" ref="menuResize"&gt;&lt;/div&gt;      &lt;/div&gt;      &lt;div class="content"&gt;        中心区域        &lt;div class="opera" ref="opera"&gt;          &lt;div class="opera-resize" ref="operaResize"&gt;&lt;/div&gt;          操作区域        &lt;/div&gt;      &lt;/div&gt;    &lt;/div&gt;  &lt;/template&gt;    &lt;script&gt;  export default {    name: "dropWidth",    mounted() {      this.$nextTick(() =&gt; {        this.dropSize();      })    },    methods: {      dropSize() {        let that = this,            menuWidth = 200,            operaHeight = 200;        this.$refs.menuResize.onmousedown = function () {          document.onmousemove = function (e) {            let clientX = e.clientX;            // 最大宽度            if(clientX&gt;=330){              clientX = 330;            }            // 最小宽度            if(clientX&lt;=230){              clientX = 230;            }            // TODO 这里减的是最左侧tab的宽度            menuWidth = clientX - 30;            that.$refs.menu.style.width = clientX - 30 +"px";          }            document.onmouseup = function () {            console.log('当前宽度', menuWidth);            document.onmousemove = null;            document.onmouseup = null;            that.releaseCapture &amp;&amp; that.releaseCapture()          }        }          this.$refs.operaResize.onmousedown = function () {          document.onmousemove = function (e) {            let clientY = e.clientY;            console.log(clientY)            // 最大宽度            if(clientY&lt;=100){              clientY = 100;            }            // 最小宽度            if(clientY&gt;=300){              clientY = 300;            }            operaHeight = clientY;            // TODO 这里需要取反向            that.$refs.opera.style.height = 400 - clientY +"px";          }            document.onmouseup = function () {            console.log('当前宽度', operaHeight);            document.onmousemove = null;            document.onmouseup = null;            that.releaseCapture &amp;&amp; that.releaseCapture()          }        }      }    }  }  &lt;/script&gt;    &lt;style scoped&gt;  .container {    width: 1000px;    height: 400px;    border: 2px solid #dddddd;      display: flex;    justify-content: center;  }    .tab {    width: 30px;    height: 100%;    background-color: #EC8C32;      flex-shrink: 0;    flex-grow: 0;  }    .menu {    width: 200px;    background-color: #AAB6E0;      flex-shrink: 0;    flex-grow: 0;    position: relative;  }    .content {    width: 100%;    position: relative;  }    .opera {    width: 100%;    height: 200px;    position: absolute;    bottom: 0;    background-color: #F2BE25;  }    .menu-resize {    width: 5px;    height: 100%;      position: absolute;    top: 0;    right: 0;    cursor: col-resize;  }    .opera-resize {    width: 100%;    height: 5px;    position: absolute;    top: 0;    left: 0;    cursor: row-resize;  }  &lt;/style&gt;</pre> </div> <p>实现效果</p> <p style="text-align:center"><img decoding="async" alt="" src="http://img.555519.xyz/uploads3/20220424/ee3103bc3ba6d03dcbf4ec3c65a8cf7f.jpg"></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-88479.htm">springboot +restTemplate配置</a></p>
+                                        <p>下一个：<a href="/news/article-89192.htm">URL编码及解码</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-28-node-share-links.htm" title="「3月28日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接">「3月28日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-free-high-speed-nodes.htm" title="「3月2日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接">「3月2日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-88480.htm" title="vue中的可拖拽宽度div的实现示例_vue.js">vue中的可拖拽宽度div的实现示例_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-79939.htm" title="宠物粮加工厂大全 宠物粮加工厂原料">宠物粮加工厂大全 宠物粮加工厂原料</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-13-linux-nekoray-node.htm" title="「3月13日」最高速度22.7M/S，2025年NekoRay每天更新免费节点订阅链接">「3月13日」最高速度22.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-24-node-share-links.htm" title="「3月24日」最高速度19.9M/S，2025年NekoRay每天更新免费节点订阅链接">「3月24日」最高速度19.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-69859.htm" title="动物疫苗间隔多久打一次好 动物疫苗间隔多久打一次好呢">动物疫苗间隔多久打一次好 动物疫苗间隔多久打一次好呢</a></li>
+                        <li class="py-2"><a href="/news/article-76531.htm" title="宠物医院营业执照办理流程（宠物医院营业执照办理流程图）">宠物医院营业执照办理流程（宠物医院营业执照办理流程图）</a></li>
+                        <li class="py-2"><a href="/news/article-70511.htm" title="动物疫苗怎么卖（动物疫苗在哪里购买）">动物疫苗怎么卖（动物疫苗在哪里购买）</a></li>
+                        <li class="py-2"><a href="/news/article-80611.htm" title="宠物品牌名称大全（好听的宠物品牌名字）">宠物品牌名称大全（好听的宠物品牌名字）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
