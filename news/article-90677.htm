@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-90677.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vue项目自动设置版本号，版本号变更清空缓存</title>
+        <meta name="description" content="需求 项目中在cookie和localStorage中，存储了不少信息，希望每次发布后能清空cookie和localStorage，避免缓存和版本不一致带来的影响。 方式一  自定义webpack的p" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-90677.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="Vue项目自动设置版本号，版本号变更清空缓存" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/7687b696c066e336577b0eb73a6fea0d.webp" />
+        <meta property="og:release_date" content="2025-04-07T09:03:19" />
+    <meta property="og:updated_time" content="2025-04-07T09:03:19" />
+        <meta property="og:description" content="需求 项目中在cookie和localStorage中，存储了不少信息，希望每次发布后能清空cookie和localStorage，避免缓存和版本不一致带来的影响。 方式一  自定义webpack的p" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Vue项目自动设置版本号，版本号变更清空缓存">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        Vue项目自动设置版本号，版本号变更清空缓存                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> <h3><a id="_0" rel="nofollow"></a>需求</h3> <p>项目中在cookie和localStorage中，存储了不少信息，希望每次发布后能清空cookie和localStorage，避免缓存和版本不一致带来的影响。</p> <h3><a id="_2" rel="nofollow"></a>方式一</h3> <ol> <li>自定义webpack的plugin，在afterPlugins钩子函数中修改package.json文件版本号，使用当前时间作为版本号</li> <li>在main.js中读取package.json文件，判断当前版本号是否和localStorage中的版本号是否一致。若不一致，清空localStorage</li> <li>将当前版本号存入localStorage</li> </ol> <p><code>vue.consig.js</code>中定义插件</p> <pre><code class="prism language-javascript">chainWebpack<span class="token punctuation">:</span> config<span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> VersionPlugin<span class="token operator">=</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'./src/versionPlugin'</span><span class="token punctuation">)</span>   config<span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span><span class="token string">'version'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>VersionPlugin<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span>args<span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> args<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre> <p><code>versionPlugin</code>读取<code>package.json</code>修改版本号</p> <pre><code class="prism language-javascript"><span class="token keyword">const</span> fs<span class="token operator">=</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'fs'</span><span class="token punctuation">)</span><span class="token keyword">const</span> path<span class="token operator">=</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'path'</span><span class="token punctuation">)</span><span class="token keyword">const</span> sep<span class="token operator">=</span> path<span class="token punctuation">.</span>sep<span class="token keyword">function</span><span class="token function">VersionPlugin</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token operator">=</span> options<span class="token operator">||</span><span class="token punctuation">{<!-- --></span><span class="token punctuation">}</span><span class="token punctuation">}</span>  VersionPlugin<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">apply</span><span class="token operator">=</span><span class="token keyword">function</span><span class="token punctuation">(</span>compiler<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">var</span> self<span class="token operator">=</span><span class="token keyword">this</span>   compiler<span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span><span class="token string">'afterPlugins'</span><span class="token punctuation">,</span><span class="token keyword">function</span><span class="token punctuation">(</span>params<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> packageJsonPath<span class="token operator">=</span> path<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span>params<span class="token punctuation">.</span>context<span class="token punctuation">,</span> sep<span class="token operator">+</span><span class="token string">'package.json'</span><span class="token punctuation">)</span><span class="token keyword">const</span> dateStr<span class="token operator">=</span><span class="token function">getDateStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">let</span> packageJsonStr<span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>packageJsonPath<span class="token punctuation">,</span><span class="token string">'utf8'</span><span class="token punctuation">)</span><span class="token keyword">const</span> r<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">'(?&lt;=version\\":\\s*\\")(.*)(?=")'</span><span class="token punctuation">)</span>     packageJsonStr<span class="token operator">=</span> packageJsonStr<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span><span class="token string">"1.0."</span><span class="token operator">+</span> dateStr<span class="token punctuation">)</span>     fs<span class="token punctuation">.</span><span class="token function">writeFileSync</span><span class="token punctuation">(</span>packageJsonPath<span class="token punctuation">,</span> packageJsonStr<span class="token punctuation">,</span><span class="token string">'utf8'</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token keyword">function</span><span class="token function">getDateStr</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> now<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">return</span> now<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">function</span><span class="token function">format</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> num<span class="token operator">&lt;</span><span class="token number">10</span><span class="token operator">?</span><span class="token string">'0'</span><span class="token operator">+</span> num<span class="token punctuation">:</span><span class="token string">''</span><span class="token operator">+</span> num<span class="token punctuation">}</span><span class="token punctuation">}</span>  module<span class="token punctuation">.</span>exports<span class="token operator">=</span> VersionPlugin</code></pre> <p>在<code>main.js</code>中读取<code>package.json</code>判断版本号是否一致</p> <pre><code class="prism language-javascript"><span class="token keyword">import</span> packageJson<span class="token keyword">from</span><span class="token string">'../package.json'</span><span class="token keyword">import</span> cookie<span class="token keyword">from</span><span class="token string">'./util/cookie'</span><span class="token keyword">const</span> version<span class="token operator">=</span> packageJson<span class="token punctuation">.</span>version<span class="token keyword">const</span> localVersion<span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'projectVersion'</span><span class="token punctuation">)</span><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>localVersion<span class="token operator">||</span> version<span class="token operator">!==</span> localVersion<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>   localStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   cookie<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'jwt'</span><span class="token punctuation">)</span>   localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'projectVersion'</span><span class="token punctuation">,</span> version<span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre> <h3><a id="_61" rel="nofollow"></a>方式二</h3> <p>使用<code>webpack.DefinePlugin</code>插件将参数传入全局环境变量<code>process.env</code>，vue已默认集成<code>DefinePlugin</code>插件</p> <ol> <li>配置webpack.DefinePlugin插件，<strong>使用当前时间作为版本号</strong>，传入process.env</li> <li>在main.js中读取全局变量process.env，判断当前版本号是否和localStorage中的版本号是否一致。若不一致，清空localStorage</li> <li>将当前版本号存入localStorage</li> </ol> <p><code>vue.consig.js</code>中使用<code>DefinePlugin</code>插件，vuecli3中已默认集成此插件，<code>config.plugin('define')</code>来使用此使用</p> <pre><code class="prism language-javascript">chainWebpack<span class="token punctuation">:</span> config<span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span><span class="token comment">// 使用webpack.DefinePlugin</span>   config<span class="token punctuation">.</span><span class="token function">plugin</span><span class="token punctuation">(</span><span class="token string">'define'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span>args<span class="token operator">=&gt;</span><span class="token punctuation">{<!-- --></span>     args<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">'process.env'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token constant">VERSION</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">const</span> now<span class="token operator">=</span><span class="token keyword">new</span><span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">return</span> now<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token function">format</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token keyword">function</span><span class="token function">format</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span><span class="token keyword">return</span> num<span class="token operator">&lt;</span><span class="token number">10</span><span class="token operator">?</span><span class="token string">'0'</span><span class="token operator">+</span> num<span class="token punctuation">:</span><span class="token string">''</span><span class="token operator">+</span> num<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">return</span> args<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre> <p>在<code>main.js</code>中读取全局变量<code>process.env</code>判断版本号是否一致</p> <pre><code class="prism language-javascript"><span class="token keyword">import</span> cookie<span class="token keyword">from</span><span class="token string">'./util/cookie'</span><span class="token keyword">const</span> version<span class="token operator">=</span> process<span class="token punctuation">.</span>env<span class="token punctuation">.</span><span class="token constant">VERSION</span><span class="token keyword">const</span> localVersion<span class="token operator">=</span> localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'projectVersion'</span><span class="token punctuation">)</span><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>localVersion<span class="token operator">||</span> version<span class="token operator">!==</span> localVersion<span class="token punctuation">)</span><span class="token punctuation">{<!-- --></span>   localStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   cookie<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'jwt'</span><span class="token punctuation">)</span>   localStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'projectVersion'</span><span class="token punctuation">,</span> version<span class="token punctuation">)</span><span class="token punctuation">}</span></code></pre> <h3><a id="_95" rel="nofollow"></a>结语</h3> <p>方式一需要新增自定义插件；方式二使用现成的插件，使用较为方便，通过<code>webpack.DefinePlugin</code>也可以给全局变量<code>process.env</code>定义其他参数</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-89943.htm">宠物粮食市场预测分析图表（宠物粮市场前景）</a></p>
+                                        <p>下一个：<a href="/news/article-90679.htm">中国动物疫苗市场现状（动物疫苗市场规模）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-73155.htm" title="Python调用C++程序的几种方法">Python调用C++程序的几种方法</a></li>
+                        <li class="py-2"><a href="/news/article-84902.htm" title="西丽动物园宠物医院（西丽野生动物园宠物医院）">西丽动物园宠物医院（西丽野生动物园宠物医院）</a></li>
+                        <li class="py-2"><a href="/news/article-71827.htm" title="C++编程——C++对象模型和this指针">C++编程——C++对象模型和this指针</a></li>
+                        <li class="py-2"><a href="/news/article-73822.htm" title="vue项目打包时踩的坑">vue项目打包时踩的坑</a></li>
+                        <li class="py-2"><a href="/news/article-81353.htm" title="vue extend+promise封装全局弹窗组件_vue.js_">vue extend+promise封装全局弹窗组件_vue.js_</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-12-free-subscribe-node.htm" title="「3月12日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接">「3月12日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-28-node-share-links.htm" title="「3月28日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接">「3月28日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-68531.htm" title="分布式缓存&#8211;缓存与数据库强一致场景下的方案">分布式缓存&#8211;缓存与数据库强一致场景下的方案</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-9-free-node-subscribe.htm" title="「4月9日」最高速度21.1M/S，2025年NekoRay每天更新免费节点订阅链接">「4月9日」最高速度21.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-66007.htm" title="权威分析@RequestParam和@RequestPart 的区别（官方文档）">权威分析@RequestParam和@RequestPart 的区别（官方文档）</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
