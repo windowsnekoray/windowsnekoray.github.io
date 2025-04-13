@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-93670.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用</title>
+        <meta name="description" content="1 MySQL 数据库中有五种与日期时间有关的数据类型，各种日期数据类型所占空间如下图所示：  2 datetime 与 date datetime 占用8字节，是占用空间最多的一种日期格式。它显示日" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-93670.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/06beeb1db15a5304b0cb1e5e44f87f5d.webp" />
+        <meta property="og:release_date" content="2025-04-11T08:58:31" />
+    <meta property="og:updated_time" content="2025-04-11T08:58:31" />
+        <meta property="og:description" content="1 MySQL 数据库中有五种与日期时间有关的数据类型，各种日期数据类型所占空间如下图所示：  2 datetime 与 date datetime 占用8字节，是占用空间最多的一种日期格式。它显示日" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="htmledit_views"> <div style="font-size:16px;"> <p>1 MySQL 数据库中有五种与日期时间有关的数据类型，各种日期数据类型所占空间如下图所示：</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220602/50f0adcd1de8b77394d6177a3516eb11.jpg" alt="mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用"></p> <p>2 datetime 与 date</p> <p>datetime 占用8字节，是占用空间最多的一种日期格式。它显示日期，同时也显示时间。5.5及以前的版本不支持微妙级别，任何微妙数值都会被截断之后存入数据库。</p> <p>date 占用3字节，仅仅显示日期。</p> <p>3 timestamp</p> <p>timestamp 与 datetime 显示的结果是一样的，不同的是timestamp 占用4个字节。它的显示范围是：1970-01-01 00:00:01 至 2038-01-19 01:14:07(UTC)，UTC 协调世界时间，世界统一时间。</p> <p>timestamp 与 datetime显示的格式一样，但是显示的范围不同，还有以下一些区别</p> <p>建表时， 列为timestamp的类型可以设置一个默认值，datetime 不行。</p> <p>更新表时，可以设置timestamp 类型的列自动更新时间为当前时间。</p> <p>4 year 与 time</p> <p>year 类型占用1字节，在定义时可以显示指定宽度为year(4)或者year(2)。对于year(4)，其显示的年份范围为 1901 ~ 2155；对于year(2)，其显示的年份范围为：1970~2070。</p> <p>在year(2)的设置下，00~69 代表 2000~2069。</p> <p>time 类型占用3字节，显示的范围 -838:59:59 ~ 838:59:59。time 类型时间大于23或者为负数时用来表示时间间隔。</p> <p>5 时间与日期函数</p> <p>5.1 系统时间函数&nbsp;now(), current_timestamp, sysdate()</p> <p>这三个函数都能返回系统时间，看看它们的区别，同时访问这三个函数得到的结果一样，但是让其等待几秒之后，结果就不同了。</p> <p align="center"><img decoding="async" src="http://img.555519.xyz/uploads3/20220602/f381237574d7d5b7f5be7d98f01b469e.jpg" alt="mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用"></p> <p>上图发现sysdate()返回的时间与now(), current_timestamp不同，慢了2秒，原因如下：</p> <p>current_timestamp 是now的同义词，两者实际上是一样的；</p> <p>sysdate() 函数返回的是执行到当前函数时的时间，而now()返回的是执行sql语句时的时间；</p> <p>5.2 时间加减函数</p> <p>① date_add 与 date_sub</p> <p>date_add(date, interval expr unit) 与&nbsp;date_sub(date, interval expr unit) 分别表示增加与减少。</p> <p>select</p> <p>date_add('2017-12-18 22:51:00', interval 1 second),</p> <p>date_add('2017-12-18 22:51:00', interval 1 minute),</p> <p>date_add('2017-12-18 22:51:00', interval 1 hour),</p> <p>date_add('2017-12-18 22:51:00', interval 1 day),</p> <p>date_add('2017-12-18 22:51:00', interval 1 month),</p> <p>date_add('2017-12-18 22:51:00', interval 1 year);</p> <p>遇到闰月时，date_add怎么处理呢，MySQL如果是闰月返回的日期为2月29，如果不是闰月返回的是2月28。</p> <p>select date_add('2016-02-29 22:51:00', interval -1 year),</p> <p>date_add('2016-02-29 22:51:00', interval 4 year);</p> <p>2015-02-28 22:51:002020-02-29 22:51:00</p> <p>②&nbsp;datediff 与 timediff</p> <p>datediff(date1,date2)：两个日期相减 date1 - date2，返回天数。select datediff('2016-02-29 22:51:00','2016-03-29 22:51:00');</p> <p>timediff(time1,time2)：两个日期相减 time1 - time2，返回 time 差值(格式为：838:59:59)。select timediff('2016-02-29 22:51:00','2016-01-29 22:51:00');</p> <p>注意：timediff(time1,time2) 函数的两个参数类型必须相同。</p> <p>③ timestamp 增，减，转换函数</p> <p>timestamp(date) &nbsp;-- date to timestamp</p> <p>timestamp(date, time) -- date + time</p> <p>timestampadd(unit,interval,datetime_expr) &nbsp; -- 类似date_add，对时间按单位进行增加，减少</p> <p>select timestampadd(second, 60, '2017-12-18 00:00:00');</p> <p>select timestampadd(minute, 60, '2017-12-18 00:00:00');</p> <p>select timestampadd(hour, 60, '2017-12-18 00:00:00');</p> <p>timestampdiff(unit,datetime_expr1,datetime_expr2) --计算两个时间的差，可以计算秒，分，时，天，月，年，周</p> <p>select timestampdiff(second, '2017-12-18 00:00:00','2017-12-18 12:00:00');</p> <p>select timestampdiff(hour, '2017-11-18 00:00:00','2017-12-18 12:00:00');</p> <p>select timestampdiff(day, '2017-10-17 00:00:00','2017-11-18 23:00:00');</p> <p>④ date_format 函数</p> <p>date_format 函数主要用途是格式化日期</p> <p>select date_format(now(),'%Y%m%d'),</p> <p>date_format(now(),'%Y-%m-%d'),</p> <p>date_format(now(),'%Y/%m/%d'),</p> <p>date_format(now(),'%m/%d/%Y');</p> <p>注意：查询数据时如果对某个日期字段使用这个函数，则优化器不会使用字段的索引，也不能通过索引来查询数据，因此查询效率会很低，如下列查询语句，如果字段birth_date有索引，则该索引因为使用了date_format函数失效：</p> <p>select *</p> <p>from employees</p> <p>where date_format(birth_date,'%Y-%m-%d') = '1961-08-03';</p> <p>6 日期的经典编程问题</p> <p>根据某个用户的出生日期与当前日期，计算他最近的生日(包括已经过去的和将来的)</p> <p>-- 上一年，当年，下一年生日与当前时间差最小的年就是用户最近的生日</p> <p>select emp_no,first_name,last_name,birth_date,today,if(last_diff&lt;=cur_diff and last_diff&lt;=next_diff, last,if(cur_diff</p> <p>from</p> <p>(</p> <p>-- 计算当前时间与上一年，当年，下一年生日的时间差</p> <p>select emp_no,first_name,last_name,birth_date,datediff(today,last) as last_diff,abs(datediff(today,cur)) as cur_diff,abs(datediff(today,next)) as next_diff,</p> <p>last,cur,next,today</p> <p>from</p> <p>(</p> <p>-- 用户最近的生日可能分布在前一年，当年，下一年。根据年度差year_diff计算上一年，当年，下一年用户的生日</p> <p>select emp_no,first_name,last_name,birth_date,</p> <p>DATE_ADD(birth_date,INTERVAL year_diff year) as cur,</p> <p>DATE_ADD(birth_date,INTERVAL year_diff+1 year) as next,</p> <p>DATE_ADD(birth_date,INTERVAL year_diff-1 year) as last,</p> <p>today</p> <p>from</p> <p>(</p> <p>-- 获取当前事前与出生日期的年度差 year_diff</p> <p>select emp_no,first_name,last_name,birth_date,(year(NOW())-year(birth_date)) as year_diff, NOW() as today</p> <p>from employees</p> <p>) a</p> <p>) b</p> <p>) c</p> </div> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-93666.htm">使用API访问开启kerberos集群下的HDFS</a></p>
+                                        <p>下一个：<a href="/news/article-94052.htm">猫驱虫药水滴哪（猫驱虫药外用往哪滴）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-80612.htm" title="厦门小动物领养中心 厦门小动物领养中心地址">厦门小动物领养中心 厦门小动物领养中心地址</a></li>
+                        <li class="py-2"><a href="/news/article-83467.htm" title="动物医院的经营范围有哪些（动物医院运营）">动物医院的经营范围有哪些（动物医院运营）</a></li>
+                        <li class="py-2"><a href="/news/article-67296.htm" title="宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）">宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）</a></li>
+                        <li class="py-2"><a href="/news/article-70511.htm" title="动物疫苗怎么卖（动物疫苗在哪里购买）">动物疫苗怎么卖（动物疫苗在哪里购买）</a></li>
+                        <li class="py-2"><a href="/news/article-69200.htm" title="动物医院公司名字（动物医院企业文化）">动物医院公司名字（动物医院企业文化）</a></li>
+                        <li class="py-2"><a href="/news/article-92112.htm" title="宠物狗粮在哪里买好一点（狗粮在什么地方买）">宠物狗粮在哪里买好一点（狗粮在什么地方买）</a></li>
+                        <li class="py-2"><a href="/news/article-66007.htm" title="权威分析@RequestParam和@RequestPart 的区别（官方文档）">权威分析@RequestParam和@RequestPart 的区别（官方文档）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-nekoray-node.htm" title="「3月23日」最高速度20.7M/S，2025年NekoRay每天更新免费节点订阅链接">「3月23日」最高速度20.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-5-free-v2ray-subscribe.htm" title="「3月5日」最高速度20.7M/S，2025年NekoRay每天更新免费节点订阅链接">「3月5日」最高速度20.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-82754.htm" title="Java中线程状态+线程安全问题+synchronized的用法详解_java_">Java中线程状态+线程安全问题+synchronized的用法详解_java_</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

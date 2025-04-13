@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-93666.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>使用API访问开启kerberos集群下的HDFS</title>
+        <meta name="description" content="使用API访问开启安全Kerberos的Hdfs   hadoop集群(cdh集群)在开启kerberos安全认证方式后，通常如果在集群shell客户端通过hadoop dfs命令访问的，经过kini" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-93666.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="使用API访问开启kerberos集群下的HDFS" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/367ef6f168cf678642226d7c3f77cba0.webp" />
+        <meta property="og:release_date" content="2025-04-11T08:58:31" />
+    <meta property="og:updated_time" content="2025-04-11T08:58:31" />
+        <meta property="og:description" content="使用API访问开启安全Kerberos的Hdfs   hadoop集群(cdh集群)在开启kerberos安全认证方式后，通常如果在集群shell客户端通过hadoop dfs命令访问的，经过kini" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="使用API访问开启kerberos集群下的HDFS">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        使用API访问开启kerberos集群下的HDFS                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div id="content_views" class="markdown_views prism-atom-one-dark"> <h4 id="使用api访问开启安全kerberos的hdfs">使用API访问开启安全Kerberos的Hdfs</h4> <ul> <li> <p>hadoop集群(cdh集群)在开启kerberos安全认证方式后，通常如果在集群shell客户端通过hadoop dfs命令访问的，经过kinit登录kerberos认证即可 ，如下所示</p> <ul> <li>如果不进行kinit登录kerberos用户，则不能进行hdfs操作，如图直接会报安全异常! <br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/42e381c26ba6788608c057157a17be1d.jpg" alt="使用API访问开启kerberos集群下的HDFS"> </li> <li>而如果进行kinit登录后就能进行hdfs操作了，通过kinit user@YOU-REALM 然后输出密码就能在当前交互下获取kerberos票据授权票据 <br /><img decoding="async" src="http://img.555519.xyz/uploads/20221230/766338f7e73a0b01743ec17bf5ad90e2.jpg" alt="使用API访问开启kerberos集群下的HDFS"> </li> </ul> </li> <li> <p>而如果通过程序在远程进行访问，显然不能再通过kinit来进行登录了，此时需要通过keytab文件来进行访问，keytab文件生成这里不在进行说明，主要说明获取keytab文件后如果通过代码来进行访问</p> </li> </ul> <pre class="prettyprint"><code class="hljs avrasm">package <span class="hljs-keyword">com</span><span class="hljs-preprocessor">.test</span><span class="hljs-preprocessor">.hdfs</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.conf</span><span class="hljs-preprocessor">.Configuration</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.FileSystem</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.LocatedFileStatus</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.Path</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.fs</span><span class="hljs-preprocessor">.RemoteIterator</span><span class="hljs-comment">;</span> import org<span class="hljs-preprocessor">.apache</span><span class="hljs-preprocessor">.hadoop</span><span class="hljs-preprocessor">.security</span><span class="hljs-preprocessor">.UserGroupInformation</span><span class="hljs-comment">;</span>  import javax<span class="hljs-preprocessor">.security</span><span class="hljs-preprocessor">.auth</span><span class="hljs-preprocessor">.Subject</span><span class="hljs-comment">;</span> import java<span class="hljs-preprocessor">.io</span><span class="hljs-preprocessor">.IOException</span><span class="hljs-comment">;</span> import java<span class="hljs-preprocessor">.net</span><span class="hljs-preprocessor">.URI</span><span class="hljs-comment">;</span> import java<span class="hljs-preprocessor">.security</span><span class="hljs-preprocessor">.PrivilegedExceptionAction</span><span class="hljs-comment">;</span>  public class HdfsTest {     public static void main(String[] args) throws Exception {         test1()<span class="hljs-comment">;</span>     }     //kerberos     public static void test1() throws Exception{         //设置java安全krb5配置，其中krb5<span class="hljs-preprocessor">.conf</span>文件可以从成功开启kerberos的集群任意一台节点/etc/krb5<span class="hljs-preprocessor">.conf</span>拿到,         //这里应该也可以直接设置一下两个属性获取 ，我没有测试这个          //System<span class="hljs-preprocessor">.setProperty</span>(<span class="hljs-string">"java.security.krb5.realm"</span>,<span class="hljs-string">"YOU-REALM.COM"</span>)<span class="hljs-comment">;</span>         //System<span class="hljs-preprocessor">.setProperty</span>(<span class="hljs-string">"java.security.krb5.KDC"</span>,<span class="hljs-string">"kdc_hostname"</span>)<span class="hljs-comment">;</span>         System<span class="hljs-preprocessor">.setProperty</span>(<span class="hljs-string">"java.security.krb5.conf"</span>, <span class="hljs-string">"E:\\test\\krb5.conf"</span>)         Configuration conf = new Configuration()<span class="hljs-comment">;</span>         //这里设置namenode新         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"fs.defaultFS"</span>, <span class="hljs-string">"hdfs://namenode:8020"</span>)<span class="hljs-comment">;</span>         //需要增加hadoop开启了安全的配置         conf<span class="hljs-preprocessor">.setBoolean</span>(<span class="hljs-string">"hadoop.security.authorization"</span>, true)<span class="hljs-comment">;</span>         //配置安全认证方式为kerberos         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"hadoop.security.authentication"</span>, <span class="hljs-string">"Kerberos"</span>)<span class="hljs-comment">;</span>         //设置namenode的principal         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"dfs.namenode.kerberos.principal"</span>, <span class="hljs-string">"hdfs/_HOST@YOU-REALM.COM"</span>)<span class="hljs-comment">;</span>         //设置datanode的principal值为“hdfs/_HOST@YOU-REALM<span class="hljs-preprocessor">.COM</span>”         conf<span class="hljs-preprocessor">.set</span>(<span class="hljs-string">"dfs.datanode.kerberos.principal"</span>, <span class="hljs-string">"hdfs/_HOST@YOU-REALM.COM"</span>)<span class="hljs-comment">;</span>         //通过hadoop security下中的 UserGroupInformation类来实现使用keytab文件登录          UserGroupInformation<span class="hljs-preprocessor">.setConfiguration</span>(conf)<span class="hljs-comment">;</span>         //设置登录的kerberos principal和对应的keytab文件，其中keytab文件需要kdc管理员生成给到开发人员         UserGroupInformation<span class="hljs-preprocessor">.loginUserFromKeytab</span>(<span class="hljs-string">"user01@YOU-REALM.COM"</span>,<span class="hljs-string">"E:\\test\\user01.keytab"</span>)<span class="hljs-comment">;</span>         //获取带有kerberos验证的文件系统类         FileSystem fileSystem1 = FileSystem<span class="hljs-preprocessor">.get</span>(conf)<span class="hljs-comment">;</span>         //测试访问情况         Path path=new Path(<span class="hljs-string">"hdfs://namenodehost:8020/user/user01"</span>)<span class="hljs-comment">;</span>         if(fileSystem1<span class="hljs-preprocessor">.exists</span>(path)){             System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(<span class="hljs-string">"===contains==="</span>)<span class="hljs-comment">;</span>         }         RemoteIterator&lt;LocatedFileStatus&gt; list=fileSystem1<span class="hljs-preprocessor">.listFiles</span>(path,true)<span class="hljs-comment">;</span>         while (list<span class="hljs-preprocessor">.hasNext</span>()){             LocatedFileStatus fileStatus=list<span class="hljs-preprocessor">.next</span>()<span class="hljs-comment">;</span>             System<span class="hljs-preprocessor">.out</span><span class="hljs-preprocessor">.println</span>(fileStatus<span class="hljs-preprocessor">.getPath</span>())<span class="hljs-comment">;</span>         }     }   }</code></pre> </p></div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-92896.htm">宠物领养系统论文参考文献有哪些（宠物领养系统论文参考文献有哪些类型）</a></p>
+                                        <p>下一个：<a href="/news/article-93670.htm">mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-75159.htm" title="附近哪里可以领养宠物 附近哪里可以领养宠物狗">附近哪里可以领养宠物 附近哪里可以领养宠物狗</a></li>
+                        <li class="py-2"><a href="/news/article-75158.htm" title="中国兽药公司前50名（中国兽药公司前50名排名）">中国兽药公司前50名（中国兽药公司前50名排名）</a></li>
+                        <li class="py-2"><a href="/news/article-89193.htm" title="动物疫苗上市公司排名榜前十名 动物疫苗上市公司排名榜前十名有哪些">动物疫苗上市公司排名榜前十名 动物疫苗上市公司排名榜前十名有哪些</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-free-nekoray.htm" title="「3月16日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接">「3月16日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-67296.htm" title="宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）">宠物医院诊疗许可证在什么部门办理（宠物医院诊疗许可证的年审）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-26-free-node-subscribe-links.htm" title="「3月26日」最高速度20.1M/S，2025年NekoRay每天更新免费节点订阅链接">「3月26日」最高速度20.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-66008.htm" title="Spring 源码（9）Spring Bean的创建过程的前期准备_在线工具">Spring 源码（9）Spring Bean的创建过程的前期准备_在线工具</a></li>
+                        <li class="py-2"><a href="/news/article-72499.htm" title="宠物粮食店铺名字怎么取 宠物粮食店铺名字怎么取好听">宠物粮食店铺名字怎么取 宠物粮食店铺名字怎么取好听</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-8-node-share-links.htm" title="「4月8日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接">「4月8日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-23-free-nekoray-node.htm" title="「3月23日」最高速度20.7M/S，2025年NekoRay每天更新免费节点订阅链接">「3月23日」最高速度20.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">39</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
