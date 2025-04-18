@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-97360.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>关于Android安装apk出现解析包异常问题情况总结</title>
+        <meta name="description" content="说之前，可以推荐下各位使用这个开源库AndroidUtilCode，下面提及到的工具类，都是在此库中  以下说的解析包异常，是指进到安装页面就立马出现了错误提示 而不是在可以正常进入安装界面，然后点击" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-97360.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="关于Android安装apk出现解析包异常问题情况总结" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/13e332565d5b9c7ac09a41500b110ff9.webp" />
+        <meta property="og:release_date" content="2025-04-16T08:41:41" />
+    <meta property="og:updated_time" content="2025-04-16T08:41:41" />
+        <meta property="og:description" content="说之前，可以推荐下各位使用这个开源库AndroidUtilCode，下面提及到的工具类，都是在此库中  以下说的解析包异常，是指进到安装页面就立马出现了错误提示 而不是在可以正常进入安装界面，然后点击" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="关于Android安装apk出现解析包异常问题情况总结">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        关于Android安装apk出现解析包异常问题情况总结                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<p><span style="font-size: 1em;">说之前，可以推荐下各位使用这个开源库</span><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://github.com/Blankj/AndroidUtilCode"  target="_blank" rel="nofollow" style="font-size: 1em;">AndroidUtilCode</a><span style="font-size: 1em;">，下面提及到的工具类，都是在此库中</span></p> <blockquote> <p>以下说的解析包异常，是指<strong>进到安装页面就立马出现了错误提示</strong></p> <p>而不是在可以正常进入安装界面，然后点击了安装按钮之后后，最后弹出个安装失败的提示</p> </blockquote> <p>这两个情况是有所区别的,需要注意！！</p> <p>而下面总结的6种情况，第6种情况就是进入到安装界面了，然后点击安装按钮，出现了127的错误码提示</p> <p>当然，遇到的情况不多，可能总结不全，若是有所遗漏，各位可以在评论区回复下</p> <h2 id="总结">总结</h2> <ol> <li>apk下载过程中损坏</li> <li>安装的代码有问题（没有申请对应权限）</li> <li>高版本下载apk不成功（apk文件读取不到导致报错）</li> <li>存储权限未申请，Android8以上，没有申请允许应用安装未知应用的权限</li> <li>apk要使用v1+v2签名，v2是适用于Android7.0以上版本的安装</li> <li>Android12版本安装才出现的问题，原因是清单文件中需要声明exported属性</li> </ol> <h2 id="1apk下载过程中损坏">1.apk下载过程中损坏</h2> <p>这个情况，没有太多展开可以说的，比较少见，及网络下载过程中，apk文件损坏了，导致解析包出现异常</p> <h2 id="2安装apk代码有问题">2.安装apk代码有问题</h2> <p>这里统一推荐使用<code>AppUtils.installApp();</code>方法去安装apk，里面进行了Android8.0的版本兼容处理，包含安装第三方应用的权限申请</p> <p>动态申请前，别忘了需要在清单文件中声明此权限</p> <pre><code>&lt;uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /&gt;</code></pre> <h2 id="3高版本下载apk不成功">3.高版本下载apk不成功</h2> <p>这个问题是我目前排查apk出现过的问题，由于之前的项目中，是固定下载在Download文件夹中，但是，在Android10之后，存储权限发生变更，导致无法直接将文件下载到Download文件夹，从而导致文件下载失败，进而导致出现解析包异常</p> <p>解决方法只要适配下Android10之后的路径问题即可</p> <p>这里推荐下载在app自己的files文件夹中即可解决问题，使用此路径<code>PathUtils.getExternalAppDownloadPath()</code>即可</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/dec42c24fb63913d107c0acb6d13e8f8.jpg" alt="关于Android安装apk出现解析包异常问题情况总结"></p> <h2 id="4权限未申请">4.权限未申请</h2> <p>这里需要说下有两种权限，一个是存储权限，另外一个则是安装第三方应用的权限</p> <pre><code>&lt;uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" /&gt;</code></pre> <p>存储权限的话，Android6.0需要手动申请，这里不再过多赘述</p> <h2 id="5apk签名问题">5.apk签名问题</h2> <p>这里也是比较常见的问题了，原因是我项目使用了360加固，然后，进行了重签名导致</p> <p>之前一直都是使用命令行进行重签名，没太注意到，其实v2的参数需要声明，加固后的安装包一直没有v2签名</p> <p>而Android7.0版本都是需要验证v2版本签名，自然是出现了问题</p> <p>之后进行了尝试，并且稍微封装了一个用来签名的工具，就不用每次都要输入命令了</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/6eb7e0c543388a3bba7267d417673fc5.jpg" alt="关于Android安装apk出现解析包异常问题情况总结"></p> <p>感兴趣的可看此链接<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://gitee.com/stars-one/ASCTool"  target="_blank" rel="nofollow">ASCTool: apk签名验证破解工具 Apk Signature Crack Tool</a></p> <h2 id="6android12版本安装出现问题">6.Android12版本安装出现问题</h2> <p>targetSdkVersion为31【以Android 12为目标】的应用务必要加入v2签名，务必要对使用的activity，service，broadcast receiver含有intent-filter，显示声明android:exported属性。</p> <p>AndroidManifest文件中，有intent-filter的属性的四大组件，需要声明exported属性为true</p> <p>即下面截图这种情况</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220509/c268531ab2e55014ceb5018d72be38d5.jpg" alt="关于Android安装apk出现解析包异常问题情况总结"></p> <blockquote> <p>如果适配安卓12的系统，调用的sdk是31的话。可能需要进行适配。</p> <p>出现安装失败22的，有可能是因为activity或者receiver，service里面没有加上android:exported="false"这个字段。</p> <p>注意在launcheractivity里面一定要设置android:exported为true。这个是外部引用的意思。</p> <p>如果在launcheractivity里面没有设置为true。那么APP图标点击就会出现未安装该应用程序。</p> <p>如果出现安装失败-127的话。是因为你的manifest里面声明的权限重复了。</p> </blockquote> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-97358.htm">Java开发日志EasyExcel自定义类型转换、Excel表头字段问题</a></p>
+                                        <p>下一个：<a href="/news/article-98094.htm">kafka生产者发送消息可靠性</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-81354.htm" title="南京24小时宠物救助电话 南京24小时宠物救助电话号码">南京24小时宠物救助电话 南京24小时宠物救助电话号码</a></li>
+                        <li class="py-2"><a href="/news/article-75158.htm" title="中国兽药公司前50名（中国兽药公司前50名排名）">中国兽药公司前50名（中国兽药公司前50名排名）</a></li>
+                        <li class="py-2"><a href="/news/article-94053.htm" title="宠物粮食品牌名字4个字大全及图片视频下载（宠物粮食品牌名字4个字大全及图片视频下载安装）">宠物粮食品牌名字4个字大全及图片视频下载（宠物粮食品牌名字4个字大全及图片视频下载安装）</a></li>
+                        <li class="py-2"><a href="/news/article-88480.htm" title="vue中的可拖拽宽度div的实现示例_vue.js">vue中的可拖拽宽度div的实现示例_vue.js</a></li>
+                        <li class="py-2"><a href="/news/article-95084.htm" title="动物疫苗对人有害处吗视频讲解下载（动物疫苗有没有毒）">动物疫苗对人有害处吗视频讲解下载（动物疫苗有没有毒）</a></li>
+                        <li class="py-2"><a href="/news/article-77209.htm" title="广州哪里买狗狗好（广州哪里买狗最便宜）">广州哪里买狗狗好（广州哪里买狗最便宜）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-18-free-v2ray-subscribe.htm" title="「4月18日」最高速度18.9M/S，2025年NekoRay每天更新免费节点订阅链接">「4月18日」最高速度18.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-93670.htm" title="mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用">mysql做生日日期字段的用到的类型_MySQL 日期类型函数及使用</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-15-free-shadowrocket-node.htm" title="「4月15日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接">「4月15日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-8-linux-nekoray-node.htm" title="「3月8日」最高速度22.7M/S，2025年NekoRay每天更新免费节点订阅链接">「3月8日」最高速度22.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">54</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://windowsnekoray.github.io/news/article-96668.htm" />
+    <meta charset="utf-8">
+    <!-- Always force latest IE rendering engine -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Qt 实现文字输入框，带字数限制</title>
+        <meta name="description" content="目录  Qt 实现文字输入框，带字数限制  核心构思 代码实现      核心构思 核心的点在于，限制输入的字数；主要的方法为创建一个组合窗口    textChanged 这个信号，会在你输入字符之" />
+        <link rel="icon" href="/assets/website/img/windowsnekoray/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="WindowsNekoRay节点分享站">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://windowsnekoray.github.io/news/article-96668.htm" />
+    <meta property="og:site_name" content="WindowsNekoRay节点分享站" />
+    <meta property="og:title" content="Qt 实现文字输入框，带字数限制" />
+    <meta property="og:image" content="https://windowsnekoray.github.io/uploads/20240707/19bda579bfcf912b4a063a3a446781e6.webp" />
+        <meta property="og:release_date" content="2025-04-15T06:02:04" />
+    <meta property="og:updated_time" content="2025-04-15T06:02:04" />
+        <meta property="og:description" content="目录  Qt 实现文字输入框，带字数限制  核心构思 代码实现      核心构思 核心的点在于，限制输入的字数；主要的方法为创建一个组合窗口    textChanged 这个信号，会在你输入字符之" />
+        
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Qt 实现文字输入框，带字数限制">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/bootstrap.min.css">
+    <!-- FONT-AWESOME -->
+    <link rel="stylesheet" href="/assets/website/css/windowsnekoray/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!-- OWL CAROUSEL -->
+    <link href="/assets/website/css/windowsnekoray/owl.carousel.min.css" rel="stylesheet">
+    <link href="/assets/website/css/windowsnekoray/owl.theme.default.min.css" rel="stylesheet">
+    <!-- LIGHTBOX -->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/lightbox.css">
+    <!--Style CSS file-->
+    <link rel=" stylesheet" href="/assets/website/css/windowsnekoray/style.css">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FP5Q3FML8Q"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FP5Q3FML8Q');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- ====== Preloader ======  -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- ======End Preloader ======  -->
+    <!-- ======START NAVGITION ======  -->
+    <nav class="navbar navbar-expand-lg">
+        <!-- logo -->
+        <a class="navbar-brand" href="/">
+                <span>Windows NekoRay</span>
+                </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText">
+            <span class="icon-bar"><i class="fa fa-bars fa-2x"></i></span>
+        </button>
+        <!--End of Resposive Toggle icon-->
+        <div class="collapse navbar-collapse" id="navbarText">
+            <!--Main menu navigation list-->
+            <ul class="navbar-nav ml-auto line">
+                                <li class="nav-item">
+                    <a class="nav-link" href="/">首页</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/free-nodes/">免费节点</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/paid-subscribe/">推荐机场</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/client.htm">客户端</a>
+                </li>
+                                <li class="nav-item">
+                    <a class="nav-link" href="/news/">新闻资讯</a>
+                </li>
+                            </ul>
+            <!--End of Main menu navigation list-->
+        </div>
+        <!--End of resposive collapse class-->
+    </nav>
+    <!-- ====== END NAVGITION ======  -->
+    <!-- =======START HEADER=========== -->
+    <header class="home list" id="home" data-scroll-index="0">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 home-content mt-md-5 mt-sm-5">
+                    <h2 class="heading-tertiary mt-3 mb-3">
+                        Qt 实现文字输入框，带字数限制                    </h2>
+                    <p class="mb-5">
+                        <a href="/">首页</a> / <a href="/news/">新闻资讯</a> / <span>正文</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ====== END HEADER ======  -->
+    <!-- Scroll to Top -->
+    <div id="scroll-to-top"><i class="fa fa-arrow-up fa-fw"></i></div>
+    <!-- ====== START ABOUT ======  -->
+    <section class="about padding" id="about" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="" data-url="">
+                  				  				  				<div class="toc"> <div class="toc-container-header">目录</div> <ul> <li><a href="#qt-%E5%AE%9E%E7%8E%B0%E6%96%87%E5%AD%97%E8%BE%93%E5%85%A5%E6%A1%86%E5%B8%A6%E5%AD%97%E6%95%B0%E9%99%90%E5%88%B6" rel="nofollow">Qt 实现文字输入框，带字数限制</a> <ul> <li><a href="#%E6%A0%B8%E5%BF%83%E6%9E%84%E6%80%9D" rel="nofollow">核心构思</a></li> <li><a href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0" rel="nofollow">代码实现</a></li> </ul> </li> </ul> </div> </h1> <h2 id="核心构思">核心构思</h2> <p>核心的点在于，限制输入的字数；主要的方法为创建一个组合窗口</p> <p><img decoding="async" src="http://img.555519.xyz/uploads3/20220510/8f7285a1891c5dfe0d075c23c7a2b3cb.jpg" alt="Qt 实现文字输入框，带字数限制"></p> <ol> <li> <p><code>textChanged</code> 这个信号，会在你输入字符之后发射，可以连接这个信号，在发射了信号之后，去获取当前<code>QTextEdit</code>里的内容，获取数量，然后根据最大数量，来选择是不是需要截取文本；</p> </li> <li> <p>光标的移动的问题。在进行插入时，光标要时刻保持在当前位置。</p> </li> <li> <p>文字内容的行高。这里请看<a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/qq_44723937/article/details/122673979"  target="_blank" rel="nofollow">Qt设置QTextEdit的行高_师从名剑山的博客-CSDN博客_qt qtextedit 高度</a></p> </li> </ol> <h2 id="代码实现">代码实现</h2> <pre><code class="language-cpp"> // 首先连接信号 connect(ui-&gt;textEdit, &amp;QTextEdit::textChanged,             this, &amp;LimitTextEdit::slot_handleInput);  void LimitTextEdit::slot_handleInput() {     auto textEdit = static_cast&lt;QTextEdit*&gt;(sender());      int currentNum = textEdit-&gt;toPlainText().length();     // 判断是不是超出了字数限制     if (currentNum &gt; m_maxWordNum) {         QString text = textEdit-&gt;toPlainText();         text = text.mid(0, m_maxWordNum);         int position = textEdit-&gt;textCursor().position();          textEdit-&gt;setText(text);          // 获取光标位置         QTextCursor cursor = textEdit-&gt;textCursor();         if (position &gt; m_maxWordNum) {             // 如果当前输入位置为末尾的话，就直接跳到最后一个字符。             position = m_maxWordNum;         }         cursor.setPosition(position);         textEdit-&gt;setTextCursor(cursor);         currentNum = m_maxWordNum;     }      ui-&gt;labelCurrentNum-&gt;setNum(currentNum); }</code></pre> <p></p> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-95914.htm">CTF babyarm内核题目分析</a></p>
+                                        <p>下一个：<a href="/news/article-96671.htm">Vue如何为GET或POST请求设置请求头_vue.js</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-3-16-free-nekoray.htm" title="「3月16日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接">「3月16日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-21-share-windows-nekoray.htm" title="「3月21日」最高速度22M/S，2025年NekoRay每天更新免费节点订阅链接">「3月21日」最高速度22M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-76530.htm" title="动物疫苗企业排名前十名 动物疫苗企业排名前十名有哪些">动物疫苗企业排名前十名 动物疫苗企业排名前十名有哪些</a></li>
+                        <li class="py-2"><a href="/news/article-82017.htm" title="动物疫苗2021（动物疫苗接种途径）">动物疫苗2021（动物疫苗接种途径）</a></li>
+                        <li class="py-2"><a href="/news/article-67929.htm" title="动物医院价格表图片大全集高清视频（动物医院照片）">动物医院价格表图片大全集高清视频（动物医院照片）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-3-free-v2ray-subscribe.htm" title="「4月3日」最高速度22.6M/S，2025年NekoRay每天更新免费节点订阅链接">「4月3日」最高速度22.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-2-free-high-speed-nodes.htm" title="「3月2日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接">「3月2日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/news/article-73823.htm" title="家庭式宠物寄养平台（家庭式宠物寄养平台朝阳区）">家庭式宠物寄养平台（家庭式宠物寄养平台朝阳区）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-19-free-nekoray-node.htm" title="「3月19日」最高速度20.4M/S，2025年NekoRay每天更新免费节点订阅链接">「3月19日」最高速度20.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-3-24-node-share-links.htm" title="「3月24日」最高速度19.9M/S，2025年NekoRay每天更新免费节点订阅链接">「3月24日」最高速度19.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">45</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">90</span> <a href="/date/2025-03/" title="2025-03 归档">2025-03</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== END ABOUT======  -->
+        <!-- ====== START FOOTER ======  -->
+    <section class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- START FOOTER BOTTOM -->
+                <div class="offset-md-3 col-md-6 offset-md-3">
+                    <!-- START RIGHTS -->
+                    <div class="copyright">
+                                            <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                        <p>WindowsNekoRay节点分享站 版权所有</p>
+                        <p>Powered by WordPress</p>
+                    </div>
+                    <!-- END RIGHTS -->
+                </div>
+                <!-- END FOOTER BOTTOM -->
+            </div>
+        </div>
+    </section>
+    <!-- ====== END FOOTER ======  -->
+    <!-- ====== JS ======  -->
+    <!--jquery-3.3.1 js-->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery-3.3.1.min.js"></script>
+    <!-- popper js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/bootstrap.min.js"></script>
+    <!-- scrollIt js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/scrollIt.min.js"></script>
+    <!-- countTo js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.countTo.js"></script>
+    <!-- filter js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/jquery.filterizr.min.js"></script>
+    <!-- waypoints js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/waypoints.min.js"></script>
+    <!-- owl carousel js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/owl.carousel.min.js"></script>
+    <!-- validator js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/validator.js"></script>
+    <!-- coustom js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/main.js"></script>
+    <!-- lightbox js -->
+    <script src="/assets/website/js/frontend/windowsnekoray/lightbox.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
