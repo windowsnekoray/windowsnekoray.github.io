@@ -1842,3 +1842,7 @@ nav .navbar-brand {
 .home.list {padding:8rem 0;background: url("/assets/website/img/windowsnekoray/hero.jpg") no-repeat center;opacity: 0.7;}
 .home.list h2 {color: rgba(255, 255, 255, 1);}
 #about .item .heading-tertiary {color: #545454;}
+
+.xcblog-blog-detail.xcblog-blog-detail-defined p {font-size: 1.5rem;line-height: 2.2rem;}
+.xcblog-blog-detail.xcblog-blog-detail-defined h2 {font-size: 2.5rem;}
+.xcblog-blog-detail.xcblog-blog-detail-defined h3 {font-size: 2.0rem;}
