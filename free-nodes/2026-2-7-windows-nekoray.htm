@@ -152,27 +152,13 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
 <div class="clearfix"></div>
 <div class="col-md-12 mt-5">
         <p>上一个：<a href="/free-nodes/2026-2-6-free-shadowrocket-node.htm">「2月6日」最高速度19.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></p>
+        <p>下一个：<a href="/free-nodes/2026-2-8-nekoray-node.htm">「2月8日」最高速度23M/S，2025年NekoRay每天更新免费节点订阅链接</a></p>
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
+    <div class="panel-heading"><h5>VLess 使用 XTLS 时证书怎么配置更安全？</h5></div>
     <div class="panel-body">
-        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>SSR 的协议插件如何增强安全性？</h5></div>
-    <div class="panel-body">
-        协议插件可隐藏真实流量特征并模拟正常协议，防止被封锁或 DPI 检测。结合加密方式和混淆方法，可以提升节点的稳定性和长期可用性，保证数据传输安全。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess AEAD 加密如何确保数据传输安全？</h5></div>
-    <div class="panel-body">
-        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。在高封锁环境中保证节点可用，提升数据安全和连接稳定性，降低被检测风险，确保长期安全访问体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 的节点自动测速功能如何配置？</h5></div>
-    <div class="panel-body">
-        Matsuri 可以设置测速周期和节点列表，程序会自动测试延迟和速度并排序。用户可根据测试结果选择最佳节点，提高网络访问速度和使用体验。<hr />    </div>
+        推荐使用可信 CA 签发的证书（例如 Let's Encrypt），并为服务器配置正确的域名、SNI 与证书链。避免使用自签名证书或错误域名，以免被客户端拒绝或被中间人攻击检测到。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Netch 如何实现 UDP 游戏加速？</h5></div>
@@ -185,9 +171,24 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         PassWall2 会定期测试节点延迟和丢包率，结合策略组自动切换到最优节点。无需手动干预即可保证网页、视频和游戏流量高速稳定访问，优化整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 客户端延迟测试值不稳定怎么办？</h5></div>
+    <div class="panel-heading"><h5>VMess AEAD 加密如何确保数据传输安全？</h5></div>
     <div class="panel-body">
-        可通过调整 Hysteria2 的 `recv_window` 与 `send_window` 参数改善传输性能，同时确保服务器带宽充足。若使用移动网络，建议启用 BBR 拥塞控制并降低测速频率以减少波动。<hr />    </div>
+        AEAD 加密可防止数据篡改、重放攻击和流量特征泄露。在高封锁环境中保证节点可用，提升数据安全和连接稳定性，降低被检测风险，确保长期安全访问体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>SSR 的协议插件如何增强安全性？</h5></div>
+    <div class="panel-body">
+        协议插件可隐藏真实流量特征并模拟正常协议，防止被封锁或 DPI 检测。结合加密方式和混淆方法，可以提升节点的稳定性和长期可用性，保证数据传输安全。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
+    <div class="panel-body">
+        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VLESS + Reality 与 Trojan 在性能上差异大吗？</h5></div>
+    <div class="panel-body">
+        两者性能相近。VLESS + Reality 伪装更自然，适合强封锁地区；Trojan 则依托标准 TLS 实现高速连接。选择取决于服务器支持与环境稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hiddify Next 如何针对不同用户设置流量配额？</h5></div>
@@ -195,14 +196,14 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
         管理员可以为每个用户单独设置流量上限或带宽限制。超过配额时可自动阻止或降速，保证服务器资源合理分配，避免单用户占用过多带宽影响其他用户。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLess 使用 XTLS 时证书怎么配置更安全？</h5></div>
+    <div class="panel-heading"><h5>Matsuri 的节点自动测速功能如何配置？</h5></div>
     <div class="panel-body">
-        推荐使用可信 CA 签发的证书（例如 Let's Encrypt），并为服务器配置正确的域名、SNI 与证书链。避免使用自签名证书或错误域名，以免被客户端拒绝或被中间人攻击检测到。<hr />    </div>
+        Matsuri 可以设置测速周期和节点列表，程序会自动测试延迟和速度并排序。用户可根据测试结果选择最佳节点，提高网络访问速度和使用体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 的 TUN 模式与 SOCKS5 代理有什么区别？</h5></div>
+    <div class="panel-heading"><h5>Hysteria2 客户端延迟测试值不稳定怎么办？</h5></div>
     <div class="panel-body">
-        TUN 模式拦截系统 IP 层流量，实现全局代理；SOCKS5 代理通常只影响支持代理的应用。TUN 更适合全局加速和游戏、视频等应用，保证所有流量通过节点，提高网络稳定性。    </div>
+        可通过调整 Hysteria2 的 `recv_window` 与 `send_window` 参数改善传输性能，同时确保服务器带宽充足。若使用移动网络，建议启用 BBR 拥塞控制并降低测速频率以减少波动。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -232,15 +233,15 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2"><a href="/free-nodes/2026-2-3-free-node-subscribe-links.htm" title="「2月3日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接">「2月3日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-14-free-nekoray-node.htm" title="「1月14日」最高速度22.6M/S，2025年NekoRay每天更新免费节点订阅链接">「1月14日」最高速度22.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-20-linux-nekoray.htm" title="「1月20日」最高速度22.8M/S，2025年NekoRay每天更新免费节点订阅链接">「1月20日」最高速度22.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-2-node-share.htm" title="「2月2日」最高速度19.7M/S，2025年NekoRay每天更新免费节点订阅链接">「2月2日」最高速度19.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-28-free-node-subscribe.htm" title="「1月28日」最高速度22.7M/S，2025年NekoRay每天更新免费节点订阅链接">「1月28日」最高速度22.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-11-windows-nekoray.htm" title="「1月11日」最高速度18.5M/S，2025年NekoRay每天更新免费节点订阅链接">「1月11日」最高速度18.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-1-node-share-links.htm" title="「2月1日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接">「2月1日」最高速度18.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-18-free-node-subscribe-links.htm" title="「1月18日」最高速度18.6M/S，2025年NekoRay每天更新免费节点订阅链接">「1月18日」最高速度18.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-1-27-nekoray-node.htm" title="「1月27日」最高速度22.4M/S，2025年NekoRay每天更新免费节点订阅链接">「1月27日」最高速度22.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-2-7-windows-nekoray.htm" title="「2月7日」最高速度21M/S，2025年NekoRay每天更新免费节点订阅链接">「2月7日」最高速度21M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-5-free-high-speed-nodes.htm" title="「2月5日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接">「2月5日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-17-linux-nekoray.htm" title="「1月17日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接">「1月17日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-13-free-node-subscribe-links.htm" title="「2月13日」最高速度20.1M/S，2025年NekoRay每天更新免费节点订阅链接">「2月13日」最高速度20.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-25-share-windows-nekoray.htm" title="「1月25日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接">「1月25日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-23-free-node-subscribe-links.htm" title="「1月23日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接">「1月23日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-1-19-free-node-subscribe-links.htm" title="「1月19日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接">「1月19日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-14-node-share.htm" title="「2月14日」最高速度18.9M/S，2025年NekoRay每天更新免费节点订阅链接">「2月14日」最高速度18.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-2-12-node-share.htm" title="「2月12日」最高速度21.1M/S，2025年NekoRay每天更新免费节点订阅链接">「2月12日」最高速度21.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -252,10 +253,10 @@ IPLC、IEPL中转，点对点专线连接。高速冲浪，科学上网不二选
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">7</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
+                <h4><span class="badge" style="float: right;">14</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
             </li>
                     </ul>
     </div>
