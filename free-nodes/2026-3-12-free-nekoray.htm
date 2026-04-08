@@ -354,9 +354,9 @@ bash &lt;(curl -s -L https://github.com/v2fly/fhs-install-v2ray/raw/master/insta
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>如何优化 Clash 的 DNS 设置？</h5></div>
+    <div class="panel-heading"><h5>VLESS 的 Flow 参数有什么作用？</h5></div>
     <div class="panel-body">
-        在 Clash 中使用自定义 DNS 可以加快域名解析速度。建议使用 doh（DNS over HTTPS）或 dot（DNS over TLS）配置方式，既能提升速度，也能保护隐私防止 DNS 泄露。<hr />    </div>
+        Flow 参数用于控制 VLESS 的传输模式，如 XTLS Vision 或 Reality 模式。它能影响性能、安全性与兼容性，需根据客户端支持情况正确匹配配置。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Trojan 的伪装域名配置需要注意什么？</h5></div>
@@ -374,16 +374,6 @@ bash &lt;(curl -s -L https://github.com/v2fly/fhs-install-v2ray/raw/master/insta
         Shadowrocket 定期测速节点延迟和丢包率，并结合策略组自动切换到最佳节点。保证网页、视频和游戏流量通过最优路径，提高访问速度和连接稳定性。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VMess 的 TLS 选项何时使用最合适？</h5></div>
-    <div class="panel-body">
-        TLS 可提供加密和伪装，适合在高封锁或不稳定网络环境使用。结合域名伪装和证书，可让流量看起来像普通 HTTPS 请求，提升抗封锁能力和隐蔽性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Surfboard 策略组如何提升游戏和视频体验？</h5></div>
-    <div class="panel-body">
-        通过策略组将游戏、视频和浏览器流量分配到低延迟、高带宽节点，Surfboard 可自动切换最优节点，减少延迟和卡顿，提高整体网络体验和访问速度。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>QuantumultX 的分流规则支持哪些条件？</h5></div>
     <div class="panel-body">
         支持按域名、IP 地址、端口、请求路径、协议类型或关键词进行分流。结合策略组，可实现广告屏蔽、视频加速、游戏优化等多种自定义网络策略。<hr />    </div>
@@ -394,14 +384,24 @@ bash &lt;(curl -s -L https://github.com/v2fly/fhs-install-v2ray/raw/master/insta
         多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适合高频短连接场景，如游戏和即时通讯，可提高吞吐量和连接稳定性，优化整体网络体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLESS 的 Flow 参数有什么作用？</h5></div>
-    <div class="panel-body">
-        Flow 参数用于控制 VLESS 的传输模式，如 XTLS Vision 或 Reality 模式。它能影响性能、安全性与兼容性，需根据客户端支持情况正确匹配配置。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 的 Rule Provider 功能有哪些好处？</h5></div>
     <div class="panel-body">
-        Rule Provider 可通过远程订阅自动更新规则和节点，减少手动维护。结合策略组，可实现分流规则和节点的自动同步，保证分流效率和网络可用性。    </div>
+        Rule Provider 可通过远程订阅自动更新规则和节点，减少手动维护。结合策略组，可实现分流规则和节点的自动同步，保证分流效率和网络可用性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>如何优化 Clash 的 DNS 设置？</h5></div>
+    <div class="panel-body">
+        在 Clash 中使用自定义 DNS 可以加快域名解析速度。建议使用 doh（DNS over HTTPS）或 dot（DNS over TLS）配置方式，既能提升速度，也能保护隐私防止 DNS 泄露。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Surfboard 策略组如何提升游戏和视频体验？</h5></div>
+    <div class="panel-body">
+        通过策略组将游戏、视频和浏览器流量分配到低延迟、高带宽节点，Surfboard 可自动切换最优节点，减少延迟和卡顿，提高整体网络体验和访问速度。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>VMess 的 TLS 选项何时使用最合适？</h5></div>
+    <div class="panel-body">
+        TLS 可提供加密和伪装，适合在高封锁或不稳定网络环境使用。结合域名伪装和证书，可让流量看起来像普通 HTTPS 请求，提升抗封锁能力和隐蔽性。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -430,16 +430,16 @@ bash &lt;(curl -s -L https://github.com/v2fly/fhs-install-v2ray/raw/master/insta
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-2-3-free-node-subscribe-links.htm" title="「2月3日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接">「2月3日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-17-free-node-subscribe.htm" title="「2月17日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接">「2月17日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-7-windows-nekoray.htm" title="「3月7日」最高速度21.2M/S，2025年NekoRay每天更新免费节点订阅链接">「3月7日」最高速度21.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-9-free-v2ray-subscribe.htm" title="「3月9日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接">「3月9日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-30-node-share-links.htm" title="「3月30日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接">「3月30日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-12-free-nekoray.htm" title="「3月12日」最高速度21.8M/S，2025年NekoRay每天更新免费节点订阅链接">「3月12日」最高速度21.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-11-free-nekoray-node.htm" title="「3月11日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接">「3月11日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-5-node-share-links.htm" title="「3月5日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接">「3月5日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-3-20-free-node-subscribe.htm" title="「3月20日」最高速度18.9M/S，2025年NekoRay每天更新免费节点订阅链接">「3月20日」最高速度18.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-3-19-free-node-subscribe.htm" title="「3月19日」最高速度22.9M/S，2025年NekoRay每天更新免费节点订阅链接">「3月19日」最高速度22.9M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-10-nekoray-node.htm" title="「2月10日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接">「2月10日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-18-linux-nekoray.htm" title="「3月18日」最高速度22.5M/S，2025年NekoRay每天更新免费节点订阅链接">「3月18日」最高速度22.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-15-free-nekoray-node.htm" title="「2月15日」最高速度19.8M/S，2025年NekoRay每天更新免费节点订阅链接">「2月15日」最高速度19.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-11-free-v2ray-subscribe.htm" title="「2月11日」最高速度20.1M/S，2025年NekoRay每天更新免费节点订阅链接">「2月11日」最高速度20.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-2-4-node-share.htm" title="「2月4日」最高速度21.2M/S，2025年NekoRay每天更新免费节点订阅链接">「2月4日」最高速度21.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-15-node-share.htm" title="「3月15日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接">「3月15日」最高速度18.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-21-linux-nekoray-node.htm" title="「3月21日」最高速度19.1M/S，2025年NekoRay每天更新免费节点订阅链接">「3月21日」最高速度19.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-3-25-nekoray-node.htm" title="「3月25日」最高速度22.8M/S，2025年NekoRay每天更新免费节点订阅链接">「3月25日」最高速度22.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -451,13 +451,10 @@ bash &lt;(curl -s -L https://github.com/v2fly/fhs-install-v2ray/raw/master/insta
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">20</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2026-02/" title="2026-02 归档">2026-02</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2026-01/" title="2026-01 归档">2026-01</a></h4>
+                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
             </li>
                     </ul>
     </div>
