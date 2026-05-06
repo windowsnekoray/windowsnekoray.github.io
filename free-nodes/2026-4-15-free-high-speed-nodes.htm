@@ -323,24 +323,9 @@ A：zh版多用于大陆特定网络环境，默认配置更适合电信/移动/
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 的 QUIC 多路复用在游戏中有什么优势？</h5></div>
+    <div class="panel-heading"><h5>WinXray PAC 模式如何提高访问速度和便利性？</h5></div>
     <div class="panel-body">
-        QUIC 多路复用减少握手次数和延迟，适合高频短连接场景，如游戏和即时通讯。它能提高吞吐量和连接稳定性，在高丢包或高延迟环境下保持低延迟网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>PassWall2 的分组策略可以自动切换节点吗？</h5></div>
-    <div class="panel-body">
-        可以。用户可以设置策略组，PassWall2 会定期测速并根据延迟或成功率自动选择最优节点，实现智能节点切换，保证网络稳定性。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Quantumult X 的“分流规则”如何管理？</h5></div>
-    <div class="panel-body">
-        Quantumult X 使用策略组管理分流规则。用户可将规则文件导入应用，通过“policy group”定义不同流量走向，实现国内直连、国外代理、广告拦截等功能的自动分配。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Clash 的 Rule Provider 自动更新规则如何操作？</h5></div>
-    <div class="panel-body">
-        Rule Provider 可以通过远程 URL 自动下载规则和节点，定期更新无需手动操作。结合策略组使用，可保持节点和分流规则最新，提高访问速度和网络可用性。<hr />    </div>
+        PAC 模式根据规则动态判断流量是否走代理，无需手动切换节点。适合国内外混合访问场景，提高网页和视频访问速度与稳定性，减少操作错误导致的访问失败。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray QUIC 传输适合什么网络环境？</h5></div>
@@ -348,14 +333,9 @@ A：zh版多用于大陆特定网络环境，默认配置更适合电信/移动/
         QUIC 基于 UDP 支持多路复用和零握手，降低延迟，提高吞吐量。适合高丢包、不稳定网络环境，可保证视频、游戏和即时通讯流量的稳定性和流畅体验。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Hysteria2 多路复用如何优化短连接性能？</h5></div>
+    <div class="panel-heading"><h5>Clash 的 Rule Provider 自动更新规则如何操作？</h5></div>
     <div class="panel-body">
-        多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适用于游戏、即时通讯等高频短连接场景，提高吞吐量和连接稳定性，优化整体网络体验。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Mellow 的 TUN 模式能全局代理吗？</h5></div>
-    <div class="panel-body">
-        TUN 模式拦截系统 IP 层流量，可实现全局代理，无需手动设置浏览器或应用代理。适合需要全局科学上网或游戏加速的场景，保证所有流量均走代理节点。<hr />    </div>
+        Rule Provider 可以通过远程 URL 自动下载规则和节点，定期更新无需手动操作。结合策略组使用，可保持节点和分流规则最新，提高访问速度和网络可用性。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Hysteria2 的 QUIC 模式相比 TCP 有哪些优势？</h5></div>
@@ -363,14 +343,34 @@ A：zh版多用于大陆特定网络环境，默认配置更适合电信/移动/
         QUIC 协议基于 UDP，可减少握手延迟并在高丢包环境下保持较好体验。Hysteria2 对 QUIC 进行了优化，支持自适应拥塞控制与加密，能在移动网络中比 TCP 拥有更快的响应速度。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>WinXray PAC 模式如何提高访问速度和便利性？</h5></div>
-    <div class="panel-body">
-        PAC 模式根据规则动态判断流量是否走代理，无需手动切换节点。适合国内外混合访问场景，提高网页和视频访问速度与稳定性，减少操作错误导致的访问失败。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 如何实现节点健康监测？</h5></div>
     <div class="panel-body">
-        Clash 支持定期测速节点延迟和丢包率，将节点状态显示在客户端。结合策略组，可以自动选择健康节点进行访问，避免访问高延迟或失效节点，提高网络稳定性和效率。    </div>
+        Clash 支持定期测速节点延迟和丢包率，将节点状态显示在客户端。结合策略组，可以自动选择健康节点进行访问，避免访问高延迟或失效节点，提高网络稳定性和效率。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hysteria2 的 QUIC 多路复用在游戏中有什么优势？</h5></div>
+    <div class="panel-body">
+        QUIC 多路复用减少握手次数和延迟，适合高频短连接场景，如游戏和即时通讯。它能提高吞吐量和连接稳定性，在高丢包或高延迟环境下保持低延迟网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Quantumult X 的“分流规则”如何管理？</h5></div>
+    <div class="panel-body">
+        Quantumult X 使用策略组管理分流规则。用户可将规则文件导入应用，通过“policy group”定义不同流量走向，实现国内直连、国外代理、广告拦截等功能的自动分配。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Hysteria2 多路复用如何优化短连接性能？</h5></div>
+    <div class="panel-body">
+        多路复用允许多个短连接共享同一通道，减少握手延迟和资源消耗。适用于游戏、即时通讯等高频短连接场景，提高吞吐量和连接稳定性，优化整体网络体验。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>PassWall2 的分组策略可以自动切换节点吗？</h5></div>
+    <div class="panel-body">
+        可以。用户可以设置策略组，PassWall2 会定期测速并根据延迟或成功率自动选择最优节点，实现智能节点切换，保证网络稳定性。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Mellow 的 TUN 模式能全局代理吗？</h5></div>
+    <div class="panel-body">
+        TUN 模式拦截系统 IP 层流量，可实现全局代理，无需手动设置浏览器或应用代理。适合需要全局科学上网或游戏加速的场景，保证所有流量均走代理节点。    </div>
 </div>
 <div class="panel panel-default mt-5">
     <div class="panel-heading">
@@ -399,16 +399,16 @@ A：zh版多用于大陆特定网络环境，默认配置更适合电信/移动/
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/2026-4-21-free-v2ray-subscribe.htm" title="「4月21日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接">「4月21日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-21-linux-nekoray-node.htm" title="「3月21日」最高速度19.1M/S，2025年NekoRay每天更新免费节点订阅链接">「3月21日」最高速度19.1M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-12-linux-nekoray-node.htm" title="「4月12日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接">「4月12日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-11-free-nekoray-node.htm" title="「3月11日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接">「3月11日」最高速度20.5M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-17-linux-nekoray.htm" title="「4月17日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接">「4月17日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-10-free-nekoray.htm" title="「3月10日」最高速度22.8M/S，2025年NekoRay每天更新免费节点订阅链接">「3月10日」最高速度22.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                         <li class="py-2"><a href="/free-nodes/2026-4-18-free-v2ray-subscribe.htm" title="「4月18日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接">「4月18日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-4-16-share-windows-nekoray.htm" title="「4月16日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接">「4月16日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-28-linux-nekoray.htm" title="「3月28日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接">「3月28日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
-                        <li class="py-2"><a href="/free-nodes/2026-3-9-free-v2ray-subscribe.htm" title="「3月9日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接">「3月9日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-28-free-shadowrocket-node.htm" title="「4月28日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接">「4月28日」最高速度20.8M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-24-free-v2ray-subscribe.htm" title="「4月24日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接">「4月24日」最高速度19M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-15-free-high-speed-nodes.htm" title="「4月15日」最高速度20.4M/S，2025年NekoRay每天更新免费节点订阅链接">「4月15日」最高速度20.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-20-free-subscribe-node.htm" title="「4月20日」最高速度20.2M/S，2025年NekoRay每天更新免费节点订阅链接">「4月20日」最高速度20.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-21-free-v2ray-subscribe.htm" title="「4月21日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接">「4月21日」最高速度19.6M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-12-linux-nekoray-node.htm" title="「4月12日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接">「4月12日」最高速度19.3M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-5-2-share-windows-nekoray.htm" title="「5月2日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接">「5月2日」最高速度21.4M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-14-free-high-speed-nodes.htm" title="「4月14日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接">「4月14日」最高速度18.2M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
+                        <li class="py-2"><a href="/free-nodes/2026-4-17-linux-nekoray.htm" title="「4月17日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接">「4月17日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接</a></li>
                     </ul>
     </div>
 </div>
@@ -420,10 +420,10 @@ A：zh版多用于大陆特定网络环境，默认配置更适合电信/移动/
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">15</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
+                <h4><span class="badge" style="float: right;">2</span> <a href="/date/2026-05/" title="2026-05 归档">2026-05</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-03/" title="2026-03 归档">2026-03</a></h4>
+                <h4><span class="badge" style="float: right;">22</span> <a href="/date/2026-04/" title="2026-04 归档">2026-04</a></h4>
             </li>
                     </ul>
     </div>
