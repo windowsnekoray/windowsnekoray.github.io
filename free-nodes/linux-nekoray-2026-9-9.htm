@@ -281,14 +281,19 @@ A4：通常免费版不支持，多设备同步功能多见于订阅版，用户
     </div>
 <h4>FAQ</h4>
 <div class="panel panel-default">
+    <div class="panel-heading"><h5>Shadowrocket 的重写功能有什么用途？</h5></div>
+    <div class="panel-body">
+        Shadowrocket 的重写功能允许用户在请求阶段修改 HTTP 头、响应内容或重定向 URL。这一功能常用于屏蔽广告、解锁区域限制或调试网页请求，非常灵活强大。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Matsuri 节点延迟排序如何结合策略组使用？</h5></div>
+    <div class="panel-body">
+        Matsuri 会定期测速节点延迟，通过策略组自动选择低延迟、高稳定性的节点处理不同流量。无需手动切换，确保网页浏览、视频播放和游戏访问顺畅。<hr />    </div>
+</div>
+<div class="panel panel-default">
     <div class="panel-heading"><h5>如何优化 Clash DNS 解析速度？</h5></div>
     <div class="panel-body">
         可在配置文件中启用 fake-ip 模式或使用高质量的 DoH 服务（如 Cloudflare、AliDNS）。同时将 `fallback-filter.geoip` 设置为 true，避免国内域名被错误解析到境外，提高解析效率。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Netch 如何在 Windows 上加速游戏？</h5></div>
-    <div class="panel-body">
-        Netch 使用 TUN/TAP 模式将特定进程流量通过代理转发，常用于游戏加速。用户只需将游戏进程添加到列表，选择合适的代理节点，即可降低延迟并绕过地理限制。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>V2Ray 的传输协议选择对性能有何影响？</h5></div>
@@ -301,14 +306,14 @@ A4：通常免费版不支持，多设备同步功能多见于订阅版，用户
         在 sing-box 的配置中定义多个 outbound 对象并为 routing 模块配置 rules，将不同目的地或应用流量指向对应 outbound，从而实现分流、负载均衡或故障转移等复杂路由策略。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>VLess 协议与 Vmess 有何不同？</h5></div>
-    <div class="panel-body">
-        VLess 是由 V2Ray 开发者推出的新一代无加密传输协议，相比 Vmess 更轻量、效率更高。VLess 去除了内置加密逻辑，支持外部加密层如 TLS，使其更适合现代代理环境，尤其在高延迟网络中表现更稳定。<hr />    </div>
-</div>
-<div class="panel panel-default">
     <div class="panel-heading"><h5>Clash Premium 与普通版本有什么区别？</h5></div>
     <div class="panel-body">
         Clash Premium 是增强版，支持更多功能如 TUN 模式、本地 DNS 解析、脚本规则和自定义代理链。它能实现更细致的流量控制和兼容更多协议，适合对网络有高级需求的用户使用。<hr />    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading"><h5>Netch 如何在 Windows 上加速游戏？</h5></div>
+    <div class="panel-body">
+        Netch 使用 TUN/TAP 模式将特定进程流量通过代理转发，常用于游戏加速。用户只需将游戏进程添加到列表，选择合适的代理节点，即可降低延迟并绕过地理限制。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Clash 如何实现节点健康监测？</h5></div>
@@ -316,14 +321,9 @@ A4：通常免费版不支持，多设备同步功能多见于订阅版，用户
         Clash 支持定期测速节点延迟和丢包率，将节点状态显示在客户端。结合策略组，可以自动选择健康节点进行访问，避免访问高延迟或失效节点，提高网络稳定性和效率。<hr />    </div>
 </div>
 <div class="panel panel-default">
-    <div class="panel-heading"><h5>Shadowrocket 的重写功能有什么用途？</h5></div>
+    <div class="panel-heading"><h5>VLess 协议与 Vmess 有何不同？</h5></div>
     <div class="panel-body">
-        Shadowrocket 的重写功能允许用户在请求阶段修改 HTTP 头、响应内容或重定向 URL。这一功能常用于屏蔽广告、解锁区域限制或调试网页请求，非常灵活强大。<hr />    </div>
-</div>
-<div class="panel panel-default">
-    <div class="panel-heading"><h5>Matsuri 节点延迟排序如何结合策略组使用？</h5></div>
-    <div class="panel-body">
-        Matsuri 会定期测速节点延迟，通过策略组自动选择低延迟、高稳定性的节点处理不同流量。无需手动切换，确保网页浏览、视频播放和游戏访问顺畅。<hr />    </div>
+        VLess 是由 V2Ray 开发者推出的新一代无加密传输协议，相比 Vmess 更轻量、效率更高。VLess 去除了内置加密逻辑，支持外部加密层如 TLS，使其更适合现代代理环境，尤其在高延迟网络中表现更稳定。<hr />    </div>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading"><h5>Sing-box 如何通过域名规则实现精准分流？</h5></div>
@@ -376,16 +376,16 @@ A4：通常免费版不支持，多设备同步功能多见于订阅版，用户
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/free-nodes/linux-nekoray-2026-8-9.htm" title="「8月9日」最高速度18.8M/S，2025年NekoRay每天更新免费节点订阅链接">「8月9日」最高速度18.8M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-6-free-nekoray.htm" title="「9月6日」最高速度22M/S，2025年NekoRay每天更新免费节点订阅链接">「9月6日」最高速度22M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-9-10-windows-nekoray.htm" title="「9月10日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接">「9月10日」最高速度18.7M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-nekoray-node-2026-9-11.htm" title="「9月11日」最高速度19.2M/S，2025年NekoRay每天更新免费节点订阅链接">「9月11日」最高速度19.2M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-12-free-subscribe-node.htm" title="「8月12日」最高速度21.5M/S，2025年NekoRay每天更新免费节点订阅链接">「8月12日」最高速度21.5M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-9-18-free-v2ray-subscribe.htm" title="「9月18日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接">「9月18日」最高速度22.3M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/share-windows-nekoray-2026-8-7.htm" title="「8月7日」最高速度19.7M/S，2025年NekoRay每天更新免费节点订阅链接">「8月7日」最高速度19.7M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/share-windows-nekoray-2026-8-19.htm" title="「8月19日」最高速度20M/S，2025年NekoRay每天更新免费节点订阅链接">「8月19日」最高速度20M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/2026-8-10-free-subscribe-node.htm" title="「8月10日」最高速度20.9M/S，2025年NekoRay每天更新免费节点订阅链接">「8月10日」最高速度20.9M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-18-free-subscribe-node.htm" title="「8月18日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接">「8月18日」最高速度19.5M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/free-high-speed-nodes-2026-8-29.htm" title="「8月29日」最高速度19.4M/S，2025年NekoRay每天更新免费节点订阅链接">「8月29日」最高速度19.4M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-shadowrocket-node-2026-8-25.htm" title="「8月25日」最高速度18.3M/S，2025年NekoRay每天更新免费节点订阅链接">「8月25日」最高速度18.3M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/linux-nekoray-2026-9-13.htm" title="「9月13日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接">「9月13日」最高速度21.7M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
                         <li class="py-2"><a href="/free-nodes/share-windows-nekoray-2026-8-15.htm" title="「8月15日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接">「8月15日」最高速度22.2M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
-                        <li class="py-2"><a href="/free-nodes/2026-8-30-linux-nekoray-node.htm" title="「8月30日」最高速度19.4M/S，2025年NekoRay每天更新免费节点订阅链接">「8月30日」最高速度19.4M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/free-shadowrocket-node-2026-8-23.htm" title="「8月23日」最高速度21.3M/S，2025年NekoRay每天更新免费节点订阅链接">「8月23日」最高速度21.3M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/linux-nekoray-2026-9-1.htm" title="「9月1日」最高速度22.1M/S，2025年NekoRay每天更新免费节点订阅链接">「9月1日」最高速度22.1M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
+                        <li class="py-2"><a href="/free-nodes/2026-8-8-windows-nekoray.htm" title="「8月8日」最高速度18.6M/S，2025年NekoRay每天更新免费节点订阅链接">「8月8日」最高速度18.6M/S，2025年NekoRay每天更新免费节点订阅链接</a><hr /></li>
                     </ul>
     </div>
 </div>
@@ -397,7 +397,7 @@ A4：通常免费版不支持，多设备同步功能多见于订阅版，用户
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">11</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
+                <h4><span class="badge" style="float: right;">18</span> <a href="/date/2026-09/" title="2026-09 归档">2026-09</a></h4>
             </li>
                         <li class="py-2">
                 <h4><span class="badge" style="float: right;">26</span> <a href="/date/2026-08/" title="2026-08 归档">2026-08</a></h4>
